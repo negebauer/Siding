@@ -1,7 +1,7 @@
-app_identifier('com.negebauer.Siding') # The bundle identifier of your app
-apple_id('negebauerm@gmail.com') # Your Apple email address
-team_id('BJJKE72WM4')
-itc_team_id('118110410')
+app_identifier 'com.negebauer.Siding' # The bundle identifier of your app
+apple_id 'negebauerm@gmail.com' # Your Apple email address
+team_id 'BJJKE72WM4'
+itc_team_id '118110410'
 
 # For more information about the Appfile, see:
 #     https://docs.fastlane.tools/advanced/#appfile
