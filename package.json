@@ -6,7 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "eslint index.js src/",
-    "release": "standard-version && react-native-version -a && git push --follow-tags"
+    "release": "standard-version"
   },
   "dependencies": {
     "react": "16.3.1",
@@ -30,5 +30,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "standard-version": {
+    "scripts": {
+      "posttag": "react-native-version -a && git push --follow-tags"
+    }
   }
 }
