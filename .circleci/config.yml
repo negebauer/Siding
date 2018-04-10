@@ -101,6 +101,14 @@ workflows:
       - android:
           requires:
             - node
-      # - ios:
-      #     requires:
-      #       - node
+          filters:
+              branches:
+                only:
+                  - master
+      - ios:
+          requires:
+            - node
+          filters:
+              branches:
+                only:
+                  - master
