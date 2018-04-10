@@ -112,3 +112,11 @@ workflows:
           #     branches:
           #       only:
           #         - master
+      - confirm-dev-deploy:
+          type: approval
+          requires:
+            - android
+            - ios
+      - dev-deploy:
+          requires:
+            - confirm-dev-deploy
