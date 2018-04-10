@@ -1,6 +1,6 @@
 {
   "name": "siding",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -34,7 +34,7 @@
   },
   "standard-version": {
     "scripts": {
-      "precommit": "echo AJA"
+      "postbump": "react-native-version && git add android ios"
     }
   }
 }
