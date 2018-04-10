@@ -126,12 +126,20 @@ workflows:
           requires:
             - node
           filters:
+            branches:
+              only:
+                - f/*
+                - master
             tags:
               only: /.*/
       - ios:
           requires:
             - node
           filters:
+            branches:
+              only:
+                - f/*
+                - master
             tags:
               only: /.*/
       - confirm-feature-deploy:
