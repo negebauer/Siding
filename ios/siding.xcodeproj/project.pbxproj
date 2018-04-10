@@ -694,6 +694,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = BJJKE72WM4;
+						ProvisioningStyle = Manual;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1208,6 +1209,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = BJJKE72WM4;
@@ -1220,6 +1222,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.negebauer.Siding;
 				PRODUCT_NAME = siding;
+				PROVISIONING_PROFILE = "9b824951-cdb8-4861-925f-ecbb125bf62b";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.negebauer.Siding";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1228,6 +1232,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BJJKE72WM4;
 				INFOPLIST_FILE = siding/Info.plist;
@@ -1239,6 +1245,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.negebauer.Siding;
 				PRODUCT_NAME = siding;
+				PROVISIONING_PROFILE = "7bc02341-f730-4867-ac4a-bc7040d6dd9c";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.negebauer.Siding";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

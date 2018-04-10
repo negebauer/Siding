@@ -1,0 +1,4 @@
+git_url('https://github.com/negebauer/certificates.git')
+
+app_identifier('com.negebauer.Siding')
+username('negebauerm@gmail.com')
