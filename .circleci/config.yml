@@ -98,16 +98,21 @@ jobs:
     docker:
       - image: circleci/node:9.11
     steps:
-      - run: TODO: deploy for a feature branch
+      - run: echo TODO deploy for a feature branch
 
   internal-deploy:
     working_directory: ~/siding
     docker:
       - image: circleci/node:9.11
     steps:
-      - run: TODO: deploy for a commit in master
+      - run: echo TODO deploy for a commit in master
 
-
+  production-deploy:
+    working_directory: ~/siding
+    docker:
+      - image: circleci/node:9.11
+    steps:
+      - run: echo TODO deploy for a new version tag in master
 
 workflows:
   version: 2
