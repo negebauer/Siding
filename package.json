@@ -7,7 +7,7 @@
     "test": "jest",
     "lint": "eslint index.js src/",
     "release": "standard-version",
-    "postrelease": "react-native-version"
+    "postrelease": "react-native-version -a"
   },
   "dependencies": {
     "react": "16.3.1",
