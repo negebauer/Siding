@@ -82,8 +82,10 @@ jobs:
       - run: bundle exec fastlane build
       - store_artifacts:
           path: siding.ipa
+          destination: ./
       - store_artifacts:
           path: siding.app.dSYM.zip
+          destination: ./
 
 workflows:
   version: 2
