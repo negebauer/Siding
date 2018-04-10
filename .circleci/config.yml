@@ -34,7 +34,9 @@ jobs:
     steps:
       - checkout:
           path: ~/siding
-      - run: sh ../.circleci/download_android_keystore.sh
+      - run:
+          name: Download android keystore
+          command: curl -L -o app/siding.keystore $ANDROID_KEYSTORE_URI
       - attach_workspace:
           at: ~/siding
       - restore_cache:
@@ -99,6 +101,6 @@ workflows:
       - android:
           requires:
             - node
-      - ios:
-          requires:
-            - node
+      # - ios:
+      #     requires:
+      #       - node
