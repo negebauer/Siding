@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  react-native:
+    docker:
+      - image: circleci/node:9.11
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: yarn
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: yarn linter
+
+  android:
+    docker:
+      - image: circleci/node:9.11
+    working_directory: ~/android
+    steps:
+      - checkout:
+          path: ~/
+      - run:
+          name: Build android
+          command: fastlane build
+
+  ios:
+    macos:
+      xcode: 9.3
+    working_directory: ~/ios
+    steps:
+      - checkout:
+          path: ~/
+      - run:
+          name: Build ios
+          command: fastlane build
