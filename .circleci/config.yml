@@ -17,8 +17,8 @@ jobs:
       - run: yarn linter
 
   android:
-    docker:
-      - image: circleci/node:9.11
+    macos:
+      xcode: 9.3
     working_directory: ~/android
     steps:
       - checkout:
@@ -37,3 +37,15 @@ jobs:
       - run:
           name: Build ios
           command: fastlane build
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - react-native
+      - android:
+          requires:
+            - react-native
+      - ios:
+          requires:
+            - react-native
