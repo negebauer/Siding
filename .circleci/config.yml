@@ -93,30 +93,66 @@ jobs:
           path: siding.app.dSYM.zip
           destination: ./siding.app.dSYM.zip
 
+  feature-deploy:
+    working_directory: ~/siding
+    docker:
+      - image: circleci/node:9.11
+    steps:
+      - run: TODO: deploy for a feature branch
+
+  internal-deploy:
+    working_directory: ~/siding
+    docker:
+      - image: circleci/node:9.11
+    steps:
+      - run: TODO: deploy for a commit in master
+
+
+
 workflows:
   version: 2
   workflow:
     jobs:
-      - node
+      - node:
+          filters:
+            tags:
+              only: /.*/
       - android:
           requires:
             - node
-          # filters:
-          #     branches:
-          #       only:
-          #         - master
+          filters:
+            tags:
+              only: /.*/
       - ios:
           requires:
             - node
-          # filters:
-          #     branches:
-          #       only:
-          #         - master
-      - confirm-dev-deploy:
+          filters:
+            tags:
+              only: /.*/
+      - confirm-feature-deploy:
           type: approval
           requires:
             - android
             - ios
-      - dev-deploy:
+          filters:
+            branches:
+              only: f/*
+      - feature-deploy:
           requires:
-            - confirm-dev-deploy
+            - confirm-feature-deploy
+      - internal-deploy:
+          requires:
+            - android
+            - ios
+          filters:
+            branches:
+              only: master
+      - production-deploy:
+          requires:
+            - android
+            - ios
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: ^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$
