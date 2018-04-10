@@ -1,6 +1,6 @@
 {
   "name": "siding",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -33,8 +33,6 @@
     "preset": "react-native"
   },
   "standard-version": {
-    "scripts": {
-      "precommit": "react-native-version && git add android ios &> /dev/null"
-    }
+    "scripts": {}
   }
 }
