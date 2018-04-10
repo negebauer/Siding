@@ -51,6 +51,7 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+android/fastlane/fastlane-siding.json
 
 # Bundle artifact
 *.jsbundle
