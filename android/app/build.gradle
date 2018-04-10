@@ -73,6 +73,9 @@ import com.android.build.OutputFile
  */
 
 def getPassword(String currentUser, String keyChain) {
+  if (System.env['ANDROID_KEYSTORE_PASSWORD'] != null) {
+    return System.env['ANDROID_KEYSTORE_PASSWORD']
+  }
   def stdout = new ByteArrayOutputStream()
   def stderr = new ByteArrayOutputStream()
   exec {

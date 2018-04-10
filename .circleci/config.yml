@@ -34,6 +34,7 @@ jobs:
     steps:
       - checkout:
           path: ~/siding
+      - run: sh ../.circleci/download_android_keystore.sh
       - attach_workspace:
           at: ~/siding
       - restore_cache:
@@ -44,6 +45,9 @@ jobs:
           paths:
             - vendor/bundle
       - run: bundle exec fastlane build
+      - store_artifacts:
+          path: app/build/outputs/apk/app-release.apk
+          destination: ./
 
   ios:
     macos:
