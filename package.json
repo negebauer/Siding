@@ -33,7 +33,7 @@
   },
   "standard-version": {
     "scripts": {
-      "posttag": "react-native-version -a && git push --follow-tags"
+      "posttag": "react-native-version -a ; git push --follow-tags"
     }
   }
 }
