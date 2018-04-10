@@ -128,7 +128,7 @@ workflows:
           filters:
             branches:
               only:
-                - f/*
+                - /f\/.*/
                 - master
             tags:
               only: /.*/
@@ -138,7 +138,7 @@ workflows:
           filters:
             branches:
               only:
-                - f/*
+                - /f\/.*/
                 - master
             tags:
               only: /.*/
@@ -149,7 +149,7 @@ workflows:
             - ios
           filters:
             branches:
-              only: f/*
+              only: /f\/.*/
       - feature-deploy:
           requires:
             - confirm-feature-deploy
@@ -168,4 +168,4 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: ^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$
+              only: /^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/

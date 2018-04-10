@@ -1,12 +1,12 @@
 {
   "name": "siding",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "eslint index.js src/",
-    "release": "standard-version -a",
+    "release": "standard-version -a -m \"chore(release): %s [skip ci]\"",
     "postrelease": "git push --follow-tags"
   },
   "dependencies": {
