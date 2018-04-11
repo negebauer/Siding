@@ -6,7 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "eslint index.js src/",
-    "release": "standard-version -a -m \"chore(release): %s [skip ci]\"",
+    "release": "standard-version -a -m \"chore(release): %s\n\n[skip ci]\"",
     "postrelease": "git push --follow-tags"
   },
   "dependencies": {
