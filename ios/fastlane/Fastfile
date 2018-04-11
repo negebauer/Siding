@@ -21,12 +21,10 @@ platform :ios do
     build_app
   end
 
-  desc 'Deploy beta version from CI to Testflight'
   lane :beta_ci do
     puts 'TODO'
   end
 
-  desc 'Deploy production version from CI to App store'
   lane :deploy_ci do
     puts 'TODO'
   end
