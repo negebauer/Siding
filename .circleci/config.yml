@@ -108,9 +108,12 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/siding/ios
+          at: app/build/outputs/apk
       - attach_workspace:
-          at: ~/siding/android/app/build/outputs/apk
+          at: ./
+      - run:
+          name: Download android fastlane json
+          command: curl -L -o android/fastlane/fastlane-siding.json $ANDROID_FASTLANE_JSON_URI
       - run: ls
 
   internal-deploy:
