@@ -50,6 +50,10 @@ jobs:
       - store_artifacts:
           path: app/build/outputs/apk/app-release.apk
           destination: ./app-release.apk
+      - persist_to_workspace:
+          root: app/build/outputs/apk
+          paths:
+            - app-release.apk
 
   ios:
     macos:
@@ -92,13 +96,22 @@ jobs:
       - store_artifacts:
           path: siding.app.dSYM.zip
           destination: ./siding.app.dSYM.zip
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - siding.ipa
 
   feature-deploy:
     working_directory: ~/siding
     docker:
       - image: circleci/node:9.11
     steps:
-      - run: echo TODO deploy for a feature branch
+      - checkout
+      - attach_workspace:
+          at: ~/siding/ios
+      - attach_workspace:
+          at: ~/siding/android/app/build/outputs/apk
+      - run: ls
 
   internal-deploy:
     working_directory: ~/siding
@@ -138,21 +151,21 @@ workflows:
           filters:
             branches:
               only:
-                - /f\/.*/
+                # - /f\/.*/
                 - master
             tags:
               only: /.*/
-      - confirm-feature-deploy:
-          type: approval
+      - feature-deploy:
+          # type: approval
           requires:
             - android
-            - ios
+            # - ios
           filters:
             branches:
               only: /f\/.*/
-      - feature-deploy:
-          requires:
-            - confirm-feature-deploy
+      # - feature-deploy:
+      #     requires:
+      #       - confirm-feature-deploy
       - internal-deploy:
           requires:
             - android
