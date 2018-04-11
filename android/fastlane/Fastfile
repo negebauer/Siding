@@ -4,6 +4,7 @@
 #   https://docs.fastlane.tools/actions
 
 default_platform :android
+skip_docs
 
 platform :android do
   lane :build do
@@ -11,16 +12,19 @@ platform :android do
   end
 
   lane :build_ci do
+    build_number = sh('git rev-list --all --count')
+    file_path = '../app/build.gradle'
+    text = File.read(file_path)
+    replace = text.gsub(/versionCode \d+\n/, "versionCode #{build_number}")
+    File.open(file_path, 'w') { |file| file.puts replace }
     gradle task: 'clean assembleRelease'
   end
 
-  desc 'Deploy a new version to the Google Play'
   lane :deploy do
     gradle task: 'clean assembleRelease'
     upload_to_play_store
   end
 
-  desc 'Deploy beta version from CI to Google Play'
   lane :beta_ci do
     upload_to_play_store(
       track: 'beta',
@@ -28,7 +32,6 @@ platform :android do
     )
   end
 
-  desc 'Deploy production version from CI to Google Play'
   lane :deploy_ci do
     upload_to_play_store(
       track: 'production',

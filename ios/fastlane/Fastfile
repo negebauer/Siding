@@ -4,6 +4,7 @@
 #   https://docs.fastlane.tools/actions
 
 default_platform :ios
+skip_docs
 
 platform :ios do
   before_all do
