@@ -89,7 +89,7 @@ jobs:
           key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
           paths:
             - vendor/bundle
-      - run: bundle exec fastlane build
+      - run: bundle exec fastlane build_ci
       - store_artifacts:
           path: siding.ipa
           destination: ./siding.ipa
