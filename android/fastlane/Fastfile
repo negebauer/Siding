@@ -6,16 +6,20 @@
 default_platform :android
 skip_docs
 
+def version_code
+  commit_count = sh('git rev-list --count master')
+  Integer(commit_count) + 0
+end
+
 platform :android do
   lane :build do
     gradle task: 'clean assembleRelease'
   end
 
   lane :build_ci do
-    build_number = sh('git rev-list --count master')
     file_path = '../app/build.gradle'
     text = File.read(file_path)
-    replace = text.gsub(/versionCode \d+/, "versionCode #{Integer(build_number) + 0}")
+    replace = text.gsub(/versionCode \d+/, "versionCode #{version_code}")
     File.open(file_path, 'w') { |file| file.puts replace }
     gradle task: 'clean assembleRelease'
   end
