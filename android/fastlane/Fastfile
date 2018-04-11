@@ -30,7 +30,9 @@ platform :android do
   end
 
   lane :beta_ci do
-    changelog_from_git_commits
+    changelog = changelog_from_git_commits
+    changelog_path = "./metadata/android/es-419/changelogs/#{version_code}.txt"
+    File.open(changelog_path, 'w') { |file| file.write(changelog) }
     upload_to_play_store(
       track: 'beta',
       apk: 'app/build/outputs/apk/app-release.apk'
