@@ -23,7 +23,8 @@ platform :ios do
   end
 
   lane :beta_ci do
-    puts 'TODO'
+    changelog_from_git_commits
+    upload_to_testflight
   end
 
   lane :deploy_ci do
