@@ -12,7 +12,7 @@ platform :android do
   end
 
   lane :build_ci do
-    build_number = sh('git rev-list --all --count')
+    build_number = sh('git rev-list --count master') - 9
     file_path = '../app/build.gradle'
     text = File.read(file_path)
     replace = text.gsub(/versionCode \d+\n/, "versionCode #{build_number}")
