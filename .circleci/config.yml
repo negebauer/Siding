@@ -51,9 +51,9 @@ jobs:
           path: app/build/outputs/apk/app-release.apk
           destination: ./app-release.apk
       - persist_to_workspace:
-          root: app/build/outputs/apk
+          root: ~/siding
           paths:
-            - app-release.apk
+            - android/app/build/outputs/apk/app-release.apk
 
   ios:
     macos:
@@ -97,9 +97,9 @@ jobs:
           path: siding.app.dSYM.zip
           destination: ./siding.app.dSYM.zip
       - persist_to_workspace:
-          root: ./
+          root: ~/siding
           paths:
-            - siding.ipa
+            - ios/siding.ipa
 
   feature-deploy:
     working_directory: ~/siding
@@ -108,13 +108,11 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: app/build/outputs/apk
-      - attach_workspace:
-          at: ./
+          at: ~/siding
       - run:
           name: Download android fastlane json
           command: curl -L -o android/fastlane/fastlane-siding.json $ANDROID_FASTLANE_JSON_URI
-      - run: ls
+      - run: cd android && bundle exec fastlane alpha_ci
 
   internal-deploy:
     working_directory: ~/siding
@@ -154,7 +152,7 @@ workflows:
           filters:
             branches:
               only:
-                - /f\/.*/
+                # - /f\/.*/
                 - master
             tags:
               only: /.*/
@@ -162,7 +160,7 @@ workflows:
           # type: approval
           requires:
             - android
-            - ios
+            # - ios
           filters:
             branches:
               only: /f\/.*/
