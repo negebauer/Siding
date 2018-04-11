@@ -154,7 +154,7 @@ workflows:
           filters:
             branches:
               only:
-                # - /f\/.*/
+                - /f\/.*/
                 - master
             tags:
               only: /.*/
@@ -162,7 +162,7 @@ workflows:
           # type: approval
           requires:
             - android
-            # - ios
+            - ios
           filters:
             branches:
               only: /f\/.*/
