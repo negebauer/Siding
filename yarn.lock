@@ -542,6 +542,15 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
+app-icon@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/app-icon/-/app-icon-0.6.3.tgz#94cf1ced78d53f6654409f1774645c4c076c4985"
+  dependencies:
+    chalk "^1.1.3"
+    command-exists "^1.0.2"
+    commander "^2.9.0"
+    mkdirp "^0.5.1"
+
 append-transform@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/append-transform/-/append-transform-0.4.0.tgz#d76ebf8ca94d276e247a36bad44a4b74ab611991"
@@ -1650,6 +1659,10 @@ combined-stream@1.0.6, combined-stream@^1.0.5, combined-stream@~1.0.5:
   resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.6.tgz#723e7df6e801ac5613113a7e445a9b69cb632818"
   dependencies:
     delayed-stream "~1.0.0"
+
+command-exists@^1.0.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/command-exists/-/command-exists-1.2.2.tgz#12819c64faf95446ec0ae07fe6cafb6eb3708b22"
 
 commander@^2.9.0:
   version "2.15.1"
