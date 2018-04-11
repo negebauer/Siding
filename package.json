@@ -8,7 +8,8 @@
     "lint": "eslint index.js src/",
     "release": "standard-version -a -m \"chore(release): %s\n\n[skip ci]\"",
     "postrelease": "git push --follow-tags",
-    "icon": "app-icon generate"
+    "icon": "app-icon generate",
+    "icon:beta": "app-icon label -i icon.png -o tmp.png --top BETA --bottom $(git describe); yarn icon -i tmp.png; rm tmp.png"
   },
   "dependencies": {
     "react": "16.3.1",
