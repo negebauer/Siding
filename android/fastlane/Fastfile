@@ -10,24 +10,29 @@ platform :android do
     gradle task: 'clean assembleRelease'
   end
 
+  lane :build_ci do
+    gradle task: 'clean assembleRelease'
+  end
+
   desc 'Deploy a new version to the Google Play'
   lane :deploy do
     gradle task: 'clean assembleRelease'
     upload_to_play_store
   end
 
-  desc 'Deploy alpha version from CI to Google Play'
-  lane :alpha_ci do
-    upload_to_play_store track: 'alpha'
-  end
-
   desc 'Deploy beta version from CI to Google Play'
   lane :beta_ci do
-    upload_to_play_store track: 'beta'
+    upload_to_play_store(
+      track: 'beta',
+      apk: 'app/build/outputs/apk/app-release.apk'
+    )
   end
 
   desc 'Deploy production version from CI to Google Play'
   lane :deploy_ci do
-    upload_to_play_store track: 'production'
+    upload_to_play_store(
+      track: 'production',
+      apk: 'app/build/outputs/apk/app-release.apk'
+    )
   end
 end

@@ -46,19 +46,19 @@ jobs:
           key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
           paths:
             - vendor/bundle
-      - run: bundle exec fastlane build
+      - run: bundle exec fastlane build_ci
       - store_artifacts:
           path: app/build/outputs/apk/app-release.apk
           destination: ./app-release.apk
       - persist_to_workspace:
-          root: ~/siding
+          root: ~/siding/android
           paths:
-            - android/app/build/outputs/apk/app-release.apk
+            - app/build/outputs/apk/app-release.apk
 
   ios:
+    working_directory: ~/siding/ios
     macos:
       xcode: "9.0"
-    working_directory: ~/siding/ios
     # use a --login shell so our "set Ruby version" command gets picked up for later steps
     shell: /bin/bash --login -o pipefail
     steps:
@@ -97,36 +97,98 @@ jobs:
           path: siding.app.dSYM.zip
           destination: ./siding.app.dSYM.zip
       - persist_to_workspace:
-          root: ~/siding
+          root: ~/siding/ios
           paths:
-            - ios/siding.ipa
+            - siding.ipa
 
-  feature-deploy:
-    working_directory: ~/siding
+  beta-android:
+    working_directory: ~/siding/android
     docker:
-      - image: circleci/node:9.11
+      - image: circleci/ruby:2.5-node
     steps:
-      - checkout
+      - checkout:
+         path: ~/siding
+      - attach_workspace:
+          at: ~/siding/android
       - attach_workspace:
           at: ~/siding
       - run:
           name: Download android fastlane json
-          command: curl -L -o android/fastlane/fastlane-siding.json $ANDROID_FASTLANE_JSON_URI
-      - run: cd android && bundle exec fastlane alpha_ci
+          command: curl -L -o fastlane/fastlane-siding.json $ANDROID_FASTLANE_JSON_URI
+      - restore_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+      - run: bundle install
+      - save_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+          paths:
+            - vendor/bundle
+      - run: bundle exec fastlane beta_ci
 
-  internal-deploy:
-    working_directory: ~/siding
-    docker:
-      - image: circleci/node:9.11
+  beta-ios:
+    working_directory: ~/siding/ios
+    macos:
+      xcode: "9.0"
+    shell: /bin/bash --login -o pipefail
     steps:
-      - run: echo TODO deploy for a commit in master
+      - checkout:
+         path: ~/siding
+      - attach_workspace:
+          at: ~/siding/ios
+      - attach_workspace:
+          at: ~/siding
+      - run:
+          name: set Ruby version
+          command:  echo "ruby-2.4" > ~/.ruby-version
+      - restore_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+      - run: bundle install
+      - save_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+          paths:
+            - vendor/bundle
+      - run: bundle exec fastlane beta_ci
 
-  production-deploy:
-    working_directory: ~/siding
+  deploy-android:
+    working_directory: ~/siding/android
     docker:
-      - image: circleci/node:9.11
+      - image: circleci/ruby:2.5-node
     steps:
-      - run: echo TODO deploy for a new version tag in master
+      - checkout:
+         path: ~/siding
+      - attach_workspace:
+          at: ~/siding/android
+      - run:
+          name: Download android fastlane json
+          command: curl -L -o fastlane/fastlane-siding.json $ANDROID_FASTLANE_JSON_URI
+      - restore_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+      - run: bundle install
+      - save_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+          paths:
+            - vendor/bundle
+      - run: bundle exec fastlane deploy_ci
+
+  deploy-ios:
+    working_directory: ~/siding/ios
+    macos:
+      xcode: "9.0"
+    steps:
+      - checkout:
+         path: ~/siding
+      - run:
+          name: set Ruby version
+          command:  echo "ruby-2.4" > ~/.ruby-version
+      - attach_workspace:
+          at: ~/siding/ios
+      - restore_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+      - run: bundle install
+      - save_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+          paths:
+            - vendor/bundle
+      - run: bundle exec fastlane deploy_ci
 
 workflows:
   version: 2
@@ -152,31 +214,36 @@ workflows:
           filters:
             branches:
               only:
-                # - /f\/.*/
+                - /f\/.*/
                 - master
             tags:
               only: /.*/
-      - feature-deploy:
-          # type: approval
+      - beta-android:
           requires:
             - android
-            # - ios
           filters:
             branches:
-              only: /f\/.*/
-      # - feature-deploy:
-      #     requires:
-      #       - confirm-feature-deploy
-      - internal-deploy:
+              only:
+                - master
+                - /f\/.*/
+      - beta-ios:
           requires:
-            - android
             - ios
           filters:
             branches:
-              only: master
-      - production-deploy:
+              only:
+                - master
+                - /f\/.*/
+      - deploy-android:
           requires:
             - android
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$/
+      - deploy-ios:
+          requires:
             - ios
           filters:
             branches:
