@@ -15,7 +15,7 @@ platform :android do
     build_number = sh('git rev-list --count master')
     file_path = '../app/build.gradle'
     text = File.read(file_path)
-    replace = text.gsub(/versionCode \d+/, "versionCode #{Integer(build_number) - 55}")
+    replace = text.gsub(/versionCode \d+/, "versionCode #{build_number}")
     File.open(file_path, 'w') { |file| file.puts replace }
     gradle task: 'clean assembleRelease'
   end

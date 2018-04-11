@@ -223,9 +223,7 @@ workflows:
             - android
           filters:
             branches:
-              only:
-                - master
-                - /f\/.*/
+              only: master
       - beta-ios:
           requires:
             - ios

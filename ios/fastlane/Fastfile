@@ -18,7 +18,7 @@ platform :ios do
   lane :build_ci do
     match type: 'appstore'
     build_number = sh('git rev-list --count master')
-    increment_build_number build_number: Integer(build_number) - 55
+    increment_build_number build_number: build_number
     build_app
   end
 
