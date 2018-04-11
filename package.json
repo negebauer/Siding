@@ -7,13 +7,15 @@
     "test": "jest",
     "lint": "eslint index.js src/",
     "release": "standard-version -a -m \"chore(release): %s\n\n[skip ci]\"",
-    "postrelease": "git push --follow-tags"
+    "postrelease": "git push --follow-tags",
+    "icon": "app-icon generate"
   },
   "dependencies": {
     "react": "16.3.1",
     "react-native": "0.55.2"
   },
   "devDependencies": {
+    "app-icon": "^0.6.3",
     "babel-eslint": "^8.2.2",
     "babel-jest": "22.4.3",
     "babel-preset-react-native": "4.0.0",
