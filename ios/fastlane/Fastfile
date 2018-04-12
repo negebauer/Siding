@@ -8,7 +8,7 @@ skip_docs
 
 def version_code
   commit_count = sh('git rev-list --count master')
-  Integer(commit_count) + 0
+  Integer(commit_count) + 34
 end
 
 platform :ios do
