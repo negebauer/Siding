@@ -223,17 +223,13 @@ workflows:
             - android
           filters:
             branches:
-              only:
-                - master
-                - /f\/.*/
+              only: master
       - beta-ios:
           requires:
             - ios
           filters:
             branches:
-              only:
-                - master
-                - /f\/.*/
+              only: master
       - deploy-android:
           requires:
             - android
