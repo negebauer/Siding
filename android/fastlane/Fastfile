@@ -30,7 +30,7 @@ platform :android do
   end
 
   lane :beta_ci do
-    changelog = changelog_from_git_commits
+    changelog = /\A[A-Za-z\d]([-\w]{,498}[A-Za-z\d])?\Z/.match changelog_from_git_commits
     changelog_path = "./metadata/android/es-419/changelogs/#{version_code}.txt"
     File.open(changelog_path, 'w') { |file| file.write(changelog) }
     upload_to_play_store(
