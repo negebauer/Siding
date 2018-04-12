@@ -1,38 +1,48 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+# Docs
+#   https://docs.fastlane.tools
+# Available actions
+#   https://docs.fastlane.tools/actions
 
 default_platform :android
+skip_docs
+
+def version_code
+  commit_count = sh('git rev-list --count master')
+  Integer(commit_count) + 87
+end
 
 platform :android do
-  desc 'Runs all the tests'
-  lane :test do
-    gradle task: 'test'
-  end
-
-  desc 'Submit a new Beta Build to Crashlytics Beta'
-  lane :beta do
-    gradle task: 'clean assembleRelease'
-    crashlytics
-
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
-  end
-
   lane :build do
     gradle task: 'clean assembleRelease'
   end
 
-  desc 'Deploy a new version to the Google Play'
+  lane :build_ci do
+    file_path = '../app/build.gradle'
+    text = File.read(file_path)
+    replace = text.gsub(/versionCode \d+/, "versionCode #{version_code}")
+    File.open(file_path, 'w') { |file| file.puts replace }
+    gradle task: 'clean assembleRelease'
+  end
+
   lane :deploy do
     gradle task: 'clean assembleRelease'
     upload_to_play_store
+  end
+
+  lane :beta_ci do
+    changelog = changelog_from_git_commits.slice(0..498)
+    changelog_path = "./metadata/android/es-419/changelogs/#{version_code}.txt"
+    File.open(changelog_path, 'w') { |file| file.puts changelog }
+    upload_to_play_store(
+      track: 'beta',
+      apk: 'app/build/outputs/apk/app-release.apk'
+    )
+  end
+
+  lane :deploy_ci do
+    upload_to_play_store(
+      track: 'production',
+      apk: 'app/build/outputs/apk/app-release.apk'
+    )
   end
 end

@@ -7,9 +7,9 @@
     "test": "jest",
     "lint": "eslint index.js src/",
     "release": "standard-version -a -m \"chore(release): %s\n\n[skip ci]\"",
+    "build:increment": "react-native-version -b",
     "postrelease": "git push --follow-tags",
-    "icon": "app-icon generate",
-    "icon:beta": "app-icon label -i icon.png -o tmp.png --top BETA --bottom $(git describe); yarn icon -i tmp.png; rm tmp.png"
+    "icon": "app-icon generate"
   },
   "dependencies": {
     "react": "16.3.1",
