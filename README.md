@@ -6,6 +6,10 @@
 
 A mobile client for iOS and android for accessing the UC's Siding. Powered by React-Native
 
+## Beta testing
+
+[Android](https://play.google.com/apps/testing/com.siding)
+
 <!-- Badges -->
 
 [circleciL]:https://circleci.com/gh/negebauer/Siding
