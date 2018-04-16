@@ -1,5 +1,6 @@
 module.exports = {
   extends: [
+    "airbnb",
     "airbnb-base/legacy",
     "airbnb-base/rules/es6",
     "prettier",
@@ -11,8 +12,8 @@ module.exports = {
     },
   },
   env: {
-    node: true,
     es6: true,
+    jest: true,
   },
   plugins: [
     "prettier",
@@ -23,5 +24,6 @@ module.exports = {
       semi: false,
       singleQuote: true,
     }],
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
   }
 };
