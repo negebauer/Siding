@@ -1,7 +1,7 @@
 module.exports = {
   parser: 'babel-eslint',
   extends: [
-    'airbnb',
+    // 'airbnb',
     // 'airbnb-base/legacy',
     'airbnb-base/rules/es6',
     'prettier',
