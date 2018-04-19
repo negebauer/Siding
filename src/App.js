@@ -1,5 +1,5 @@
-import React from 'react'
-import { Platform, StyleSheet, View, Text } from 'react-native'
+import React, { Component } from 'react'
+import { StyleSheet, View, Text, TextInput, Button } from 'react-native'
 import { auth, getCourses } from './api'
 
 const styles = StyleSheet.create({
@@ -9,34 +9,60 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  input: {
+    height: 40,
+    width: '60%',
+    borderColor: 'gray',
+    borderWidth: 1,
   },
 })
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\nCmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-})
+export default class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      username: '',
+      password: '',
+      login: false,
+      loginError: undefined,
+      courses: [],
+    }
+  }
 
-export default function App() {
-  auth('negebauer', '')
-    .then(getCourses)
-    .then(console.log)
-  return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to React Native!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
-    </View>
-  )
+  go = async () => {
+    try {
+      this.setState({ login: false, loginError: undefined })
+      const login = await auth(this.state.username, this.state.password)
+      this.setState({ login })
+      const courses = await getCourses()
+      this.setState({ courses })
+    } catch (loginError) {
+      this.setState({ loginError })
+    }
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          autoCapitalize="none"
+          onChangeText={username => this.setState({ username })}
+        />
+        <TextInput
+          style={styles.input}
+          secureTextEntry
+          onChangeText={password => this.setState({ password })}
+        />
+        <Button title="Login get courses" onPress={this.go} />
+        <Text>{`Login: ${this.state.login}`}</Text>
+        {this.state.loginError && (
+          <Text>{`Error: ${this.state.loginError.message}`}</Text>
+        )}
+        {this.state.courses.map(course => (
+          <Text key={course.text}>{course.text}</Text>
+        ))}
+      </View>
+    )
+  }
 }
