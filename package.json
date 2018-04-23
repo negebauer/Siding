@@ -12,7 +12,7 @@
     "build:increment": "react-native-version -b",
     "postrelease": "git push --follow-tags",
     "icon": "app-icon generate",
-    "docs": "esdoc"
+    "docs": "esdoc && git add docs && git commit -m \"chore(docs): update\n\n[skip ci]\""
   },
   "dependencies": {
     "react": "16.3.1",
