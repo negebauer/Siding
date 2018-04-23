@@ -59,6 +59,7 @@ export default class App extends Component {
       // const folders = await getFolder({ courseId: '10252', id: '63183' })
       // LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
       // this.setState({ folders, loading: false })
+      this.setState({ loading: false })
     } catch (loginError) {
       this.setState({ loginError })
     }
