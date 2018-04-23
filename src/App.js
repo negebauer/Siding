@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  Button,
+  LayoutAnimation,
+} from 'react-native'
 import { auth, getCourses, getCourse, getFolder } from './api'
 
 const styles = StyleSheet.create({
@@ -37,10 +44,13 @@ export default class App extends Component {
       const login = await auth(this.state.username, this.state.password)
       this.setState({ login })
       const courses = await getCourses()
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
       this.setState({ courses })
       const course = await getCourse('10252')
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
       this.setState({ course })
       const folders = await getFolder({ courseId: '10252', id: '63183' })
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
       this.setState({ folders })
     } catch (loginError) {
       this.setState({ loginError })
