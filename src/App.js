@@ -34,7 +34,6 @@ export default class App extends Component {
       login: false,
       loginError: undefined,
       courses: [],
-      course: [],
       folders: [],
       loading: false,
     }
@@ -49,12 +48,17 @@ export default class App extends Component {
       const courses = await getCourses()
       LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
       this.setState({ courses })
-      const course = await getCourse('10252')
+      await Promise.all(
+        courses.map(async (course, i) => {
+          const folders = await getCourse(course.id)
+          courses[i].folders = folders
+        })
+      )
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
-      this.setState({ course })
-      const folders = await getFolder({ courseId: '10252', id: '63183' })
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
-      this.setState({ folders, loading: false })
+      this.setState({ courses })
+      // const folders = await getFolder({ courseId: '10252', id: '63183' })
+      // LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
+      // this.setState({ folders, loading: false })
     } catch (loginError) {
       this.setState({ loginError })
     }
@@ -81,10 +85,13 @@ export default class App extends Component {
           <Text>{`Error: ${this.state.loginError.message}`}</Text>
         )}
         {this.state.courses.map(course => (
-          <Text key={course.text}>{course.text}</Text>
-        ))}
-        {this.state.course.map(data => (
-          <Text key={data.text}>{data.text}</Text>
+          <View key={course.id}>
+            <Text>{`${course.acronym} s${course.section} ${course.name}`}</Text>
+            <Text>Carpetas</Text>
+            {Object.keys(course.folders).map(id => (
+              <Text key={id}>{`${course.folders[id].name}`}</Text>
+            ))}
+          </View>
         ))}
         {this.state.folders.map(data => (
           <Text key={data.text}>{data.text}</Text>

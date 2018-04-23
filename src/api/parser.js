@@ -6,48 +6,41 @@ const parser = new DOMParser({
   },
 })
 
+/**
+ *  Parse a course html to find its courses
+ *  @author @negebauer
+ *  @param  {string} html The full html of the main course page
+ *  @return {Array}       An array with course objects
+ */
 export function parseCourses(html) {
-  const doc = parser.parseFromString(html)
-
-  // $("a").each((i, l) => {
-  //       const link = $(l).attr("href")
-  //       if (link.indexOf("id_curso_ic") === -1) {
-  //         return
-  //       }
-  //       const courseId = link.split("id_curso_ic=")[1]
-  //       const courseText = $(l).text()
-  //       const courseSplit = courseText.split(/ s\.[0-9] /)
-  //       const courseSection = courseText.split(" ")[1].match(/\d+/)[0]
-  //       const courseAcronym = courseSplit[0]
-  //       if (ignore.indexOf(courseAcronym) !== -1) {
-  //         return
-  //       }
-  //       const courseName = courseSplit[1]
-  //       courses.push(
-  //         new course(courseId, courseAcronym, courseName, courseSection)
-  //       )
-  //     })
-
-  const courses = doc
+  return parser
+    .parseFromString(html)
     .querySelect('a')
     .filter(anchor => anchor.getAttribute('href').indexOf('id_curso_ic') >= 0)
-    .map(anchor => ({
-      href: anchor.getAttribute('href'),
-      text: anchor.textContent,
-    }))
-  return courses
+    .map(anchor => {
+      const id = anchor.getAttribute('href').split('id_curso_ic=')[1]
+      const text = anchor.textContent
+      const split = text.split(/ s\.[0-9] /)
+      const acronym = split[0]
+      const name = split[1]
+      const section = text.split(' ')[1].match(/\d+/)[0]
+      return { id, acronym, name, section, folders: {} }
+    })
 }
 
 export function parseCourse(html) {
-  const doc = parser.parseFromString(html)
-  const links = doc
+  return parser
+    .parseFromString(html)
     .querySelect('a')
     .filter(anchor => anchor.getAttribute('href').indexOf('acc_carp') >= 0)
-    .map(anchor => ({
-      href: anchor.getAttribute('href'),
-      text: anchor.textContent,
-    }))
-  return links
+    .map(anchor => {
+      const id = anchor
+        .getAttribute('href')
+        .match(/id_carpeta=\d+/g)[0]
+        .split('=')[1]
+      const name = anchor.textContent
+      return { id, name }
+    })
 }
 
 export function parseFolder(html) {
