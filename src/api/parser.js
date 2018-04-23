@@ -6,8 +6,8 @@ const parser = new DOMParser({
   },
 })
 
-export function parseCourses(text) {
-  const doc = parser.parseFromString(text, 'text/html')
+export function parseCourses(html) {
+  const doc = parser.parseFromString(html)
 
   // $("a").each((i, l) => {
   //       const link = $(l).attr("href")
@@ -38,4 +38,26 @@ export function parseCourses(text) {
   return courses
 }
 
-export function a() {}
+export function parseCourse(html) {
+  const doc = parser.parseFromString(html)
+  const links = doc
+    .querySelect('a')
+    .filter(anchor => anchor.getAttribute('href').indexOf('acc_carp') >= 0)
+    .map(anchor => ({
+      href: anchor.getAttribute('href'),
+      text: anchor.textContent,
+    }))
+  return links
+}
+
+export function parseFolder(html) {
+  const doc = parser.parseFromString(html)
+  const links = doc
+    .querySelect('a')
+    .filter(anchor => anchor.getAttribute('href').indexOf('id_archivo') >= 0)
+    .map(anchor => ({
+      href: anchor.getAttribute('href'),
+      text: anchor.textContent,
+    }))
+  return links
+}

@@ -1,7 +1,11 @@
-import { LOGIN_URL, CURRENT_COURSES_URL } from './urls'
-import { parseCourses } from './parser'
-
-// import Siding from './siding'
+import {
+  LOGIN_URL,
+  CURRENT_COURSES_URL,
+  coursesUrl,
+  courseUrl,
+  folderUrl,
+} from './urls'
+import { parseCourses, parseCourse, parseFolder } from './parser'
 import wait from './wait'
 
 let SIDING_USER = ''
@@ -55,8 +59,22 @@ export async function auth(login, passwd) {
   return Promise.resolve(true)
 }
 
-export async function getCourses() {
-  await auth(SIDING_USER, SIDING_PASSWORD)
-  const text = await get(CURRENT_COURSES_URL)
-  return parseCourses(text)
+export async function getCourses({ semester, year } = {}) {
+  let url = CURRENT_COURSES_URL
+  if (semester && year) url = coursesUrl(semester, year)
+  const html = await authorizedGet(url)
+  return parseCourses(html)
+}
+
+export async function getCourse(id) {
+  if (!id) throw new Error('Course id required for getCourse')
+  const html = await authorizedGet(courseUrl(id))
+  return parseCourse(html)
+}
+
+export async function getFolder({ id, courseId }) {
+  if (!id || !courseId)
+    throw new Error('Folder and course id required for getFolder')
+  const html = await authorizedGet(folderUrl({ id, courseId }))
+  return parseFolder(html)
 }

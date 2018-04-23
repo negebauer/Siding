@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native'
-import { auth, getCourses } from './api'
+import { auth, getCourses, getCourse, getFolder } from './api'
 
 const styles = StyleSheet.create({
   container: {
@@ -26,6 +26,8 @@ export default class App extends Component {
       login: false,
       loginError: undefined,
       courses: [],
+      course: [],
+      folders: [],
     }
   }
 
@@ -36,12 +38,17 @@ export default class App extends Component {
       this.setState({ login })
       const courses = await getCourses()
       this.setState({ courses })
+      const course = await getCourse('10252')
+      this.setState({ course })
+      const folders = await getFolder({ courseId: '10252', id: '63183' })
+      this.setState({ folders })
     } catch (loginError) {
       this.setState({ loginError })
     }
   }
 
   render() {
+    console.log(this.state)
     return (
       <View style={styles.container}>
         <TextInput
@@ -61,6 +68,12 @@ export default class App extends Component {
         )}
         {this.state.courses.map(course => (
           <Text key={course.text}>{course.text}</Text>
+        ))}
+        {this.state.course.map(data => (
+          <Text key={data.text}>{data.text}</Text>
+        ))}
+        {this.state.folders.map(data => (
+          <Text key={data.text}>{data.text}</Text>
         ))}
       </View>
     )
