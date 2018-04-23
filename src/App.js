@@ -6,6 +6,7 @@ import {
   TextInput,
   Button,
   LayoutAnimation,
+  StatusBar,
 } from 'react-native'
 import { auth, getCourses, getCourse, getFolder } from './api'
 
@@ -35,12 +36,14 @@ export default class App extends Component {
       courses: [],
       course: [],
       folders: [],
+      loading: false,
     }
   }
 
   go = async () => {
     try {
-      this.setState({ login: false, loginError: undefined })
+      // https://github.com/futuretap/FTLinearActivityIndicator for iPhone X
+      this.setState({ login: false, loginError: undefined, loading: true })
       const login = await auth(this.state.username, this.state.password)
       this.setState({ login })
       const courses = await getCourses()
@@ -51,7 +54,7 @@ export default class App extends Component {
       this.setState({ course })
       const folders = await getFolder({ courseId: '10252', id: '63183' })
       LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
-      this.setState({ folders })
+      this.setState({ folders, loading: false })
     } catch (loginError) {
       this.setState({ loginError })
     }
@@ -61,6 +64,7 @@ export default class App extends Component {
     console.log(this.state)
     return (
       <View style={styles.container}>
+        <StatusBar networkActivityIndicatorVisible={this.state.loading} />
         <TextInput
           style={styles.input}
           autoCapitalize="none"
