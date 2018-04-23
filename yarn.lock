@@ -5190,9 +5190,9 @@ react-native-html-parser@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-native-html-parser/-/react-native-html-parser-0.0.5.tgz#210a76626b7a472a4b5f5a85cb24b37b10344126"
 
-react-native-version@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/react-native-version/-/react-native-version-2.4.1.tgz#75fce16dcc44daff4f51b11935ef2c2e315b2ca7"
+react-native-version@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-version/-/react-native-version-2.5.0.tgz#9c4bd3b2b9b7e478c0ffc7520553251b62923300"
   dependencies:
     chalk "^1.1.3"
     commander "^2.9.0"
