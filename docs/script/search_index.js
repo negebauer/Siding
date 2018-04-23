@@ -456,12 +456,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/app.js~app#componentdidmount",
-    "class/src/App.js~App.html#instance-method-componentDidMount",
-    "src/App.js~App#componentDidMount",
-    "method"
-  ],
-  [
     "src/app.js~app#constructor",
     "class/src/App.js~App.html#instance-constructor-constructor",
     "src/App.js~App#constructor",

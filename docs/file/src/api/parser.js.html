@@ -93,15 +93,18 @@ export function parseCourses(html) {
 }
 
 export function parseCourse(html) {
-  const doc = parser.parseFromString(html)
-  const links = doc
+  return parser
+    .parseFromString(html)
     .querySelect(&apos;a&apos;)
     .filter(anchor =&gt; anchor.getAttribute(&apos;href&apos;).indexOf(&apos;acc_carp&apos;) &gt;= 0)
-    .map(anchor =&gt; ({
-      href: anchor.getAttribute(&apos;href&apos;),
-      text: anchor.textContent,
-    }))
-  return links
+    .map(anchor =&gt; {
+      const id = anchor
+        .getAttribute(&apos;href&apos;)
+        .match(/id_carpeta=\d+/g)[0]
+        .split(&apos;=&apos;)[1]
+      const name = anchor.textContent
+      return { id, name }
+    })
 }
 
 export function parseFolder(html) {

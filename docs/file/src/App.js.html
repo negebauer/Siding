@@ -103,11 +103,6 @@ export default class App extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({ username: &apos;negebauer&apos;, password: &apos;hrlse919&apos; })
-    this.go()
-  }
-
   go = async () =&gt; {
     try {
       // https://github.com/futuretap/FTLinearActivityIndicator for iPhone X
@@ -117,13 +112,18 @@ export default class App extends Component {
       const courses = await getCourses()
       LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
       this.setState({ courses })
-      const courseFolders = await Promise.all(courses.map(c =&gt; getCourse(c.id)))
-      courseFolders.forEach((folders, i) =&gt; (courses[i].folders = folders))
+      await Promise.all(
+        courses.map(async (course, i) =&gt; {
+          const folders = await getCourse(course.id)
+          courses[i].folders = folders
+        })
+      )
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
       this.setState({ courses })
-      const folders = await getFolder({ courseId: &apos;10252&apos;, id: &apos;63183&apos; })
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
-      this.setState({ folders, loading: false })
+      // const folders = await getFolder({ courseId: &apos;10252&apos;, id: &apos;63183&apos; })
+      // LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
+      // this.setState({ folders, loading: false })
+      this.setState({ loading: false })
     } catch (loginError) {
       this.setState({ loginError })
     }
@@ -150,10 +150,9 @@ export default class App extends Component {
           &lt;Text&gt;{`Error: ${this.state.loginError.message}`}&lt;/Text&gt;
         )}
         {this.state.courses.map(course =&gt; (
-          &lt;View&gt;
-            &lt;Text key={course.id}&gt;
-              {`${course.acronym} s${course.section} ${course.name}`}
-            &lt;/Text&gt;
+          &lt;View key={course.id}&gt;
+            &lt;Text&gt;{`${course.acronym} s${course.section} ${course.name}`}&lt;/Text&gt;
+            &lt;Text&gt;Carpetas&lt;/Text&gt;
             {Object.keys(course.folders).map(id =&gt; (
               &lt;Text key={id}&gt;{`${course.folders[id].name}`}&lt;/Text&gt;
             ))}

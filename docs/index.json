@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/App.js",
-    "content": "import React, { Component } from 'react'\nimport {\n  StyleSheet,\n  View,\n  Text,\n  TextInput,\n  Button,\n  LayoutAnimation,\n  StatusBar,\n} from 'react-native'\nimport { auth, getCourses, getCourse, getFolder } from './api'\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    justifyContent: 'center',\n    alignItems: 'center',\n    backgroundColor: '#F5FCFF',\n  },\n  input: {\n    height: 40,\n    width: '60%',\n    borderColor: 'gray',\n    borderWidth: 1,\n  },\n})\n\nexport default class App extends Component {\n  constructor() {\n    super()\n    this.state = {\n      username: '',\n      password: '',\n      login: false,\n      loginError: undefined,\n      courses: [],\n      folders: [],\n      loading: false,\n    }\n  }\n\n  componentDidMount() {\n    this.setState({ username: 'negebauer', password: 'hrlse919' })\n    this.go()\n  }\n\n  go = async () => {\n    try {\n      // https://github.com/futuretap/FTLinearActivityIndicator for iPhone X\n      this.setState({ login: false, loginError: undefined, loading: true })\n      const login = await auth(this.state.username, this.state.password)\n      this.setState({ login })\n      const courses = await getCourses()\n      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)\n      this.setState({ courses })\n      const courseFolders = await Promise.all(courses.map(c => getCourse(c.id)))\n      courseFolders.forEach((folders, i) => (courses[i].folders = folders))\n      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)\n      this.setState({ courses })\n      const folders = await getFolder({ courseId: '10252', id: '63183' })\n      LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)\n      this.setState({ folders, loading: false })\n    } catch (loginError) {\n      this.setState({ loginError })\n    }\n  }\n\n  render() {\n    console.log(this.state)\n    return (\n      <View style={styles.container}>\n        <StatusBar networkActivityIndicatorVisible={this.state.loading} />\n        <TextInput\n          style={styles.input}\n          autoCapitalize=\"none\"\n          onChangeText={username => this.setState({ username })}\n        />\n        <TextInput\n          style={styles.input}\n          secureTextEntry\n          onChangeText={password => this.setState({ password })}\n        />\n        <Button title=\"Login get courses\" onPress={this.go} />\n        <Text>{`Login: ${this.state.login}`}</Text>\n        {this.state.loginError && (\n          <Text>{`Error: ${this.state.loginError.message}`}</Text>\n        )}\n        {this.state.courses.map(course => (\n          <View>\n            <Text key={course.id}>\n              {`${course.acronym} s${course.section} ${course.name}`}\n            </Text>\n            {Object.keys(course.folders).map(id => (\n              <Text key={id}>{`${course.folders[id].name}`}</Text>\n            ))}\n          </View>\n        ))}\n        {this.state.folders.map(data => (\n          <Text key={data.text}>{data.text}</Text>\n        ))}\n      </View>\n    )\n  }\n}\n",
+    "content": "import React, { Component } from 'react'\nimport {\n  StyleSheet,\n  View,\n  Text,\n  TextInput,\n  Button,\n  LayoutAnimation,\n  StatusBar,\n} from 'react-native'\nimport { auth, getCourses, getCourse, getFolder } from './api'\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    justifyContent: 'center',\n    alignItems: 'center',\n    backgroundColor: '#F5FCFF',\n  },\n  input: {\n    height: 40,\n    width: '60%',\n    borderColor: 'gray',\n    borderWidth: 1,\n  },\n})\n\nexport default class App extends Component {\n  constructor() {\n    super()\n    this.state = {\n      username: '',\n      password: '',\n      login: false,\n      loginError: undefined,\n      courses: [],\n      folders: [],\n      loading: false,\n    }\n  }\n\n  go = async () => {\n    try {\n      // https://github.com/futuretap/FTLinearActivityIndicator for iPhone X\n      this.setState({ login: false, loginError: undefined, loading: true })\n      const login = await auth(this.state.username, this.state.password)\n      this.setState({ login })\n      const courses = await getCourses()\n      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)\n      this.setState({ courses })\n      await Promise.all(\n        courses.map(async (course, i) => {\n          const folders = await getCourse(course.id)\n          courses[i].folders = folders\n        })\n      )\n      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)\n      this.setState({ courses })\n      // const folders = await getFolder({ courseId: '10252', id: '63183' })\n      // LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)\n      // this.setState({ folders, loading: false })\n      this.setState({ loading: false })\n    } catch (loginError) {\n      this.setState({ loginError })\n    }\n  }\n\n  render() {\n    console.log(this.state)\n    return (\n      <View style={styles.container}>\n        <StatusBar networkActivityIndicatorVisible={this.state.loading} />\n        <TextInput\n          style={styles.input}\n          autoCapitalize=\"none\"\n          onChangeText={username => this.setState({ username })}\n        />\n        <TextInput\n          style={styles.input}\n          secureTextEntry\n          onChangeText={password => this.setState({ password })}\n        />\n        <Button title=\"Login get courses\" onPress={this.go} />\n        <Text>{`Login: ${this.state.login}`}</Text>\n        {this.state.loginError && (\n          <Text>{`Error: ${this.state.loginError.message}`}</Text>\n        )}\n        {this.state.courses.map(course => (\n          <View key={course.id}>\n            <Text>{`${course.acronym} s${course.section} ${course.name}`}</Text>\n            <Text>Carpetas</Text>\n            {Object.keys(course.folders).map(id => (\n              <Text key={id}>{`${course.folders[id].name}`}</Text>\n            ))}\n          </View>\n        ))}\n        {this.state.folders.map(data => (\n          <Text key={data.text}>{data.text}</Text>\n        ))}\n      </View>\n    )\n  }\n}\n",
     "static": true,
     "longname": "/Users/Nico/Documents/siding-mobile/src/App.js",
     "access": "public",
@@ -647,22 +647,6 @@
   },
   {
     "__docId__": 53,
-    "kind": "method",
-    "name": "componentDidMount",
-    "memberof": "src/App.js~App",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/App.js~App#componentDidMount",
-    "access": "public",
-    "description": null,
-    "lineNumber": 42,
-    "undocument": true,
-    "params": [],
-    "return": null
-  },
-  {
-    "__docId__": 54,
     "kind": "member",
     "name": "go",
     "memberof": "src/App.js~App",
@@ -670,7 +654,7 @@
     "longname": "src/App.js~App#go",
     "access": "public",
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 42,
     "undocument": true,
     "type": {
       "types": [
@@ -679,7 +663,7 @@
     }
   },
   {
-    "__docId__": 55,
+    "__docId__": 54,
     "kind": "method",
     "name": "render",
     "memberof": "src/App.js~App",
@@ -699,7 +683,7 @@
     }
   },
   {
-    "__docId__": 56,
+    "__docId__": 55,
     "kind": "file",
     "name": "src/api/index.js",
     "content": "import {\n  LOGIN_URL,\n  CURRENT_COURSES_URL,\n  coursesUrl,\n  courseUrl,\n  folderUrl,\n} from './urls'\nimport { parseCourses, parseCourse, parseFolder } from './parser'\nimport wait from './wait'\n\nlet SIDING_USER = ''\nlet SIDING_PASSWORD = ''\n\nexport function request(url, options = {}, repeat = 1) {\n  const req = new XMLHttpRequest()\n  req.open(options.method || 'GET', url)\n  req.withCredentials = true\n  const promise = new Promise(res => {\n    req.onload = function handleResponse() {\n      if (req.status === 500 && repeat < 5) {\n        wait(repeat)\n        res(request(url, options, repeat + 1))\n      }\n      res(req.response)\n    }\n  })\n  req.send(options.body)\n  return promise\n}\n\nexport function get(url, options) {\n  return request(url, { ...options, method: 'GET' })\n}\n\nexport function post(url, options = {}) {\n  return request(url, { ...options, method: 'POST' })\n}\n\nexport function authorizedGet(url, options) {\n  return auth(SIDING_USER, SIDING_PASSWORD).then(r => get(url, options))\n}\n\nexport function authorizedPost(url, options = {}) {\n  return auth(SIDING_USER, SIDING_PASSWORD).then(r => post(url, options))\n}\n\nexport function formData(json) {\n  const form = new FormData()\n  Object.keys(json).forEach(k => form.append(k, json[k]))\n  return form\n}\n\nexport async function auth(login, passwd) {\n  const body = formData({ login, passwd, sw: '', sh: '', cd: '' })\n  const html = await post(LOGIN_URL, { body })\n  if (html.indexOf('passwd') >= 0) throw new Error('Siding auth failed')\n  SIDING_USER = login\n  SIDING_PASSWORD = passwd\n  return Promise.resolve(true)\n}\n\nexport async function getCourses({ semester, year } = {}) {\n  let url = CURRENT_COURSES_URL\n  if (semester && year) url = coursesUrl(semester, year)\n  const html = await authorizedGet(url)\n  return parseCourses(html)\n}\n\nexport async function getCourse(id) {\n  if (!id) throw new Error('Course id required for getCourse')\n  const html = await authorizedGet(courseUrl(id))\n  return parseCourse(html)\n}\n\nexport async function getFolder({ id, courseId }) {\n  if (!id || !courseId)\n    throw new Error('Folder and course id required for getFolder')\n  const html = await authorizedGet(folderUrl({ id, courseId }))\n  return parseFolder(html)\n}\n",
@@ -710,7 +694,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 57,
+    "__docId__": 56,
     "kind": "variable",
     "name": "SIDING_USER",
     "memberof": "src/api/index.js",
@@ -731,7 +715,7 @@
     "ignore": true
   },
   {
-    "__docId__": 58,
+    "__docId__": 57,
     "kind": "variable",
     "name": "SIDING_PASSWORD",
     "memberof": "src/api/index.js",
@@ -752,7 +736,7 @@
     "ignore": true
   },
   {
-    "__docId__": 59,
+    "__docId__": 58,
     "kind": "function",
     "name": "request",
     "memberof": "src/api/index.js",
@@ -800,7 +784,7 @@
     }
   },
   {
-    "__docId__": 60,
+    "__docId__": 59,
     "kind": "function",
     "name": "get",
     "memberof": "src/api/index.js",
@@ -836,7 +820,7 @@
     }
   },
   {
-    "__docId__": 61,
+    "__docId__": 60,
     "kind": "function",
     "name": "post",
     "memberof": "src/api/index.js",
@@ -875,7 +859,7 @@
     }
   },
   {
-    "__docId__": 62,
+    "__docId__": 61,
     "kind": "function",
     "name": "authorizedGet",
     "memberof": "src/api/index.js",
@@ -911,7 +895,7 @@
     }
   },
   {
-    "__docId__": 63,
+    "__docId__": 62,
     "kind": "function",
     "name": "authorizedPost",
     "memberof": "src/api/index.js",
@@ -950,7 +934,7 @@
     }
   },
   {
-    "__docId__": 64,
+    "__docId__": 63,
     "kind": "function",
     "name": "formData",
     "memberof": "src/api/index.js",
@@ -980,7 +964,7 @@
     }
   },
   {
-    "__docId__": 65,
+    "__docId__": 64,
     "kind": "function",
     "name": "auth",
     "memberof": "src/api/index.js",
@@ -1016,7 +1000,7 @@
     }
   },
   {
-    "__docId__": 66,
+    "__docId__": 65,
     "kind": "function",
     "name": "getCourses",
     "memberof": "src/api/index.js",
@@ -1049,7 +1033,7 @@
     }
   },
   {
-    "__docId__": 67,
+    "__docId__": 66,
     "kind": "function",
     "name": "getCourse",
     "memberof": "src/api/index.js",
@@ -1079,7 +1063,7 @@
     }
   },
   {
-    "__docId__": 68,
+    "__docId__": 67,
     "kind": "function",
     "name": "getFolder",
     "memberof": "src/api/index.js",
@@ -1114,10 +1098,10 @@
     }
   },
   {
-    "__docId__": 69,
+    "__docId__": 68,
     "kind": "file",
     "name": "src/api/parser.js",
-    "content": "import { DOMParser } from 'react-native-html-parser'\n\nconst parser = new DOMParser({\n  errorHandler: {\n    warning: () => {},\n  },\n})\n\n/**\n *  Parse a course html to find its courses\n *  @author @negebauer\n *  @param  {string} html The full html of the main course page\n *  @return {Array}       An array with course objects\n */\nexport function parseCourses(html) {\n  return parser\n    .parseFromString(html)\n    .querySelect('a')\n    .filter(anchor => anchor.getAttribute('href').indexOf('id_curso_ic') >= 0)\n    .map(anchor => {\n      const id = anchor.getAttribute('href').split('id_curso_ic=')[1]\n      const text = anchor.textContent\n      const split = text.split(/ s\\.[0-9] /)\n      const acronym = split[0]\n      const name = split[1]\n      const section = text.split(' ')[1].match(/\\d+/)[0]\n      return { id, acronym, name, section, folders: {} }\n    })\n}\n\nexport function parseCourse(html) {\n  const doc = parser.parseFromString(html)\n  const links = doc\n    .querySelect('a')\n    .filter(anchor => anchor.getAttribute('href').indexOf('acc_carp') >= 0)\n    .map(anchor => ({\n      href: anchor.getAttribute('href'),\n      text: anchor.textContent,\n    }))\n  return links\n}\n\nexport function parseFolder(html) {\n  const doc = parser.parseFromString(html)\n  const links = doc\n    .querySelect('a')\n    .filter(anchor => anchor.getAttribute('href').indexOf('id_archivo') >= 0)\n    .map(anchor => ({\n      href: anchor.getAttribute('href'),\n      text: anchor.textContent,\n    }))\n  return links\n}\n",
+    "content": "import { DOMParser } from 'react-native-html-parser'\n\nconst parser = new DOMParser({\n  errorHandler: {\n    warning: () => {},\n  },\n})\n\n/**\n *  Parse a course html to find its courses\n *  @author @negebauer\n *  @param  {string} html The full html of the main course page\n *  @return {Array}       An array with course objects\n */\nexport function parseCourses(html) {\n  return parser\n    .parseFromString(html)\n    .querySelect('a')\n    .filter(anchor => anchor.getAttribute('href').indexOf('id_curso_ic') >= 0)\n    .map(anchor => {\n      const id = anchor.getAttribute('href').split('id_curso_ic=')[1]\n      const text = anchor.textContent\n      const split = text.split(/ s\\.[0-9] /)\n      const acronym = split[0]\n      const name = split[1]\n      const section = text.split(' ')[1].match(/\\d+/)[0]\n      return { id, acronym, name, section, folders: {} }\n    })\n}\n\nexport function parseCourse(html) {\n  return parser\n    .parseFromString(html)\n    .querySelect('a')\n    .filter(anchor => anchor.getAttribute('href').indexOf('acc_carp') >= 0)\n    .map(anchor => {\n      const id = anchor\n        .getAttribute('href')\n        .match(/id_carpeta=\\d+/g)[0]\n        .split('=')[1]\n      const name = anchor.textContent\n      return { id, name }\n    })\n}\n\nexport function parseFolder(html) {\n  const doc = parser.parseFromString(html)\n  const links = doc\n    .querySelect('a')\n    .filter(anchor => anchor.getAttribute('href').indexOf('id_archivo') >= 0)\n    .map(anchor => ({\n      href: anchor.getAttribute('href'),\n      text: anchor.textContent,\n    }))\n  return links\n}\n",
     "static": true,
     "longname": "/Users/Nico/Documents/siding-mobile/src/api/parser.js",
     "access": "public",
@@ -1125,7 +1109,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 70,
+    "__docId__": 69,
     "kind": "variable",
     "name": "parser",
     "memberof": "src/api/parser.js",
@@ -1146,7 +1130,7 @@
     "ignore": true
   },
   {
-    "__docId__": 71,
+    "__docId__": 70,
     "kind": "function",
     "name": "parseCourses",
     "memberof": "src/api/parser.js",
@@ -1192,7 +1176,7 @@
     }
   },
   {
-    "__docId__": 72,
+    "__docId__": 71,
     "kind": "function",
     "name": "parseCourse",
     "memberof": "src/api/parser.js",
@@ -1222,7 +1206,7 @@
     }
   },
   {
-    "__docId__": 73,
+    "__docId__": 72,
     "kind": "function",
     "name": "parseFolder",
     "memberof": "src/api/parser.js",
@@ -1235,7 +1219,7 @@
     "importPath": "siding/src/api/parser.js",
     "importStyle": "{parseFolder}",
     "description": null,
-    "lineNumber": 43,
+    "lineNumber": 46,
     "undocument": true,
     "params": [
       {
@@ -1252,7 +1236,7 @@
     }
   },
   {
-    "__docId__": 74,
+    "__docId__": 73,
     "kind": "file",
     "name": "src/api/urls.js",
     "content": "import { SIDING_YEAR, SIDING_SEMESTER } from '../utils/date'\n\nexport const BASE_URL = 'https://intrawww.ing.puc.cl/siding'\nexport const COURSES_URL = `${BASE_URL}/dirdes/ingcursos/cursos`\nexport const LOGIN_URL = `${BASE_URL}/index.phtml`\n\nexport function coursesUrl({ semester, year }) {\n  return `${COURSES_URL}/index.phtml?per_lista_cursos=${semester}_${year}&acc_inicio=mis_cursos`\n}\n\nexport function courseUrl(id) {\n  return `${COURSES_URL}/vista.phtml?accion_curso=avisos&acc_aviso=mostrar&id_curso_ic=${id}`\n}\n\nexport function coursesCatalogUrl({ semester, year }) {\n  return `${COURSES_URL}/index.phtml?acc_inicio=catalogo&per_lista_cursos=2${semester}_${year}`\n}\n\nexport function folderUrl({ id, courseId }) {\n  return `${COURSES_URL}/vista.phtml?accion_curso=carpetas&acc_carp=abrir_carpeta&id_curso_ic=${courseId}&id_carpeta=${id}`\n}\n\nexport const CURRENT_COURSES_URL = coursesUrl({\n  semester: SIDING_SEMESTER,\n  year: SIDING_YEAR,\n})\n\n// courseFolderURL: link => `${baseURL}${courseURL}/${link}`,\n// courseFileURL: link => `https://intrawww.ing.puc.cl${link}`,\n// catalogFromURL: (year, term) =>\n//   `${baseURL}${courseURL}/index.phtml?acc_inicio=catalogo&per_lista_cursos=2${term}_${year}`,\n",
@@ -1263,7 +1247,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 75,
+    "__docId__": 74,
     "kind": "variable",
     "name": "BASE_URL",
     "memberof": "src/api/urls.js",
@@ -1283,7 +1267,7 @@
     }
   },
   {
-    "__docId__": 76,
+    "__docId__": 75,
     "kind": "variable",
     "name": "COURSES_URL",
     "memberof": "src/api/urls.js",
@@ -1303,7 +1287,7 @@
     }
   },
   {
-    "__docId__": 77,
+    "__docId__": 76,
     "kind": "variable",
     "name": "LOGIN_URL",
     "memberof": "src/api/urls.js",
@@ -1323,7 +1307,7 @@
     }
   },
   {
-    "__docId__": 78,
+    "__docId__": 77,
     "kind": "function",
     "name": "coursesUrl",
     "memberof": "src/api/urls.js",
@@ -1358,7 +1342,7 @@
     }
   },
   {
-    "__docId__": 79,
+    "__docId__": 78,
     "kind": "function",
     "name": "courseUrl",
     "memberof": "src/api/urls.js",
@@ -1388,7 +1372,7 @@
     }
   },
   {
-    "__docId__": 80,
+    "__docId__": 79,
     "kind": "function",
     "name": "coursesCatalogUrl",
     "memberof": "src/api/urls.js",
@@ -1423,7 +1407,7 @@
     }
   },
   {
-    "__docId__": 81,
+    "__docId__": 80,
     "kind": "function",
     "name": "folderUrl",
     "memberof": "src/api/urls.js",
@@ -1458,7 +1442,7 @@
     }
   },
   {
-    "__docId__": 82,
+    "__docId__": 81,
     "kind": "variable",
     "name": "CURRENT_COURSES_URL",
     "memberof": "src/api/urls.js",
@@ -1478,7 +1462,7 @@
     }
   },
   {
-    "__docId__": 83,
+    "__docId__": 82,
     "kind": "file",
     "name": "src/api/wait.js",
     "content": "export const WAIT_SECONDS = 0.2\n\nexport default function wait(repeat = 1) {\n  for (let i = 0; i < repeat; i++) {\n    const waitTill = new Date(new Date().getTime() + WAIT_SECONDS * 1000)\n    while (waitTill > new Date()) {\n      // Do nothing\n    }\n  }\n}\n",
@@ -1489,7 +1473,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 84,
+    "__docId__": 83,
     "kind": "variable",
     "name": "WAIT_SECONDS",
     "memberof": "src/api/wait.js",
@@ -1509,7 +1493,7 @@
     }
   },
   {
-    "__docId__": 85,
+    "__docId__": 84,
     "kind": "function",
     "name": "wait",
     "memberof": "src/api/wait.js",
@@ -1538,7 +1522,7 @@
     "return": null
   },
   {
-    "__docId__": 86,
+    "__docId__": 85,
     "kind": "file",
     "name": "src/utils/date.js",
     "content": "export function sidingSemester(date) {\n  const month = date.getMonth() + 1\n  if (month === 1) return '23'\n  else if (month <= 7) return '21'\n  return '22'\n}\n\nexport const CURRENT_DATE = new Date()\nexport const SIDING_YEAR = CURRENT_DATE.getFullYear()\nexport const SIDING_SEMESTER = sidingSemester(CURRENT_DATE)\n",
@@ -1549,7 +1533,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 87,
+    "__docId__": 86,
     "kind": "function",
     "name": "sidingSemester",
     "memberof": "src/utils/date.js",
@@ -1579,7 +1563,7 @@
     }
   },
   {
-    "__docId__": 88,
+    "__docId__": 87,
     "kind": "variable",
     "name": "CURRENT_DATE",
     "memberof": "src/utils/date.js",
@@ -1599,7 +1583,7 @@
     }
   },
   {
-    "__docId__": 89,
+    "__docId__": 88,
     "kind": "variable",
     "name": "SIDING_YEAR",
     "memberof": "src/utils/date.js",
@@ -1619,7 +1603,7 @@
     }
   },
   {
-    "__docId__": 90,
+    "__docId__": 89,
     "kind": "variable",
     "name": "SIDING_SEMESTER",
     "memberof": "src/utils/date.js",
@@ -1648,7 +1632,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"siding\",\n  \"version\": \"0.1.2\",\n  \"private\": true,\n  \"scripts\": {\n    \"start\": \"node node_modules/react-native/local-cli/cli.js start\",\n    \"ios\": \"react-native run-ios\",\n    \"android\": \"react-native run-android\",\n    \"test\": \"jest\",\n    \"lint\": \"eslint index.js src/\",\n    \"release\": \"standard-version -a -m \\\"chore(release): %s\\n\\n[skip ci]\\\"\",\n    \"build:increment\": \"react-native-version -b\",\n    \"postrelease\": \"git push --follow-tags\",\n    \"icon\": \"app-icon generate\",\n    \"docs\": \"esdoc\"\n  },\n  \"dependencies\": {\n    \"react\": \"16.3.1\",\n    \"react-native\": \"0.55.2\",\n    \"react-native-html-parser\": \"^0.0.5\"\n  },\n  \"devDependencies\": {\n    \"app-icon\": \"^0.6.3\",\n    \"babel-eslint\": \"^8.2.2\",\n    \"babel-jest\": \"22.4.3\",\n    \"babel-preset-react-native\": \"4.0.0\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.19.1\",\n    \"eslint-config-airbnb\": \"^16.1.0\",\n    \"eslint-config-prettier\": \"^2.9.0\",\n    \"eslint-plugin-babel\": \"^5.0.0\",\n    \"eslint-plugin-import\": \"^2.11.0\",\n    \"eslint-plugin-jsx-a11y\": \"^6.0.3\",\n    \"eslint-plugin-prettier\": \"^2.6.0\",\n    \"eslint-plugin-react\": \"^7.7.0\",\n    \"jest\": \"22.4.3\",\n    \"prettier\": \"^1.11.1\",\n    \"react-native-version\": \"^2.5.0\",\n    \"react-test-renderer\": \"16.3.1\",\n    \"standard-version\": \"^4.3.0\"\n  },\n  \"jest\": {\n    \"preset\": \"react-native\"\n  },\n  \"standard-version\": {\n    \"scripts\": {\n      \"postbump\": \"react-native-version -s $(($(git rev-list --count master) + 88)) && git add android ios\"\n    }\n  }\n}\n",
+    "content": "{\n  \"name\": \"siding\",\n  \"version\": \"0.1.2\",\n  \"private\": true,\n  \"scripts\": {\n    \"start\": \"node node_modules/react-native/local-cli/cli.js start\",\n    \"ios\": \"react-native run-ios\",\n    \"android\": \"react-native run-android\",\n    \"test\": \"jest\",\n    \"lint\": \"eslint index.js src/\",\n    \"release\": \"standard-version -a -m \\\"chore(release): %s\\n\\n[skip ci]\\\"\",\n    \"build:increment\": \"react-native-version -b\",\n    \"postrelease\": \"git push --follow-tags\",\n    \"icon\": \"app-icon generate\",\n    \"docs\": \"esdoc && git add docs && git commit -m \\\"chore(docs): update\\n\\n[skip ci]\\\"\"\n  },\n  \"dependencies\": {\n    \"react\": \"16.3.1\",\n    \"react-native\": \"0.55.2\",\n    \"react-native-html-parser\": \"^0.0.5\"\n  },\n  \"devDependencies\": {\n    \"app-icon\": \"^0.6.3\",\n    \"babel-eslint\": \"^8.2.2\",\n    \"babel-jest\": \"22.4.3\",\n    \"babel-preset-react-native\": \"4.0.0\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.19.1\",\n    \"eslint-config-airbnb\": \"^16.1.0\",\n    \"eslint-config-prettier\": \"^2.9.0\",\n    \"eslint-plugin-babel\": \"^5.0.0\",\n    \"eslint-plugin-import\": \"^2.11.0\",\n    \"eslint-plugin-jsx-a11y\": \"^6.0.3\",\n    \"eslint-plugin-prettier\": \"^2.6.0\",\n    \"eslint-plugin-react\": \"^7.7.0\",\n    \"jest\": \"22.4.3\",\n    \"prettier\": \"^1.11.1\",\n    \"react-native-version\": \"^2.5.0\",\n    \"react-test-renderer\": \"16.3.1\",\n    \"standard-version\": \"^4.3.0\"\n  },\n  \"jest\": {\n    \"preset\": \"react-native\"\n  },\n  \"standard-version\": {\n    \"scripts\": {\n      \"postbump\": \"react-native-version -s $(($(git rev-list --count master) + 88)) && git add android ios\"\n    }\n  }\n}\n",
     "longname": "/Users/Nico/Documents/siding-mobile/package.json",
     "name": "package.json",
     "static": true,
