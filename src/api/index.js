@@ -55,7 +55,7 @@ export function formData(json) {
 export async function auth(login, passwd) {
   const body = formData({ login, passwd, sw: '', sh: '', cd: '' })
   const html = await post(LOGIN_URL, { body })
-  if (SIDING_ERROR_MESSAGES.filter(e => html.indexOf(e) >= 0).length >= 0)
+  if (SIDING_ERROR_MESSAGES.filter(e => html.indexOf(e) >= 0).length > 0)
     throw new Error('Siding auth failed')
   SIDING_USER = login
   SIDING_PASSWORD = passwd
