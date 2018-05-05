@@ -20,8 +20,7 @@ export function request(url, options = {}, repeat = 1) {
   const promise = new Promise(res => {
     req.onload = function handleResponse() {
       if (req.status === 500 && repeat < 5) {
-        wait(repeat)
-        res(request(url, options, repeat + 1))
+        wait(repeat).then(() => res(request(url, options, repeat + 1)))
       }
       res(req.response)
     }
