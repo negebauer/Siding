@@ -62,7 +62,7 @@ export async function auth(login, passwd) {
   return Promise.resolve(true)
 }
 
-export async function getCourses({ semester, year } = {}) {
+export async function getCourses(semester, year) {
   let url = CURRENT_COURSES_URL
   if (semester && year) url = coursesUrl(semester, year)
   const html = await authorizedGet(url)
@@ -78,6 +78,6 @@ export async function getCourse(id) {
 export async function getFolder({ id, courseId }) {
   if (!id || !courseId)
     throw new Error('Folder and course id required for getFolder')
-  const html = await authorizedGet(folderUrl({ id, courseId }))
+  const html = await authorizedGet(folderUrl(id, courseId))
   return parseFolder(html)
 }
