@@ -8,6 +8,8 @@ import {
 import { parseCourses, parseCourse, parseFolder } from './parser'
 import wait from './wait'
 
+const SIDING_ERROR_MESSAGES = ['passwd', 'Datos de ingreso incorrectos']
+
 let SIDING_USER = ''
 let SIDING_PASSWORD = ''
 
@@ -53,7 +55,8 @@ export function formData(json) {
 export async function auth(login, passwd) {
   const body = formData({ login, passwd, sw: '', sh: '', cd: '' })
   const html = await post(LOGIN_URL, { body })
-  if (html.indexOf('passwd') >= 0) throw new Error('Siding auth failed')
+  if (SIDING_ERROR_MESSAGES.filter(e => html.indexOf(e) >= 0).length >= 0)
+    throw new Error('Siding auth failed')
   SIDING_USER = login
   SIDING_PASSWORD = passwd
   return Promise.resolve(true)
