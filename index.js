@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native'
-import App from './src/App'
+import Siding from './src/Siding'
 
-AppRegistry.registerComponent('siding', () => App)
+AppRegistry.registerComponent('siding', () => Siding)

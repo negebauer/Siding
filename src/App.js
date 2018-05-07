@@ -1,98 +1,25 @@
-import React, { Component } from 'react'
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  Button,
-  LayoutAnimation,
-  StatusBar,
-} from 'react-native'
-import { auth, getCourses, getCourse, getFolder } from './utils/api'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { StyleSheet, View, Text, ActivityIndicator } from 'react-native'
+import { mainColor, mainColorAlternate } from './config/colors'
+import Courses from './containers/Courses'
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Courses />
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: mainColor,
+    color: mainColorAlternate,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  input: {
-    height: 40,
-    width: '60%',
-    borderColor: 'gray',
-    borderWidth: 1,
+    alignSelf: 'center',
+    width: '100%',
+    height: '100%',
   },
 })
-
-export default class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      username: '',
-      password: '',
-      login: false,
-      loginError: undefined,
-      courses: [],
-      folders: [],
-      loading: false,
-    }
-  }
-
-  go = async () => {
-    try {
-      // https://github.com/futuretap/FTLinearActivityIndicator for iPhone X
-      this.setState({ login: false, loginError: undefined, loading: true })
-      const login = await auth(this.state.username, this.state.password)
-      this.setState({ login })
-      const courses = await getCourses()
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
-      this.setState({ courses })
-      for (let i = 0; i < courses.length; i++) {
-        const folders = await getCourse(courses[i].id)
-        courses[i].folders = folders
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
-        this.setState({ courses })
-      }
-      this.setState({ loading: false })
-    } catch (loginError) {
-      this.setState({ loginError })
-    }
-  }
-
-  render() {
-    console.log(this.state)
-    return (
-      <View style={styles.container}>
-        <StatusBar networkActivityIndicatorVisible={this.state.loading} />
-        <TextInput
-          style={styles.input}
-          autoCapitalize="none"
-          onChangeText={username => this.setState({ username })}
-        />
-        <TextInput
-          style={styles.input}
-          secureTextEntry
-          onChangeText={password => this.setState({ password })}
-        />
-        <Button title="Login get courses" onPress={this.go} />
-        <Text>{`Login: ${this.state.login}`}</Text>
-        {this.state.loginError && (
-          <Text>{`Error: ${this.state.loginError.message}`}</Text>
-        )}
-        {this.state.courses.map(course => (
-          <View key={course.id}>
-            <Text>{`${course.acronym} s${course.section} ${course.name}`}</Text>
-            <Text>Carpetas</Text>
-            {Object.keys(course.folders).map(id => (
-              <Text key={id}>{`${course.folders[id].name}`}</Text>
-            ))}
-          </View>
-        ))}
-        {this.state.folders.map(data => (
-          <Text key={data.text}>{data.text}</Text>
-        ))}
-      </View>
-    )
-  }
-}

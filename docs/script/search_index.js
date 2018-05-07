@@ -1,26 +1,26 @@
 window.esdocSearchIndex = [
   [
-    "siding/src/app.js~app",
-    "class/src/App.js~App.html",
-    "<span>App</span> <span class=\"search-result-import-path\">siding/src/App.js</span>",
+    "siding/src/utils/api.js~api",
+    "class/src/utils/api.js~Api.html",
+    "<span>Api</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
     "class"
   ],
   [
-    "siding/src/api/urls.js~base_url",
+    "siding/src/utils/urls.js~base_url",
     "variable/index.html#static-variable-BASE_URL",
-    "<span>BASE_URL</span> <span class=\"search-result-import-path\">siding/src/api/urls.js</span>",
+    "<span>BASE_URL</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
     "variable"
   ],
   [
-    "siding/src/api/urls.js~courses_url",
+    "siding/src/utils/urls.js~courses_url",
     "variable/index.html#static-variable-COURSES_URL",
-    "<span>COURSES_URL</span> <span class=\"search-result-import-path\">siding/src/api/urls.js</span>",
+    "<span>COURSES_URL</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
     "variable"
   ],
   [
-    "siding/src/api/urls.js~current_courses_url",
+    "siding/src/utils/urls.js~current_courses_url",
     "variable/index.html#static-variable-CURRENT_COURSES_URL",
-    "<span>CURRENT_COURSES_URL</span> <span class=\"search-result-import-path\">siding/src/api/urls.js</span>",
+    "<span>CURRENT_COURSES_URL</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
     "variable"
   ],
   [
@@ -30,9 +30,51 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "siding/src/api/urls.js~login_url",
+    "siding/src/containers/courses.js~courses",
+    "class/src/containers/Courses.js~Courses.html",
+    "<span>Courses</span> <span class=\"search-result-import-path\">siding/src/containers/Courses.js</span>",
+    "class"
+  ],
+  [
+    "siding/src/redux/modules/user.js~login",
+    "variable/index.html#static-variable-LOGIN",
+    "<span>LOGIN</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/user.js~login_fulfilled",
+    "variable/index.html#static-variable-LOGIN_FULFILLED",
+    "<span>LOGIN_FULFILLED</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/user.js~login_pending",
+    "variable/index.html#static-variable-LOGIN_PENDING",
+    "<span>LOGIN_PENDING</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/user.js~login_rejected",
+    "variable/index.html#static-variable-LOGIN_REJECTED",
+    "<span>LOGIN_REJECTED</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/utils/urls.js~login_url",
     "variable/index.html#static-variable-LOGIN_URL",
-    "<span>LOGIN_URL</span> <span class=\"search-result-import-path\">siding/src/api/urls.js</span>",
+    "<span>LOGIN_URL</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/utils/urls.js~logout_url",
+    "variable/index.html#static-variable-LOGOUT_URL",
+    "<span>LOGOUT_URL</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/utils/api.js~siding_auth_failed",
+    "variable/index.html#static-variable-SIDING_AUTH_FAILED",
+    "<span>SIDING_AUTH_FAILED</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
     "variable"
   ],
   [
@@ -48,112 +90,148 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "siding/src/api/wait.js~wait_seconds",
+    "siding/src/containers/session.js~session",
+    "class/src/containers/Session.js~Session.html",
+    "<span>Session</span> <span class=\"search-result-import-path\">siding/src/containers/Session.js</span>",
+    "class"
+  ],
+  [
+    "siding/src/siding.js~siding",
+    "function/index.html#static-function-Siding",
+    "<span>Siding</span> <span class=\"search-result-import-path\">siding/src/Siding.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/components/loadingview.js~splashscreen",
+    "function/index.html#static-function-SplashScreen",
+    "<span>SplashScreen</span> <span class=\"search-result-import-path\">siding/src/components/LoadingView.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/components/splashscreen.js~splashscreen",
+    "function/index.html#static-function-SplashScreen",
+    "<span>SplashScreen</span> <span class=\"search-result-import-path\">siding/src/components/SplashScreen.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/utils/wait.js~wait_seconds",
     "variable/index.html#static-variable-WAIT_SECONDS",
-    "<span>WAIT_SECONDS</span> <span class=\"search-result-import-path\">siding/src/api/wait.js</span>",
+    "<span>WAIT_SECONDS</span> <span class=\"search-result-import-path\">siding/src/utils/wait.js</span>",
     "variable"
   ],
   [
-    "siding/src/api/index.js~auth",
-    "function/index.html#static-function-auth",
-    "<span>auth</span> <span class=\"search-result-import-path\">siding/src/api/index.js</span>",
+    "siding/src/redux/store.js~configurestore",
+    "function/index.html#static-function-configureStore",
+    "<span>configureStore</span> <span class=\"search-result-import-path\">siding/src/redux/store.js</span>",
     "function"
   ],
   [
-    "siding/src/api/index.js~authorizedget",
-    "function/index.html#static-function-authorizedGet",
-    "<span>authorizedGet</span> <span class=\"search-result-import-path\">siding/src/api/index.js</span>",
-    "function"
-  ],
-  [
-    "siding/src/api/index.js~authorizedpost",
-    "function/index.html#static-function-authorizedPost",
-    "<span>authorizedPost</span> <span class=\"search-result-import-path\">siding/src/api/index.js</span>",
-    "function"
-  ],
-  [
-    "siding/src/api/urls.js~courseurl",
+    "siding/src/utils/urls.js~courseurl",
     "function/index.html#static-function-courseUrl",
-    "<span>courseUrl</span> <span class=\"search-result-import-path\">siding/src/api/urls.js</span>",
+    "<span>courseUrl</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
     "function"
   ],
   [
-    "siding/src/api/urls.js~coursescatalogurl",
+    "siding/src/utils/urls.js~coursescatalogurl",
     "function/index.html#static-function-coursesCatalogUrl",
-    "<span>coursesCatalogUrl</span> <span class=\"search-result-import-path\">siding/src/api/urls.js</span>",
+    "<span>coursesCatalogUrl</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
     "function"
   ],
   [
-    "siding/src/api/urls.js~coursesurl",
+    "siding/src/utils/urls.js~coursesurl",
     "function/index.html#static-function-coursesUrl",
-    "<span>coursesUrl</span> <span class=\"search-result-import-path\">siding/src/api/urls.js</span>",
+    "<span>coursesUrl</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
     "function"
   ],
   [
-    "siding/src/api/urls.js~folderurl",
+    "siding/src/utils/urls.js~folderurl",
     "function/index.html#static-function-folderUrl",
-    "<span>folderUrl</span> <span class=\"search-result-import-path\">siding/src/api/urls.js</span>",
+    "<span>folderUrl</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
     "function"
   ],
   [
-    "siding/src/api/index.js~formdata",
+    "siding/src/utils/api.js~formdata",
     "function/index.html#static-function-formData",
-    "<span>formData</span> <span class=\"search-result-import-path\">siding/src/api/index.js</span>",
+    "<span>formData</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
     "function"
   ],
   [
-    "siding/src/api/index.js~get",
-    "function/index.html#static-function-get",
-    "<span>get</span> <span class=\"search-result-import-path\">siding/src/api/index.js</span>",
+    "siding/src/redux/modules/user.js~getuser",
+    "function/index.html#static-function-getUser",
+    "<span>getUser</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
     "function"
   ],
   [
-    "siding/src/api/index.js~getcourse",
-    "function/index.html#static-function-getCourse",
-    "<span>getCourse</span> <span class=\"search-result-import-path\">siding/src/api/index.js</span>",
+    "siding/src/redux/modules/user.js~getuserauth",
+    "variable/index.html#static-variable-getUserAuth",
+    "<span>getUserAuth</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/user.js~getusererror",
+    "variable/index.html#static-variable-getUserError",
+    "<span>getUserError</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/user.js~getuserloading",
+    "variable/index.html#static-variable-getUserLoading",
+    "<span>getUserLoading</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/user.js~getusername",
+    "variable/index.html#static-variable-getUsername",
+    "<span>getUsername</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/user.js~login",
+    "function/index.html#static-function-login",
+    "<span>login</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
     "function"
   ],
   [
-    "siding/src/api/index.js~getcourses",
-    "function/index.html#static-function-getCourses",
-    "<span>getCourses</span> <span class=\"search-result-import-path\">siding/src/api/index.js</span>",
-    "function"
+    "siding/src/config/colors.js~maincolor",
+    "variable/index.html#static-variable-mainColor",
+    "<span>mainColor</span> <span class=\"search-result-import-path\">siding/src/config/colors.js</span>",
+    "variable"
   ],
   [
-    "siding/src/api/index.js~getfolder",
-    "function/index.html#static-function-getFolder",
-    "<span>getFolder</span> <span class=\"search-result-import-path\">siding/src/api/index.js</span>",
-    "function"
+    "siding/src/config/colors.js~maincoloralternate",
+    "variable/index.html#static-variable-mainColorAlternate",
+    "<span>mainColorAlternate</span> <span class=\"search-result-import-path\">siding/src/config/colors.js</span>",
+    "variable"
   ],
   [
-    "siding/src/api/parser.js~parsecourse",
+    "siding/src/utils/parser.js~parsecourse",
     "function/index.html#static-function-parseCourse",
-    "<span>parseCourse</span> <span class=\"search-result-import-path\">siding/src/api/parser.js</span>",
+    "<span>parseCourse</span> <span class=\"search-result-import-path\">siding/src/utils/parser.js</span>",
     "function"
   ],
   [
-    "siding/src/api/parser.js~parsecourses",
+    "siding/src/utils/parser.js~parsecourses",
     "function/index.html#static-function-parseCourses",
-    "<span>parseCourses</span> <span class=\"search-result-import-path\">siding/src/api/parser.js</span>",
+    "<span>parseCourses</span> <span class=\"search-result-import-path\">siding/src/utils/parser.js</span>",
     "function"
   ],
   [
-    "siding/src/api/parser.js~parsefolder",
+    "siding/src/utils/parser.js~parsefolder",
     "function/index.html#static-function-parseFolder",
-    "<span>parseFolder</span> <span class=\"search-result-import-path\">siding/src/api/parser.js</span>",
+    "<span>parseFolder</span> <span class=\"search-result-import-path\">siding/src/utils/parser.js</span>",
     "function"
   ],
   [
-    "siding/src/api/index.js~post",
-    "function/index.html#static-function-post",
-    "<span>post</span> <span class=\"search-result-import-path\">siding/src/api/index.js</span>",
+    "siding/src/redux/modules/user.js~reducer",
+    "function/index.html#static-function-reducer",
+    "<span>reducer</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
     "function"
   ],
   [
-    "siding/src/api/index.js~request",
-    "function/index.html#static-function-request",
-    "<span>request</span> <span class=\"search-result-import-path\">siding/src/api/index.js</span>",
-    "function"
+    "siding/src/redux/reducers.js~reducers",
+    "variable/index.html#static-variable-reducers",
+    "<span>reducers</span> <span class=\"search-result-import-path\">siding/src/redux/reducers.js</span>",
+    "variable"
   ],
   [
     "siding/src/utils/date.js~sidingsemester",
@@ -162,9 +240,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "siding/src/api/wait.js~wait",
+    "siding/src/utils/wait.js~wait",
     "function/index.html#static-function-wait",
-    "<span>wait</span> <span class=\"search-result-import-path\">siding/src/api/wait.js</span>",
+    "<span>wait</span> <span class=\"search-result-import-path\">siding/src/utils/wait.js</span>",
     "function"
   ],
   [
@@ -456,57 +534,213 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/app.js~app#constructor",
-    "class/src/App.js~App.html#instance-constructor-constructor",
-    "src/App.js~App#constructor",
+    "src/siding.js",
+    "file/src/Siding.js.html",
+    "src/Siding.js",
+    "file"
+  ],
+  [
+    "src/components/loadingview.js",
+    "file/src/components/LoadingView.js.html",
+    "src/components/LoadingView.js",
+    "file"
+  ],
+  [
+    "src/components/splashscreen.js",
+    "file/src/components/SplashScreen.js.html",
+    "src/components/SplashScreen.js",
+    "file"
+  ],
+  [
+    "src/config/colors.js",
+    "file/src/config/colors.js.html",
+    "src/config/colors.js",
+    "file"
+  ],
+  [
+    "src/containers/courses.js",
+    "file/src/containers/Courses.js.html",
+    "src/containers/Courses.js",
+    "file"
+  ],
+  [
+    "src/containers/courses.js~courses#constructor",
+    "class/src/containers/Courses.js~Courses.html#instance-constructor-constructor",
+    "src/containers/Courses.js~Courses#constructor",
     "method"
   ],
   [
-    "src/app.js~app#go",
-    "class/src/App.js~App.html#instance-member-go",
-    "src/App.js~App#go",
+    "src/containers/courses.js~courses#go",
+    "class/src/containers/Courses.js~Courses.html#instance-member-go",
+    "src/containers/Courses.js~Courses#go",
     "member"
   ],
   [
-    "src/app.js~app#render",
-    "class/src/App.js~App.html#instance-method-render",
-    "src/App.js~App#render",
+    "src/containers/courses.js~courses#render",
+    "class/src/containers/Courses.js~Courses.html#instance-method-render",
+    "src/containers/Courses.js~Courses#render",
     "method"
   ],
   [
-    "src/app.js~app#state",
-    "class/src/App.js~App.html#instance-member-state",
-    "src/App.js~App#state",
+    "src/containers/courses.js~courses#state",
+    "class/src/containers/Courses.js~Courses.html#instance-member-state",
+    "src/containers/Courses.js~Courses#state",
     "member"
   ],
   [
-    "src/api/index.js",
-    "file/src/api/index.js.html",
-    "src/api/index.js",
+    "src/containers/session.js",
+    "file/src/containers/Session.js.html",
+    "src/containers/Session.js",
     "file"
   ],
   [
-    "src/api/parser.js",
-    "file/src/api/parser.js.html",
-    "src/api/parser.js",
+    "src/containers/session.js~session#constructor",
+    "class/src/containers/Session.js~Session.html#instance-constructor-constructor",
+    "src/containers/Session.js~Session#constructor",
+    "method"
+  ],
+  [
+    "src/containers/session.js~session#login",
+    "class/src/containers/Session.js~Session.html#instance-method-login",
+    "src/containers/Session.js~Session#login",
+    "method"
+  ],
+  [
+    "src/containers/session.js~session#render",
+    "class/src/containers/Session.js~Session.html#instance-method-render",
+    "src/containers/Session.js~Session#render",
+    "method"
+  ],
+  [
+    "src/containers/session.js~session#state",
+    "class/src/containers/Session.js~Session.html#instance-member-state",
+    "src/containers/Session.js~Session#state",
+    "member"
+  ],
+  [
+    "src/redux/modules/user.js",
+    "file/src/redux/modules/user.js.html",
+    "src/redux/modules/user.js",
     "file"
   ],
   [
-    "src/api/urls.js",
-    "file/src/api/urls.js.html",
-    "src/api/urls.js",
+    "src/redux/reducers.js",
+    "file/src/redux/reducers.js.html",
+    "src/redux/reducers.js",
     "file"
   ],
   [
-    "src/api/wait.js",
-    "file/src/api/wait.js.html",
-    "src/api/wait.js",
+    "src/redux/store.js",
+    "file/src/redux/store.js.html",
+    "src/redux/store.js",
     "file"
+  ],
+  [
+    "src/utils/api.js",
+    "file/src/utils/api.js.html",
+    "src/utils/api.js",
+    "file"
+  ],
+  [
+    "src/utils/api.js~api#auth",
+    "class/src/utils/api.js~Api.html#instance-method-auth",
+    "src/utils/api.js~Api#auth",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#authorizedget",
+    "class/src/utils/api.js~Api.html#instance-method-authorizedGet",
+    "src/utils/api.js~Api#authorizedGet",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#authorizedpost",
+    "class/src/utils/api.js~Api.html#instance-method-authorizedPost",
+    "src/utils/api.js~Api#authorizedPost",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#constructor",
+    "class/src/utils/api.js~Api.html#instance-constructor-constructor",
+    "src/utils/api.js~Api#constructor",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#get",
+    "class/src/utils/api.js~Api.html#instance-method-get",
+    "src/utils/api.js~Api#get",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#getcourse",
+    "class/src/utils/api.js~Api.html#instance-method-getCourse",
+    "src/utils/api.js~Api#getCourse",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#getcourses",
+    "class/src/utils/api.js~Api.html#instance-method-getCourses",
+    "src/utils/api.js~Api#getCourses",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#getfolder",
+    "class/src/utils/api.js~Api.html#instance-method-getFolder",
+    "src/utils/api.js~Api#getFolder",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#logout",
+    "class/src/utils/api.js~Api.html#instance-method-logout",
+    "src/utils/api.js~Api#logout",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#password",
+    "class/src/utils/api.js~Api.html#instance-member-password",
+    "src/utils/api.js~Api#password",
+    "member"
+  ],
+  [
+    "src/utils/api.js~api#post",
+    "class/src/utils/api.js~Api.html#instance-method-post",
+    "src/utils/api.js~Api#post",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#request",
+    "class/src/utils/api.js~Api.html#instance-method-request",
+    "src/utils/api.js~Api#request",
+    "method"
+  ],
+  [
+    "src/utils/api.js~api#username",
+    "class/src/utils/api.js~Api.html#instance-member-username",
+    "src/utils/api.js~Api#username",
+    "member"
   ],
   [
     "src/utils/date.js",
     "file/src/utils/date.js.html",
     "src/utils/date.js",
+    "file"
+  ],
+  [
+    "src/utils/parser.js",
+    "file/src/utils/parser.js.html",
+    "src/utils/parser.js",
+    "file"
+  ],
+  [
+    "src/utils/urls.js",
+    "file/src/utils/urls.js.html",
+    "src/utils/urls.js",
+    "file"
+  ],
+  [
+    "src/utils/wait.js",
+    "file/src/utils/wait.js.html",
+    "src/utils/wait.js",
     "file"
   ]
 ]

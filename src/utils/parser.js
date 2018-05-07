@@ -35,7 +35,7 @@ export function parseCourses(html) {
 /**
  *  Parses a siding course's page to read it's folders
  *  @author @negebauer
- *  @param  {string} html        The siding course's page
+ *  @param  {String} html        The siding course's page
  *  @return {Array<Object>}      An array of siding courses { id, name }
  */
 export function parseCourse(html) {

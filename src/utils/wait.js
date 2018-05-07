@@ -2,7 +2,7 @@
  *  The time, in seconds, to wait before retrying a siding request
  *  @type {number}
  */
-export const WAIT_SECONDS = 0.6
+export const WAIT_SECONDS = 0.5
 
 /**
  *  Waits the WAIT_SECONDS times the amount of repeats
