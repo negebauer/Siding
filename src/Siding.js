@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import App from './App'
 import Session from './containers/Session'
-import SplashScreen from './components/SplashScreen'
+import LoadingView from './components/LoadingView'
 import Api from './utils/api'
 import configureStore from './redux/store'
 
@@ -35,7 +35,7 @@ const { store, persistor } = configureStore(initialState, { api })
 export default function Siding() {
   return (
     <Provider store={store}>
-      <PersistGate loading={<SplashScreen />} persistor={persistor}>
+      <PersistGate loading={<LoadingView />} persistor={persistor}>
         <Session>
           <App />
         </Session>

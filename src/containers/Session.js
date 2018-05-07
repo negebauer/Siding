@@ -13,6 +13,7 @@ import autobind from 'autobind-decorator'
 import LoadingView from '../components/LoadingView'
 import {
   login,
+  getUserData,
   getUserAuth,
   getUserLoading,
   getUserError,
@@ -20,6 +21,7 @@ import {
 import { loadCourses } from '../redux/modules/courses'
 
 const mapStateToProps = state => ({
+  userData: getUserData(state),
   authenticated: getUserAuth(state),
   loading: getUserLoading(state),
   error: getUserError(state),
@@ -40,6 +42,17 @@ export default class Session extends Component {
     }
   }
 
+  componentDidMount() {
+    const { userData: { username, password }, login } = this.props
+    if (username && password) login(username, password)
+  }
+
+  componentDidUpdate(prevProps, snapshot) {
+    if (!prevProps.authenticated && this.props.authenticated) {
+      this.props.loadCourses()
+    }
+  }
+
   /**
    *  Login with the siding
    *  @author @negebauer
@@ -48,12 +61,6 @@ export default class Session extends Component {
   @autobind
   login() {
     return this.props.login(this.state.username, this.state.password)
-  }
-
-  componentDidUpdate(prevProps, snapshot) {
-    if (!prevProps.authenticated && this.props.authenticated) {
-      this.props.loadCourses()
-    }
   }
 
   render() {

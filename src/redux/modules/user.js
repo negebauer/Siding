@@ -29,6 +29,7 @@ export default function reducer(state = initialState, action) {
   }
   switch (action.type) {
     case REHYDRATE:
+      if (!action.payload) return initialState
       return merge(initialState, {
         ...action.payload.user,
         authenticated: false,
@@ -67,6 +68,10 @@ export function getUser(state) {
   return state.user
 }
 
+export const getUserData = createSelector(getUser, user => ({
+  username: user.username,
+  password: user.password,
+}))
 export const getUserAuth = createSelector(getUser, user => user.authenticated)
 export const getUserLoading = createSelector(getUser, user => user.loading)
 export const getUserError = createSelector(getUser, user => user.error)
