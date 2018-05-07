@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "autobind-decorator": "^2.1.0",
+    "lodash": "^4.17.10",
+    "normalizr": "^3.2.4",
     "prop-types": "^15.6.1",
     "react": "16.3.1",
     "react-native": "0.55.2",

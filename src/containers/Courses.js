@@ -8,28 +8,31 @@ import {
   TextInput,
   Button,
   LayoutAnimation,
+  ActivityIndicator,
 } from 'react-native'
-import { login, getUsername } from '../redux/modules/user'
+import autobind from 'autobind-decorator'
+import {
+  getCoursesList,
+  getCoursesLoading,
+  getCoursesError,
+  loadCourses,
+} from '../redux/modules/courses'
 
 const mapStateToProps = state => ({
-  username: getUsername(state),
+  courses: getCoursesList(state),
+  loading: getCoursesLoading(state),
+  error: getCoursesError(state),
 })
 
-const mapDispatchToProps = { login }
+const mapDispatchToProps = {
+  loadCourses,
+}
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Courses extends Component {
-  constructor() {
-    super()
-    this.state = {
-      courses: [],
-      folders: [],
-    }
-  }
+  componentDidMount() {}
 
   go = () => {
-    this.props.login('asd', 'asd')
-
     // https://github.com/futuretap/FTLinearActivityIndicator for iPhone X
     // const api = new Api()
     // const login = await api.auth(this.state.username, this.state.password)
@@ -47,35 +50,13 @@ export default class Courses extends Component {
   }
 
   render() {
-    console.log(this.state, this.props)
-
-    const { isLogging, authenticated, loginError } = this.props
-
-    if (isLogging)
-      return (
-        <View>
-          <Text>Loading</Text>
-        </View>
-      )
-
+    console.log(this.props)
+    const { courses, loading, error, loadCourses } = this.props
     return (
       <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          autoCapitalize="none"
-          onChangeText={username => this.setState({ username })}
-        />
-        <TextInput
-          style={styles.input}
-          secureTextEntry
-          onChangeText={password => this.setState({ password })}
-        />
-        <Button title="Login get courses" onPress={this.go} />
-        <Text>{`Login: ${this.state.login}`}</Text>
-        {this.state.loginError && (
-          <Text>{`Error: ${this.state.loginError.message}`}</Text>
-        )}
-        {this.state.courses.map(course => (
+        {loading && <ActivityIndicator />}
+        {error && <Text>{error}</Text>}
+        {courses.map(course => (
           <View key={course.id}>
             <Text>{`${course.acronym} s${course.section} ${course.name}`}</Text>
             <Text>Carpetas</Text>
@@ -84,12 +65,14 @@ export default class Courses extends Component {
             ))}
           </View>
         ))}
-        {this.state.folders.map(data => (
-          <Text key={data.text}>{data.text}</Text>
-        ))}
+        <Button title="Cargar cursos" onPress={loadCourses} />
       </View>
     )
   }
+}
+
+Courses.defaultProps = {
+  courses: [],
 }
 
 Courses.propTypes = {

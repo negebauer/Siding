@@ -120,7 +120,7 @@ export default class Api {
   }
 
   @autobind
-  async getCourses(semester, year) {
+  async loadCourses(semester, year) {
     let url = CURRENT_COURSES_URL
     if (semester && year) url = coursesUrl(semester, year)
     const html = await this.authorizedGet(url)
@@ -128,14 +128,14 @@ export default class Api {
   }
 
   @autobind
-  async getCourse(id) {
+  async loadCourse(id) {
     if (!id) throw new Error('Course id required for getCourse')
     const html = await this.authorizedGet(courseUrl(id))
     return parseCourse(html)
   }
 
   @autobind
-  async getFolder({ id, courseId }) {
+  async loadFolder({ id, courseId }) {
     if (!id || !courseId)
       throw new Error('Folder and course id required for getFolder')
     const html = await this.authorizedGet(folderUrl(id, courseId))

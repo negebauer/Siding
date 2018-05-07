@@ -17,6 +17,7 @@ import {
   getUserLoading,
   getUserError,
 } from '../redux/modules/user'
+import { loadCourses } from '../redux/modules/courses'
 
 const mapStateToProps = state => ({
   authenticated: getUserAuth(state),
@@ -24,7 +25,10 @@ const mapStateToProps = state => ({
   error: getUserError(state),
 })
 
-const mapDispatchToProps = { login }
+const mapDispatchToProps = {
+  login,
+  loadCourses,
+}
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Session extends Component {
@@ -44,6 +48,12 @@ export default class Session extends Component {
   @autobind
   login() {
     return this.props.login(this.state.username, this.state.password)
+  }
+
+  componentDidUpdate(prevProps, snapshot) {
+    if (!prevProps.authenticated && this.props.authenticated) {
+      this.props.loadCourses()
+    }
   }
 
   render() {
@@ -75,9 +85,9 @@ export default class Session extends Component {
 }
 
 Session.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
-  login: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool,
+  loading: PropTypes.bool,
+  login: PropTypes.func,
   error: PropTypes.object,
 }
 

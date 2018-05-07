@@ -1,3 +1,4 @@
+import { merge } from 'lodash/fp/object'
 import { REHYDRATE } from 'redux-persist'
 import { createSelector } from 'reselect'
 import { SIDING_AUTH_FAILED } from '../../utils/api'
@@ -20,32 +21,33 @@ const initialState = {
 // Reducer
 export default function reducer(state = initialState, action) {
   if (action.error && action.payload === SIDING_AUTH_FAILED) {
-    return {
-      ...state,
+    return merge(state, {
       authenticated: false,
       loading: false,
       error: action.payload,
-    }
+    })
   }
   switch (action.type) {
     case REHYDRATE:
-      return {
-        ...initialState,
+      return merge(initialState, {
         ...action.payload.user,
         authenticated: false,
         loading: false,
         error: undefined,
-      }
+      })
     case LOGIN_PENDING:
-      return { ...state, authenticated: false, loading: true, error: undefined }
+      return merge(state, {
+        authenticated: false,
+        loading: true,
+        error: undefined,
+      })
     case LOGIN_FULFILLED:
-      return {
-        ...state,
+      return merge(state, {
         ...action.payload,
         authenticated: true,
         loading: false,
         error: undefined,
-      }
+      })
     default:
       return state
   }
