@@ -8,7 +8,7 @@ import {
   LayoutAnimation,
   StatusBar,
 } from 'react-native'
-import { auth, getCourses, getCourse, getFolder } from './api'
+import { auth, getCourses, getCourse, getFolder } from './utils/api'
 
 const styles = StyleSheet.create({
   container: {
@@ -48,17 +48,12 @@ export default class App extends Component {
       const courses = await getCourses()
       LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
       this.setState({ courses })
-      await Promise.all(
-        courses.map(async (course, i) => {
-          const folders = await getCourse(course.id)
-          courses[i].folders = folders
-        })
-      )
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
-      this.setState({ courses })
-      // const folders = await getFolder({ courseId: '10252', id: '63183' })
-      // LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
-      // this.setState({ folders, loading: false })
+      for (let i = 0; i < courses.length; i++) {
+        const folders = await getCourse(courses[i].id)
+        courses[i].folders = folders
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+        this.setState({ courses })
+      }
       this.setState({ loading: false })
     } catch (loginError) {
       this.setState({ loginError })

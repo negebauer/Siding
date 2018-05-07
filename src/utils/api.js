@@ -19,14 +19,14 @@ export function request(url, options = {}, repeat = 1) {
   req.withCredentials = true
   const promise = new Promise(res => {
     req.onload = function handleResponse() {
-      if (req.status === 500 && repeat < 5) {
-        wait(repeat).then(() => res(request(url, options, repeat + 1)))
+      if (req.status === 500 && repeat < 6) {
+        res(request(url, options, repeat + 1))
       }
       res(req.response)
     }
   })
   req.send(options.body)
-  return promise
+  return wait(repeat).then(() => promise)
 }
 
 export function get(url, options) {
@@ -45,12 +45,25 @@ export function authorizedPost(url, options = {}) {
   return auth(SIDING_USER, SIDING_PASSWORD).then(r => post(url, options))
 }
 
+/**
+ *  Transforms a json into a FormData object
+ *  @author @negebauer
+ *  @param  {Object} json The json object to convert
+ *  @return {FormData}    A FormData with the json data
+ */
 export function formData(json) {
   const form = new FormData()
   Object.keys(json).forEach(k => form.append(k, json[k]))
   return form
 }
 
+/**
+ *  Authenticates the user with siding
+ *  @author @negebauer
+ *  @param  {string} login            Users' siding username
+ *  @param  {string} passwd           Users' siding password
+ *  @return {Promise<boolean>}        A promise that resolves to true after auth is succesfull
+ */
 export async function auth(login, passwd) {
   const body = formData({ login, passwd, sw: '', sh: '', cd: '' })
   const html = await post(LOGIN_URL, { body })

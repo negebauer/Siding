@@ -1,5 +1,9 @@
 import { DOMParser } from 'react-native-html-parser'
 
+/**
+ *  The DOMParser for parsing siding responses
+ *  @type {DOMParser}
+ */
 const parser = new DOMParser({
   errorHandler: {
     warning: () => {},
@@ -7,10 +11,10 @@ const parser = new DOMParser({
 })
 
 /**
- *  Parse a course html to find its courses
+ *  Parse a courses' list page to read its courses
  *  @author @negebauer
- *  @param  {string} html The full html of the main course page
- *  @return {Array}       An array with course objects
+ *  @param  {String} html     The full html of the main courses page
+ *  @return {Array<Object>}   An array with course objects { id, acronym, name, section, folder: {} }
  */
 export function parseCourses(html) {
   return parser
@@ -28,6 +32,12 @@ export function parseCourses(html) {
     })
 }
 
+/**
+ *  Parses a siding course's page to read it's folders
+ *  @author @negebauer
+ *  @param  {string} html        The siding course's page
+ *  @return {Array<Object>}      An array of siding courses { id, name }
+ */
 export function parseCourse(html) {
   return parser
     .parseFromString(html)
