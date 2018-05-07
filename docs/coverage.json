@@ -1,8 +1,16 @@
 {
-  "coverage": "40.78%",
-  "expectCount": 76,
-  "actualCount": 31,
+  "coverage": "31.25%",
+  "expectCount": 96,
+  "actualCount": 30,
   "files": {
+    "src/App.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        15
+      ]
+    },
     "src/Siding.js": {
       "expectCount": 4,
       "actualCount": 4,
@@ -12,13 +20,8 @@
       "expectCount": 2,
       "actualCount": 1,
       "undocumentLines": [
-        19
+        29
       ]
-    },
-    "src/components/SplashScreen.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
     },
     "src/config/colors.js": {
       "expectCount": 2,
@@ -29,55 +32,92 @@
       ]
     },
     "src/containers/Courses.js": {
-      "expectCount": 8,
+      "expectCount": 7,
       "actualCount": 0,
       "undocumentLines": [
-        14,
-        18,
         21,
-        22,
-        24,
-        30,
-        49,
-        99
+        27,
+        32,
+        33,
+        35,
+        52,
+        82
       ]
     },
     "src/containers/Session.js": {
-      "expectCount": 8,
+      "expectCount": 10,
       "actualCount": 1,
       "undocumentLines": [
-        20,
-        26,
-        29,
+        23,
         30,
-        32,
-        48,
-        87
+        36,
+        37,
+        39,
+        45,
+        50,
+        66,
+        101
+      ]
+    },
+    "src/redux/modules/courses.js": {
+      "expectCount": 11,
+      "actualCount": 0,
+      "undocumentLines": [
+        8,
+        9,
+        10,
+        11,
+        14,
+        21,
+        45,
+        54,
+        58,
+        63,
+        67
+      ]
+    },
+    "src/redux/modules/entities.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        12,
+        22
       ]
     },
     "src/redux/modules/user.js": {
-      "expectCount": 12,
+      "expectCount": 13,
       "actualCount": 0,
       "undocumentLines": [
-        6,
         7,
         8,
         9,
-        12,
-        21,
-        55,
-        64,
-        68,
-        69,
-        70,
-        71
+        10,
+        13,
+        22,
+        58,
+        67,
+        71,
+        75,
+        76,
+        77,
+        78
       ]
     },
     "src/redux/reducers.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        5
+        7
+      ]
+    },
+    "src/redux/schemas.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        7,
+        11
       ]
     },
     "src/redux/store.js": {

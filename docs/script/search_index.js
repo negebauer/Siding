@@ -6,6 +6,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "siding/src/app.js~app",
+    "function/index.html#static-function-App",
+    "<span>App</span> <span class=\"search-result-import-path\">siding/src/App.js</span>",
+    "function"
+  ],
+  [
     "siding/src/utils/urls.js~base_url",
     "variable/index.html#static-variable-BASE_URL",
     "<span>BASE_URL</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
@@ -34,6 +40,30 @@ window.esdocSearchIndex = [
     "class/src/containers/Courses.js~Courses.html",
     "<span>Courses</span> <span class=\"search-result-import-path\">siding/src/containers/Courses.js</span>",
     "class"
+  ],
+  [
+    "siding/src/redux/modules/courses.js~load_courses",
+    "variable/index.html#static-variable-LOAD_COURSES",
+    "<span>LOAD_COURSES</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/courses.js~load_courses_fulfilled",
+    "variable/index.html#static-variable-LOAD_COURSES_FULFILLED",
+    "<span>LOAD_COURSES_FULFILLED</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/courses.js~load_courses_pending",
+    "variable/index.html#static-variable-LOAD_COURSES_PENDING",
+    "<span>LOAD_COURSES_PENDING</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/courses.js~load_courses_rejected",
+    "variable/index.html#static-variable-LOAD_COURSES_REJECTED",
+    "<span>LOAD_COURSES_REJECTED</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "variable"
   ],
   [
     "siding/src/redux/modules/user.js~login",
@@ -72,6 +102,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "siding/src/components/loadingview.js~loadingview",
+    "function/index.html#static-function-LoadingView",
+    "<span>LoadingView</span> <span class=\"search-result-import-path\">siding/src/components/LoadingView.js</span>",
+    "function"
+  ],
+  [
     "siding/src/utils/api.js~siding_auth_failed",
     "variable/index.html#static-variable-SIDING_AUTH_FAILED",
     "<span>SIDING_AUTH_FAILED</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
@@ -102,18 +138,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "siding/src/components/loadingview.js~splashscreen",
-    "function/index.html#static-function-SplashScreen",
-    "<span>SplashScreen</span> <span class=\"search-result-import-path\">siding/src/components/LoadingView.js</span>",
-    "function"
-  ],
-  [
-    "siding/src/components/splashscreen.js~splashscreen",
-    "function/index.html#static-function-SplashScreen",
-    "<span>SplashScreen</span> <span class=\"search-result-import-path\">siding/src/components/SplashScreen.js</span>",
-    "function"
-  ],
-  [
     "siding/src/utils/wait.js~wait_seconds",
     "variable/index.html#static-variable-WAIT_SECONDS",
     "<span>WAIT_SECONDS</span> <span class=\"search-result-import-path\">siding/src/utils/wait.js</span>",
@@ -124,6 +148,12 @@ window.esdocSearchIndex = [
     "function/index.html#static-function-configureStore",
     "<span>configureStore</span> <span class=\"search-result-import-path\">siding/src/redux/store.js</span>",
     "function"
+  ],
+  [
+    "siding/src/redux/schemas.js~courseschema",
+    "variable/index.html#static-variable-courseSchema",
+    "<span>courseSchema</span> <span class=\"search-result-import-path\">siding/src/redux/schemas.js</span>",
+    "variable"
   ],
   [
     "siding/src/utils/urls.js~courseurl",
@@ -144,6 +174,18 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "siding/src/redux/schemas.js~fileschema",
+    "variable/index.html#static-variable-fileSchema",
+    "<span>fileSchema</span> <span class=\"search-result-import-path\">siding/src/redux/schemas.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/schemas.js~folderschema",
+    "variable/index.html#static-variable-folderSchema",
+    "<span>folderSchema</span> <span class=\"search-result-import-path\">siding/src/redux/schemas.js</span>",
+    "variable"
+  ],
+  [
     "siding/src/utils/urls.js~folderurl",
     "function/index.html#static-function-folderUrl",
     "<span>folderUrl</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
@@ -156,6 +198,36 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "siding/src/redux/modules/courses.js~getcourses",
+    "function/index.html#static-function-getCourses",
+    "<span>getCourses</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/redux/modules/courses.js~getcourseserror",
+    "variable/index.html#static-variable-getCoursesError",
+    "<span>getCoursesError</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/courses.js~getcourseslist",
+    "variable/index.html#static-variable-getCoursesList",
+    "<span>getCoursesList</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/courses.js~getcoursesloading",
+    "variable/index.html#static-variable-getCoursesLoading",
+    "<span>getCoursesLoading</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/entities.js~getentities",
+    "function/index.html#static-function-getEntities",
+    "<span>getEntities</span> <span class=\"search-result-import-path\">siding/src/redux/modules/entities.js</span>",
+    "function"
+  ],
+  [
     "siding/src/redux/modules/user.js~getuser",
     "function/index.html#static-function-getUser",
     "<span>getUser</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
@@ -165,6 +237,12 @@ window.esdocSearchIndex = [
     "siding/src/redux/modules/user.js~getuserauth",
     "variable/index.html#static-variable-getUserAuth",
     "<span>getUserAuth</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/redux/modules/user.js~getuserdata",
+    "variable/index.html#static-variable-getUserData",
+    "<span>getUserData</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
     "variable"
   ],
   [
@@ -184,6 +262,12 @@ window.esdocSearchIndex = [
     "variable/index.html#static-variable-getUsername",
     "<span>getUsername</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
     "variable"
+  ],
+  [
+    "siding/src/redux/modules/courses.js~loadcourses",
+    "function/index.html#static-function-loadCourses",
+    "<span>loadCourses</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "function"
   ],
   [
     "siding/src/redux/modules/user.js~login",
@@ -219,6 +303,18 @@ window.esdocSearchIndex = [
     "siding/src/utils/parser.js~parsefolder",
     "function/index.html#static-function-parseFolder",
     "<span>parseFolder</span> <span class=\"search-result-import-path\">siding/src/utils/parser.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/redux/modules/courses.js~reducer",
+    "function/index.html#static-function-reducer",
+    "<span>reducer</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/redux/modules/entities.js~reducer",
+    "function/index.html#static-function-reducer",
+    "<span>reducer</span> <span class=\"search-result-import-path\">siding/src/redux/modules/entities.js</span>",
     "function"
   ],
   [
@@ -546,12 +642,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/components/splashscreen.js",
-    "file/src/components/SplashScreen.js.html",
-    "src/components/SplashScreen.js",
-    "file"
-  ],
-  [
     "src/config/colors.js",
     "file/src/config/colors.js.html",
     "src/config/colors.js",
@@ -564,9 +654,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/containers/courses.js~courses#constructor",
-    "class/src/containers/Courses.js~Courses.html#instance-constructor-constructor",
-    "src/containers/Courses.js~Courses#constructor",
+    "src/containers/courses.js~courses#componentdidmount",
+    "class/src/containers/Courses.js~Courses.html#instance-method-componentDidMount",
+    "src/containers/Courses.js~Courses#componentDidMount",
     "method"
   ],
   [
@@ -582,16 +672,22 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/containers/courses.js~courses#state",
-    "class/src/containers/Courses.js~Courses.html#instance-member-state",
-    "src/containers/Courses.js~Courses#state",
-    "member"
-  ],
-  [
     "src/containers/session.js",
     "file/src/containers/Session.js.html",
     "src/containers/Session.js",
     "file"
+  ],
+  [
+    "src/containers/session.js~session#componentdidmount",
+    "class/src/containers/Session.js~Session.html#instance-method-componentDidMount",
+    "src/containers/Session.js~Session#componentDidMount",
+    "method"
+  ],
+  [
+    "src/containers/session.js~session#componentdidupdate",
+    "class/src/containers/Session.js~Session.html#instance-method-componentDidUpdate",
+    "src/containers/Session.js~Session#componentDidUpdate",
+    "method"
   ],
   [
     "src/containers/session.js~session#constructor",
@@ -618,6 +714,18 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/redux/modules/courses.js",
+    "file/src/redux/modules/courses.js.html",
+    "src/redux/modules/courses.js",
+    "file"
+  ],
+  [
+    "src/redux/modules/entities.js",
+    "file/src/redux/modules/entities.js.html",
+    "src/redux/modules/entities.js",
+    "file"
+  ],
+  [
     "src/redux/modules/user.js",
     "file/src/redux/modules/user.js.html",
     "src/redux/modules/user.js",
@@ -627,6 +735,12 @@ window.esdocSearchIndex = [
     "src/redux/reducers.js",
     "file/src/redux/reducers.js.html",
     "src/redux/reducers.js",
+    "file"
+  ],
+  [
+    "src/redux/schemas.js",
+    "file/src/redux/schemas.js.html",
+    "src/redux/schemas.js",
     "file"
   ],
   [
@@ -672,21 +786,21 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/utils/api.js~api#getcourse",
-    "class/src/utils/api.js~Api.html#instance-method-getCourse",
-    "src/utils/api.js~Api#getCourse",
+    "src/utils/api.js~api#loadcourse",
+    "class/src/utils/api.js~Api.html#instance-method-loadCourse",
+    "src/utils/api.js~Api#loadCourse",
     "method"
   ],
   [
-    "src/utils/api.js~api#getcourses",
-    "class/src/utils/api.js~Api.html#instance-method-getCourses",
-    "src/utils/api.js~Api#getCourses",
+    "src/utils/api.js~api#loadcourses",
+    "class/src/utils/api.js~Api.html#instance-method-loadCourses",
+    "src/utils/api.js~Api#loadCourses",
     "method"
   ],
   [
-    "src/utils/api.js~api#getfolder",
-    "class/src/utils/api.js~Api.html#instance-method-getFolder",
-    "src/utils/api.js~Api#getFolder",
+    "src/utils/api.js~api#loadfolder",
+    "class/src/utils/api.js~Api.html#instance-method-loadFolder",
+    "src/utils/api.js~Api#loadFolder",
     "method"
   ],
   [

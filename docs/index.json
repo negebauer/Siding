@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/App.js",
-    "content": "import Courses from './containers/Courses'\n\nexport default Courses\n",
+    "content": "import React from 'react'\nimport PropTypes from 'prop-types'\nimport { StyleSheet, View, Text, ActivityIndicator } from 'react-native'\nimport { mainColor, mainColorAlternate } from './config/colors'\nimport Courses from './containers/Courses'\n\nexport default function App() {\n  return (\n    <View style={styles.container}>\n      <Courses />\n    </View>\n  )\n}\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    backgroundColor: mainColor,\n    justifyContent: 'center',\n    alignSelf: 'center',\n    width: '100%',\n    height: '100%',\n  },\n})\n",
     "static": true,
     "longname": "/Users/Nico/Documents/siding-mobile/src/App.js",
     "access": "public",
@@ -576,9 +576,53 @@
   },
   {
     "__docId__": 49,
+    "kind": "function",
+    "name": "App",
+    "memberof": "src/App.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/App.js~App",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/App.js",
+    "importStyle": "App",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 50,
+    "kind": "variable",
+    "name": "styles",
+    "memberof": "src/App.js",
+    "static": true,
+    "longname": "src/App.js~styles",
+    "access": "public",
+    "export": false,
+    "importPath": "siding/src/App.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 51,
     "kind": "file",
     "name": "src/Siding.js",
-    "content": "import React from 'react'\nimport { AsyncStorage } from 'react-native'\nimport { Provider, connect } from 'react-redux'\nimport { PersistGate } from 'redux-persist/integration/react'\n\nimport App from './App'\nimport Session from './containers/Session'\nimport SplashScreen from './components/SplashScreen'\nimport Api from './utils/api'\nimport configureStore from './redux/store'\n\n/**\n *  An instance of the siding api client\n *  @type {Api}\n */\nconst api = new Api()\n\n/**\n *  Default initial state\n *  @type {Object}\n */\nconst initialState = {}\n\n/**\n *  The redux store with its persistor\n *  @type {Object}\n */\nconst { store, persistor } = configureStore(initialState, { api })\n\n/**\n *  Main react native app component\n *  @author @negebauer\n *  @constructor\n */\nfunction Siding() {\n  return (\n    <Provider store={store}>\n      <PersistGate loading={<SplashScreen />} persistor={persistor}>\n        <Session>\n          <App />\n        </Session>\n      </PersistGate>\n    </Provider>\n  )\n}\n\nexport default Siding\n",
+    "content": "import React from 'react'\nimport { AsyncStorage } from 'react-native'\nimport { Provider, connect } from 'react-redux'\nimport { PersistGate } from 'redux-persist/integration/react'\n\nimport App from './App'\nimport Session from './containers/Session'\nimport LoadingView from './components/LoadingView'\nimport Api from './utils/api'\nimport configureStore from './redux/store'\n\n/**\n *  An instance of the siding api client\n *  @type {Api}\n */\nconst api = new Api()\n\n/**\n *  Default initial state\n *  @type {Object}\n */\nconst initialState = {}\n\n/**\n *  The redux store with its persistor\n *  @type {Object}\n */\nconst { store, persistor } = configureStore(initialState, { api })\n\n/**\n *  Main react native app component\n *  @author @negebauer\n *  @constructor\n */\nexport default function Siding() {\n  return (\n    <Provider store={store}>\n      <PersistGate loading={<LoadingView />} persistor={persistor}>\n        <Session>\n          <App />\n        </Session>\n      </PersistGate>\n    </Provider>\n  )\n}\n",
     "static": true,
     "longname": "/Users/Nico/Documents/siding-mobile/src/Siding.js",
     "access": "public",
@@ -586,7 +630,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 50,
+    "__docId__": 52,
     "kind": "variable",
     "name": "api",
     "memberof": "src/Siding.js",
@@ -609,7 +653,7 @@
     "ignore": true
   },
   {
-    "__docId__": 51,
+    "__docId__": 53,
     "kind": "variable",
     "name": "initialState",
     "memberof": "src/Siding.js",
@@ -632,7 +676,7 @@
     "ignore": true
   },
   {
-    "__docId__": 52,
+    "__docId__": 54,
     "kind": "variable",
     "name": "store",
     "memberof": "src/Siding.js",
@@ -655,7 +699,7 @@
     "ignore": true
   },
   {
-    "__docId__": 53,
+    "__docId__": 55,
     "kind": "function",
     "name": "Siding",
     "memberof": "src/Siding.js",
@@ -691,10 +735,10 @@
     }
   },
   {
-    "__docId__": 54,
+    "__docId__": 56,
     "kind": "file",
     "name": "src/components/LoadingView.js",
-    "content": "import React from 'react'\nimport { StyleSheet, View, Text } from 'react-native'\nimport { mainColor, mainColorAlternate } from '../config/colors'\n\n/**\n *  The loading component for the full app.\n *  Rendered before the state is rehydrated.\n *  @author @negebauer\n *  @constructor\n */\nexport default function SplashScreen() {\n  return (\n    <View style={styles.container}>\n      <Text style={styles.mainColorAlternate}>Loading</Text>\n    </View>\n  )\n}\n\nconst styles = StyleSheet.create({\n  container: {\n    backgroundColor: mainColor,\n  },\n  text: {\n    color: mainColorAlternate,\n  },\n})\n",
+    "content": "import React from 'react'\nimport PropTypes from 'prop-types'\nimport { StyleSheet, View, Text, ActivityIndicator } from 'react-native'\nimport { mainColor, mainColorAlternate } from '../config/colors'\n\n/**\n *  A generic loading view\n *  @author @negebauer\n *  @constructor\n */\nexport default function LoadingView({ text, size }) {\n  return (\n    <View style={styles.container}>\n      {text && <Text style={styles.text}>{text}</Text>}\n      <ActivityIndicator size={size} />\n    </View>\n  )\n}\n\nLoadingView.defaultProps = {\n  size: 'large',\n}\n\nLoadingView.propTypes = {\n  text: PropTypes.string,\n  size: PropTypes.string,\n}\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    backgroundColor: mainColorAlternate,\n    justifyContent: 'center',\n    alignSelf: 'center',\n    width: '100%',\n    height: '100%',\n  },\n  text: {\n    color: mainColor,\n    textAlign: 'center',\n    margin: 12,\n    fontSize: 24,\n  },\n})\n",
     "static": true,
     "longname": "/Users/Nico/Documents/siding-mobile/src/components/LoadingView.js",
     "access": "public",
@@ -702,19 +746,19 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 55,
+    "__docId__": 57,
     "kind": "function",
-    "name": "SplashScreen",
+    "name": "LoadingView",
     "memberof": "src/components/LoadingView.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/components/LoadingView.js~SplashScreen",
+    "longname": "src/components/LoadingView.js~LoadingView",
     "access": "public",
     "export": true,
     "importPath": "siding/src/components/LoadingView.js",
-    "importStyle": "SplashScreen",
-    "description": " The loading component for the full app.\n Rendered before the state is rehydrated.",
+    "importStyle": "LoadingView",
+    "description": " A generic loading view",
     "lineNumber": 11,
     "unknown": [
       {
@@ -730,7 +774,19 @@
         "tagValue": ""
       }
     ],
-    "params": [],
+    "params": [
+      {
+        "name": "objectPattern",
+        "types": [
+          "{\"text\": *, \"size\": *}"
+        ],
+        "defaultRaw": {
+          "text": null,
+          "size": null
+        },
+        "defaultValue": "{\"text\":null,\"size\":null}"
+      }
+    ],
     "return": {
       "types": [
         "*"
@@ -738,7 +794,7 @@
     }
   },
   {
-    "__docId__": 56,
+    "__docId__": 58,
     "kind": "variable",
     "name": "styles",
     "memberof": "src/components/LoadingView.js",
@@ -749,7 +805,7 @@
     "importPath": "siding/src/components/LoadingView.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 19,
+    "lineNumber": 29,
     "undocument": true,
     "type": {
       "types": [
@@ -757,53 +813,6 @@
       ]
     },
     "ignore": true
-  },
-  {
-    "__docId__": 57,
-    "kind": "file",
-    "name": "src/components/SplashScreen.js",
-    "content": "import React from 'react'\nimport { StyleSheet, View, Text } from 'react-native'\n\n/**\n *  The loading component for the full app.\n *  Rendered before the state is rehydrated.\n *  @author @negebauer\n *  @constructor\n */\nexport default function SplashScreen() {\n  return (\n    <View>\n      <Text>Loading</Text>\n    </View>\n  )\n}\n",
-    "static": true,
-    "longname": "/Users/Nico/Documents/siding-mobile/src/components/SplashScreen.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 58,
-    "kind": "function",
-    "name": "SplashScreen",
-    "memberof": "src/components/SplashScreen.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/components/SplashScreen.js~SplashScreen",
-    "access": "public",
-    "export": true,
-    "importPath": "siding/src/components/SplashScreen.js",
-    "importStyle": "SplashScreen",
-    "description": " The loading component for the full app.\n Rendered before the state is rehydrated.",
-    "lineNumber": 10,
-    "unknown": [
-      {
-        "tagName": "@author",
-        "tagValue": ""
-      },
-      {
-        "tagName": "@negebauer\n",
-        "tagValue": ""
-      },
-      {
-        "tagName": "@constructor",
-        "tagValue": ""
-      }
-    ],
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
   },
   {
     "__docId__": 59,
@@ -860,7 +869,7 @@
     "__docId__": 62,
     "kind": "file",
     "name": "src/containers/Courses.js",
-    "content": "import React, { Component } from 'react'\nimport PropTypes from 'prop-types'\nimport { Provider, connect } from 'react-redux'\nimport {\n  StyleSheet,\n  View,\n  Text,\n  TextInput,\n  Button,\n  LayoutAnimation,\n} from 'react-native'\nimport { login, getUsername } from '../redux/modules/user'\n\nconst mapStateToProps = state => ({\n  username: getUsername(state),\n})\n\nconst mapDispatchToProps = { login }\n\n@connect(mapStateToProps, mapDispatchToProps)\nexport default class Courses extends Component {\n  constructor() {\n    super()\n    this.state = {\n      courses: [],\n      folders: [],\n    }\n  }\n\n  go = () => {\n    this.props.login('asd', 'asd')\n\n    // https://github.com/futuretap/FTLinearActivityIndicator for iPhone X\n    // const api = new Api()\n    // const login = await api.auth(this.state.username, this.state.password)\n    // this.setState({ login })\n    // const courses = await api.getCourses()\n    // LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)\n    // this.setState({ courses })\n    // for (let i = 0; i < courses.length; i++) {\n    //   const folders = await api.getCourse(courses[i].id)\n    //   courses[i].folders = folders\n    //   LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)\n    //   this.setState({ courses })\n    // }\n    // this.setState({ loading: false })\n  }\n\n  render() {\n    console.log(this.state, this.props)\n\n    const { isLogging, authenticated, loginError } = this.props\n\n    if (isLogging)\n      return (\n        <View>\n          <Text>Loading</Text>\n        </View>\n      )\n\n    return (\n      <View style={styles.container}>\n        <TextInput\n          style={styles.input}\n          autoCapitalize=\"none\"\n          onChangeText={username => this.setState({ username })}\n        />\n        <TextInput\n          style={styles.input}\n          secureTextEntry\n          onChangeText={password => this.setState({ password })}\n        />\n        <Button title=\"Login get courses\" onPress={this.go} />\n        <Text>{`Login: ${this.state.login}`}</Text>\n        {this.state.loginError && (\n          <Text>{`Error: ${this.state.loginError.message}`}</Text>\n        )}\n        {this.state.courses.map(course => (\n          <View key={course.id}>\n            <Text>{`${course.acronym} s${course.section} ${course.name}`}</Text>\n            <Text>Carpetas</Text>\n            {Object.keys(course.folders).map(id => (\n              <Text key={id}>{`${course.folders[id].name}`}</Text>\n            ))}\n          </View>\n        ))}\n        {this.state.folders.map(data => (\n          <Text key={data.text}>{data.text}</Text>\n        ))}\n      </View>\n    )\n  }\n}\n\nCourses.propTypes = {\n  courses: PropTypes.arrayOf(PropTypes.object),\n}\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    justifyContent: 'center',\n    alignItems: 'center',\n    backgroundColor: '#F5FCFF',\n  },\n  input: {\n    height: 40,\n    width: '60%',\n    borderColor: 'gray',\n    borderWidth: 1,\n  },\n})\n",
+    "content": "import React, { Component } from 'react'\nimport PropTypes from 'prop-types'\nimport { Provider, connect } from 'react-redux'\nimport {\n  StyleSheet,\n  View,\n  Text,\n  TextInput,\n  Button,\n  LayoutAnimation,\n  ActivityIndicator,\n} from 'react-native'\nimport autobind from 'autobind-decorator'\nimport {\n  getCoursesList,\n  getCoursesLoading,\n  getCoursesError,\n  loadCourses,\n} from '../redux/modules/courses'\n\nconst mapStateToProps = state => ({\n  courses: getCoursesList(state),\n  loading: getCoursesLoading(state),\n  error: getCoursesError(state),\n})\n\nconst mapDispatchToProps = {\n  loadCourses,\n}\n\n@connect(mapStateToProps, mapDispatchToProps)\nexport default class Courses extends Component {\n  componentDidMount() {}\n\n  go = () => {\n    // https://github.com/futuretap/FTLinearActivityIndicator for iPhone X\n    // const api = new Api()\n    // const login = await api.auth(this.state.username, this.state.password)\n    // this.setState({ login })\n    // const courses = await api.getCourses()\n    // LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)\n    // this.setState({ courses })\n    // for (let i = 0; i < courses.length; i++) {\n    //   const folders = await api.getCourse(courses[i].id)\n    //   courses[i].folders = folders\n    //   LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)\n    //   this.setState({ courses })\n    // }\n    // this.setState({ loading: false })\n  }\n\n  render() {\n    console.log(this.props)\n    const { courses, loading, error, loadCourses } = this.props\n    return (\n      <View style={styles.container}>\n        {loading && <ActivityIndicator />}\n        {error && <Text>{error}</Text>}\n        {courses.map(course => (\n          <View key={course.id}>\n            <Text>{`${course.acronym} s${course.section} ${course.name}`}</Text>\n            <Text>Carpetas</Text>\n            {Object.keys(course.folders).map(id => (\n              <Text key={id}>{`${course.folders[id].name}`}</Text>\n            ))}\n          </View>\n        ))}\n        <Button title=\"Cargar cursos\" onPress={loadCourses} />\n      </View>\n    )\n  }\n}\n\nCourses.defaultProps = {\n  courses: [],\n}\n\nCourses.propTypes = {\n  courses: PropTypes.arrayOf(PropTypes.object),\n}\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    justifyContent: 'center',\n    alignItems: 'center',\n    backgroundColor: '#F5FCFF',\n  },\n  input: {\n    height: 40,\n    width: '60%',\n    borderColor: 'gray',\n    borderWidth: 1,\n  },\n})\n",
     "static": true,
     "longname": "/Users/Nico/Documents/siding-mobile/src/containers/Courses.js",
     "access": "public",
@@ -881,7 +890,7 @@
     "importPath": "siding/src/containers/Courses.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 14,
+    "lineNumber": 21,
     "undocument": true,
     "params": [
       {
@@ -906,11 +915,11 @@
     "importPath": "siding/src/containers/Courses.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 27,
     "undocument": true,
     "type": {
       "types": [
-        "{\"login\": *}"
+        "{\"loadCourses\": *}"
       ]
     },
     "ignore": true
@@ -927,7 +936,7 @@
     "importPath": "siding/src/containers/Courses.js",
     "importStyle": "Courses",
     "description": null,
-    "lineNumber": 21,
+    "lineNumber": 32,
     "undocument": true,
     "decorators": [
       {
@@ -942,37 +951,22 @@
   },
   {
     "__docId__": 66,
-    "kind": "constructor",
-    "name": "constructor",
+    "kind": "method",
+    "name": "componentDidMount",
     "memberof": "src/containers/Courses.js~Courses",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "src/containers/Courses.js~Courses#constructor",
+    "longname": "src/containers/Courses.js~Courses#componentDidMount",
     "access": "public",
     "description": null,
-    "lineNumber": 22,
-    "undocument": true
+    "lineNumber": 33,
+    "undocument": true,
+    "params": [],
+    "return": null
   },
   {
     "__docId__": 67,
-    "kind": "member",
-    "name": "state",
-    "memberof": "src/containers/Courses.js~Courses",
-    "static": false,
-    "longname": "src/containers/Courses.js~Courses#state",
-    "access": "public",
-    "description": null,
-    "lineNumber": 24,
-    "undocument": true,
-    "type": {
-      "types": [
-        "{\"courses\": *, \"folders\": *}"
-      ]
-    }
-  },
-  {
-    "__docId__": 68,
     "kind": "member",
     "name": "go",
     "memberof": "src/containers/Courses.js~Courses",
@@ -980,7 +974,7 @@
     "longname": "src/containers/Courses.js~Courses#go",
     "access": "public",
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 35,
     "undocument": true,
     "type": {
       "types": [
@@ -989,7 +983,7 @@
     }
   },
   {
-    "__docId__": 69,
+    "__docId__": 68,
     "kind": "method",
     "name": "render",
     "memberof": "src/containers/Courses.js~Courses",
@@ -999,7 +993,7 @@
     "longname": "src/containers/Courses.js~Courses#render",
     "access": "public",
     "description": null,
-    "lineNumber": 49,
+    "lineNumber": 52,
     "undocument": true,
     "params": [],
     "return": {
@@ -1009,7 +1003,7 @@
     }
   },
   {
-    "__docId__": 70,
+    "__docId__": 69,
     "kind": "variable",
     "name": "styles",
     "memberof": "src/containers/Courses.js",
@@ -1020,7 +1014,7 @@
     "importPath": "siding/src/containers/Courses.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 99,
+    "lineNumber": 82,
     "undocument": true,
     "type": {
       "types": [
@@ -1030,10 +1024,10 @@
     "ignore": true
   },
   {
-    "__docId__": 71,
+    "__docId__": 70,
     "kind": "file",
     "name": "src/containers/Session.js",
-    "content": "import React, { Component } from 'react'\nimport PropTypes from 'prop-types'\nimport { Provider, connect } from 'react-redux'\nimport {\n  StyleSheet,\n  View,\n  Text,\n  TextInput,\n  Button,\n  LayoutAnimation,\n} from 'react-native'\nimport autobind from 'autobind-decorator'\nimport {\n  login,\n  getUserAuth,\n  getUserLoading,\n  getUserError,\n} from '../redux/modules/user'\n\nconst mapStateToProps = state => ({\n  authenticated: getUserAuth(state),\n  loading: getUserLoading(state),\n  error: getUserError(state),\n})\n\nconst mapDispatchToProps = { login }\n\n@connect(mapStateToProps, mapDispatchToProps)\nexport default class Session extends Component {\n  constructor() {\n    super()\n    this.state = {\n      username: 'negebauer',\n      password: 'hrlse919',\n    }\n  }\n\n  /**\n   *  Login with the siding\n   *  @author @negebauer\n   *  @return {Promise}\n   */\n  @autobind\n  login() {\n    return this.props.login(this.state.username, this.state.password)\n  }\n\n  render() {\n    const { authenticated, loading, error } = this.props\n\n    if (loading) {\n      return (\n        <View>\n          <Text>Loading</Text>\n        </View>\n      )\n    }\n\n    if (authenticated) return this.props.children\n\n    return (\n      <View style={styles.container}>\n        <TextInput\n          style={styles.input}\n          autoCapitalize=\"none\"\n          onChangeText={username => this.setState({ username })}\n        />\n        <TextInput\n          style={styles.input}\n          secureTextEntry\n          onChangeText={password => this.setState({ password })}\n        />\n        <Button title=\"Login\" onPress={this.login} />\n        {error && <Text>{`Error: ${error.message}`}</Text>}\n      </View>\n    )\n  }\n}\n\nSession.propTypes = {\n  authenticated: PropTypes.bool.isRequired,\n  loading: PropTypes.bool.isRequired,\n  login: PropTypes.func.isRequired,\n  error: PropTypes.object,\n}\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    justifyContent: 'center',\n    alignItems: 'center',\n    backgroundColor: '#F5FCFF',\n  },\n  input: {\n    height: 40,\n    width: '60%',\n    borderColor: 'gray',\n    borderWidth: 1,\n  },\n})\n",
+    "content": "import React, { Component } from 'react'\nimport PropTypes from 'prop-types'\nimport { Provider, connect } from 'react-redux'\nimport {\n  StyleSheet,\n  View,\n  Text,\n  TextInput,\n  Button,\n  LayoutAnimation,\n} from 'react-native'\nimport autobind from 'autobind-decorator'\nimport LoadingView from '../components/LoadingView'\nimport {\n  login,\n  getUserData,\n  getUserAuth,\n  getUserLoading,\n  getUserError,\n} from '../redux/modules/user'\nimport { loadCourses } from '../redux/modules/courses'\n\nconst mapStateToProps = state => ({\n  userData: getUserData(state),\n  authenticated: getUserAuth(state),\n  loading: getUserLoading(state),\n  error: getUserError(state),\n})\n\nconst mapDispatchToProps = {\n  login,\n  loadCourses,\n}\n\n@connect(mapStateToProps, mapDispatchToProps)\nexport default class Session extends Component {\n  constructor() {\n    super()\n    this.state = {\n      username: '',\n      password: '',\n    }\n  }\n\n  componentDidMount() {\n    const { userData: { username, password }, login } = this.props\n    if (username && password) login(username, password)\n  }\n\n  componentDidUpdate(prevProps, snapshot) {\n    if (!prevProps.authenticated && this.props.authenticated) {\n      this.props.loadCourses()\n    }\n  }\n\n  /**\n   *  Login with the siding\n   *  @author @negebauer\n   *  @return {Promise}\n   */\n  @autobind\n  login() {\n    return this.props.login(this.state.username, this.state.password)\n  }\n\n  render() {\n    const { authenticated, loading, error } = this.props\n\n    if (loading) {\n      return <LoadingView text=\"Ingresando al siding\" />\n    }\n\n    if (authenticated) return this.props.children\n\n    return (\n      <View style={styles.container}>\n        <TextInput\n          style={styles.input}\n          autoCapitalize=\"none\"\n          onChangeText={username => this.setState({ username })}\n        />\n        <TextInput\n          style={styles.input}\n          secureTextEntry\n          onChangeText={password => this.setState({ password })}\n        />\n        <Button title=\"Login\" onPress={this.login} />\n        {error && <Text>{`Error: ${error.message}`}</Text>}\n      </View>\n    )\n  }\n}\n\nSession.propTypes = {\n  authenticated: PropTypes.bool,\n  loading: PropTypes.bool,\n  login: PropTypes.func,\n  error: PropTypes.object,\n}\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    justifyContent: 'center',\n    alignItems: 'center',\n    backgroundColor: '#F5FCFF',\n  },\n  input: {\n    height: 40,\n    width: '60%',\n    borderColor: 'gray',\n    borderWidth: 1,\n  },\n})\n",
     "static": true,
     "longname": "/Users/Nico/Documents/siding-mobile/src/containers/Session.js",
     "access": "public",
@@ -1041,7 +1035,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 72,
+    "__docId__": 71,
     "kind": "function",
     "name": "mapStateToProps",
     "memberof": "src/containers/Session.js",
@@ -1054,7 +1048,7 @@
     "importPath": "siding/src/containers/Session.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 23,
     "undocument": true,
     "params": [
       {
@@ -1068,7 +1062,7 @@
     "ignore": true
   },
   {
-    "__docId__": 73,
+    "__docId__": 72,
     "kind": "variable",
     "name": "mapDispatchToProps",
     "memberof": "src/containers/Session.js",
@@ -1079,17 +1073,17 @@
     "importPath": "siding/src/containers/Session.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 30,
     "undocument": true,
     "type": {
       "types": [
-        "{\"login\": *}"
+        "{\"login\": *, \"loadCourses\": *}"
       ]
     },
     "ignore": true
   },
   {
-    "__docId__": 74,
+    "__docId__": 73,
     "kind": "class",
     "name": "Session",
     "memberof": "src/containers/Session.js",
@@ -1100,7 +1094,7 @@
     "importPath": "siding/src/containers/Session.js",
     "importStyle": "Session",
     "description": null,
-    "lineNumber": 29,
+    "lineNumber": 36,
     "undocument": true,
     "decorators": [
       {
@@ -1114,7 +1108,7 @@
     ]
   },
   {
-    "__docId__": 75,
+    "__docId__": 74,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/containers/Session.js~Session",
@@ -1124,11 +1118,11 @@
     "longname": "src/containers/Session.js~Session#constructor",
     "access": "public",
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 37,
     "undocument": true
   },
   {
-    "__docId__": 76,
+    "__docId__": 75,
     "kind": "member",
     "name": "state",
     "memberof": "src/containers/Session.js~Session",
@@ -1136,16 +1130,61 @@
     "longname": "src/containers/Session.js~Session#state",
     "access": "public",
     "description": null,
-    "lineNumber": 32,
+    "lineNumber": 39,
     "undocument": true,
     "type": {
       "types": [
-        "{\"username\": string, \"password\": string}"
+        "{\"username\": *, \"password\": *}"
       ]
     }
   },
   {
+    "__docId__": 76,
+    "kind": "method",
+    "name": "componentDidMount",
+    "memberof": "src/containers/Session.js~Session",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/containers/Session.js~Session#componentDidMount",
+    "access": "public",
+    "description": null,
+    "lineNumber": 45,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
     "__docId__": 77,
+    "kind": "method",
+    "name": "componentDidUpdate",
+    "memberof": "src/containers/Session.js~Session",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/containers/Session.js~Session#componentDidUpdate",
+    "access": "public",
+    "description": null,
+    "lineNumber": 50,
+    "undocument": true,
+    "params": [
+      {
+        "name": "prevProps",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "snapshot",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 78,
     "kind": "method",
     "name": "login",
     "memberof": "src/containers/Session.js~Session",
@@ -1155,7 +1194,7 @@
     "longname": "src/containers/Session.js~Session#login",
     "access": "public",
     "description": " Login with the siding",
-    "lineNumber": 44,
+    "lineNumber": 62,
     "unknown": [
       {
         "tagName": "@author",
@@ -1183,7 +1222,7 @@
     "params": []
   },
   {
-    "__docId__": 78,
+    "__docId__": 79,
     "kind": "method",
     "name": "render",
     "memberof": "src/containers/Session.js~Session",
@@ -1193,7 +1232,7 @@
     "longname": "src/containers/Session.js~Session#render",
     "access": "public",
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 66,
     "undocument": true,
     "params": [],
     "return": {
@@ -1203,7 +1242,7 @@
     }
   },
   {
-    "__docId__": 79,
+    "__docId__": 80,
     "kind": "variable",
     "name": "styles",
     "memberof": "src/containers/Session.js",
@@ -1214,7 +1253,7 @@
     "importPath": "siding/src/containers/Session.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 87,
+    "lineNumber": 101,
     "undocument": true,
     "type": {
       "types": [
@@ -1224,67 +1263,27 @@
     "ignore": true
   },
   {
-    "__docId__": 80,
+    "__docId__": 81,
     "kind": "file",
-    "name": "src/redux/modules/user.js",
-    "content": "import { REHYDRATE } from 'redux-persist'\nimport { createSelector } from 'reselect'\nimport { SIDING_AUTH_FAILED } from '../../utils/api'\n\n// Actions\nexport const LOGIN = 'siding/user/LOGIN'\nexport const LOGIN_PENDING = `${LOGIN}_PENDING`\nexport const LOGIN_FULFILLED = `${LOGIN}_FULFILLED`\nexport const LOGIN_REJECTED = `${LOGIN}_REJECTED`\n\n// Initial state\nconst initialState = {\n  username: '',\n  password: '',\n  authenticated: false,\n  loading: false,\n  error: undefined,\n}\n\n// Reducer\nexport default function reducer(state = initialState, action) {\n  if (action.error && action.payload === SIDING_AUTH_FAILED) {\n    return {\n      ...state,\n      authenticated: false,\n      loading: false,\n      error: action.payload,\n    }\n  }\n  switch (action.type) {\n    case REHYDRATE:\n      return {\n        ...initialState,\n        ...action.payload.user,\n        authenticated: false,\n        loading: false,\n        error: undefined,\n      }\n    case LOGIN_PENDING:\n      return { ...state, authenticated: false, loading: true, error: undefined }\n    case LOGIN_FULFILLED:\n      return {\n        ...state,\n        ...action.payload,\n        authenticated: true,\n        loading: false,\n        error: undefined,\n      }\n    default:\n      return state\n  }\n}\n\n// Action creators\nexport function login(username, password) {\n  return (dispatch, getState, { api }) =>\n    dispatch({\n      type: LOGIN,\n      payload: api.logout().then(() => api.auth(username, password)),\n    })\n}\n\n// Selectors\nexport function getUser(state) {\n  return state.user\n}\n\nexport const getUserAuth = createSelector(getUser, user => user.authenticated)\nexport const getUserLoading = createSelector(getUser, user => user.loading)\nexport const getUserError = createSelector(getUser, user => user.error)\nexport const getUsername = createSelector(getUser, user => user.username)\n",
+    "name": "src/redux/modules/courses.js",
+    "content": "import { merge } from 'lodash/fp/object'\nimport { normalize, denormalize } from 'normalizr'\nimport { createSelector } from 'reselect'\nimport { courseSchema } from '../schemas'\nimport { getEntities } from './entities'\n\n// Actions\nexport const LOAD_COURSES = 'siding/courses/LOAD_COURSES'\nexport const LOAD_COURSES_PENDING = `${LOAD_COURSES}_PENDING`\nexport const LOAD_COURSES_FULFILLED = `${LOAD_COURSES}_FULFILLED`\nexport const LOAD_COURSES_REJECTED = `${LOAD_COURSES}_REJECTED`\n\n// Initial state\nconst initialState = {\n  courses: [],\n  loading: false,\n  error: undefined,\n}\n\n// Reducer\nexport default function reducer(state = initialState, action) {\n  switch (action.type) {\n    case LOAD_COURSES_PENDING:\n      return merge(state, {\n        loading: true,\n        error: undefined,\n      })\n    case LOAD_COURSES_FULFILLED:\n      return merge(state, {\n        courses: action.payload.result,\n        loading: false,\n        error: undefined,\n      })\n    case LOAD_COURSES_REJECTED:\n      return merge(state, {\n        loading: false,\n        error: action.payload,\n      })\n    default:\n      return state\n  }\n}\n\n// Action creators\nexport function loadCourses() {\n  return (dispatch, getState, { api }) =>\n    dispatch({\n      type: LOAD_COURSES,\n      payload: api.loadCourses().then(r => normalize(r, [courseSchema])),\n    })\n}\n\n// Selectors\nexport function getCourses(state) {\n  return state.courses\n}\n\nexport const getCoursesList = createSelector(\n  getCourses,\n  getEntities,\n  (courses, entities) => denormalize(courses.courses, [courseSchema], entities)\n)\nexport const getCoursesLoading = createSelector(\n  getCourses,\n  courses => courses.loading\n)\nexport const getCoursesError = createSelector(\n  getCourses,\n  courses => courses.error\n)\n",
     "static": true,
-    "longname": "/Users/Nico/Documents/siding-mobile/src/redux/modules/user.js",
+    "longname": "/Users/Nico/Documents/siding-mobile/src/redux/modules/courses.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 81,
-    "kind": "variable",
-    "name": "LOGIN",
-    "memberof": "src/redux/modules/user.js",
-    "static": true,
-    "longname": "src/redux/modules/user.js~LOGIN",
-    "access": "public",
-    "export": true,
-    "importPath": "siding/src/redux/modules/user.js",
-    "importStyle": "{LOGIN}",
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
-    "type": {
-      "types": [
-        "string"
-      ]
-    }
-  },
-  {
     "__docId__": 82,
     "kind": "variable",
-    "name": "LOGIN_PENDING",
-    "memberof": "src/redux/modules/user.js",
+    "name": "LOAD_COURSES",
+    "memberof": "src/redux/modules/courses.js",
     "static": true,
-    "longname": "src/redux/modules/user.js~LOGIN_PENDING",
+    "longname": "src/redux/modules/courses.js~LOAD_COURSES",
     "access": "public",
     "export": true,
-    "importPath": "siding/src/redux/modules/user.js",
-    "importStyle": "{LOGIN_PENDING}",
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
-    "type": {
-      "types": [
-        "string"
-      ]
-    }
-  },
-  {
-    "__docId__": 83,
-    "kind": "variable",
-    "name": "LOGIN_FULFILLED",
-    "memberof": "src/redux/modules/user.js",
-    "static": true,
-    "longname": "src/redux/modules/user.js~LOGIN_FULFILLED",
-    "access": "public",
-    "export": true,
-    "importPath": "siding/src/redux/modules/user.js",
-    "importStyle": "{LOGIN_FULFILLED}",
+    "importPath": "siding/src/redux/modules/courses.js",
+    "importStyle": "{LOAD_COURSES}",
     "description": null,
     "lineNumber": 8,
     "undocument": true,
@@ -1295,16 +1294,16 @@
     }
   },
   {
-    "__docId__": 84,
+    "__docId__": 83,
     "kind": "variable",
-    "name": "LOGIN_REJECTED",
-    "memberof": "src/redux/modules/user.js",
+    "name": "LOAD_COURSES_PENDING",
+    "memberof": "src/redux/modules/courses.js",
     "static": true,
-    "longname": "src/redux/modules/user.js~LOGIN_REJECTED",
+    "longname": "src/redux/modules/courses.js~LOAD_COURSES_PENDING",
     "access": "public",
     "export": true,
-    "importPath": "siding/src/redux/modules/user.js",
-    "importStyle": "{LOGIN_REJECTED}",
+    "importPath": "siding/src/redux/modules/courses.js",
+    "importStyle": "{LOAD_COURSES_PENDING}",
     "description": null,
     "lineNumber": 9,
     "undocument": true,
@@ -1315,38 +1314,78 @@
     }
   },
   {
-    "__docId__": 85,
+    "__docId__": 84,
     "kind": "variable",
-    "name": "initialState",
-    "memberof": "src/redux/modules/user.js",
+    "name": "LOAD_COURSES_FULFILLED",
+    "memberof": "src/redux/modules/courses.js",
     "static": true,
-    "longname": "src/redux/modules/user.js~initialState",
+    "longname": "src/redux/modules/courses.js~LOAD_COURSES_FULFILLED",
     "access": "public",
-    "export": false,
-    "importPath": "siding/src/redux/modules/user.js",
-    "importStyle": null,
+    "export": true,
+    "importPath": "siding/src/redux/modules/courses.js",
+    "importStyle": "{LOAD_COURSES_FULFILLED}",
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 10,
     "undocument": true,
     "type": {
       "types": [
-        "{\"username\": *, \"password\": *, \"authenticated\": *, \"loading\": *, \"error\": *}"
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 85,
+    "kind": "variable",
+    "name": "LOAD_COURSES_REJECTED",
+    "memberof": "src/redux/modules/courses.js",
+    "static": true,
+    "longname": "src/redux/modules/courses.js~LOAD_COURSES_REJECTED",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/courses.js",
+    "importStyle": "{LOAD_COURSES_REJECTED}",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 86,
+    "kind": "variable",
+    "name": "initialState",
+    "memberof": "src/redux/modules/courses.js",
+    "static": true,
+    "longname": "src/redux/modules/courses.js~initialState",
+    "access": "public",
+    "export": false,
+    "importPath": "siding/src/redux/modules/courses.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"courses\": *, \"loading\": *, \"error\": *}"
       ]
     },
     "ignore": true
   },
   {
-    "__docId__": 86,
+    "__docId__": 87,
     "kind": "function",
     "name": "reducer",
-    "memberof": "src/redux/modules/user.js",
+    "memberof": "src/redux/modules/courses.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "src/redux/modules/user.js~reducer",
+    "longname": "src/redux/modules/courses.js~reducer",
     "access": "public",
     "export": true,
-    "importPath": "siding/src/redux/modules/user.js",
+    "importPath": "siding/src/redux/modules/courses.js",
     "importStyle": "reducer",
     "description": null,
     "lineNumber": 21,
@@ -1375,7 +1414,372 @@
     }
   },
   {
-    "__docId__": 87,
+    "__docId__": 88,
+    "kind": "function",
+    "name": "loadCourses",
+    "memberof": "src/redux/modules/courses.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/redux/modules/courses.js~loadCourses",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/courses.js",
+    "importStyle": "{loadCourses}",
+    "description": null,
+    "lineNumber": 45,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 89,
+    "kind": "function",
+    "name": "getCourses",
+    "memberof": "src/redux/modules/courses.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/redux/modules/courses.js~getCourses",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/courses.js",
+    "importStyle": "{getCourses}",
+    "description": null,
+    "lineNumber": 54,
+    "undocument": true,
+    "params": [
+      {
+        "name": "state",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 90,
+    "kind": "variable",
+    "name": "getCoursesList",
+    "memberof": "src/redux/modules/courses.js",
+    "static": true,
+    "longname": "src/redux/modules/courses.js~getCoursesList",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/courses.js",
+    "importStyle": "{getCoursesList}",
+    "description": null,
+    "lineNumber": 58,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 91,
+    "kind": "variable",
+    "name": "getCoursesLoading",
+    "memberof": "src/redux/modules/courses.js",
+    "static": true,
+    "longname": "src/redux/modules/courses.js~getCoursesLoading",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/courses.js",
+    "importStyle": "{getCoursesLoading}",
+    "description": null,
+    "lineNumber": 63,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 92,
+    "kind": "variable",
+    "name": "getCoursesError",
+    "memberof": "src/redux/modules/courses.js",
+    "static": true,
+    "longname": "src/redux/modules/courses.js~getCoursesError",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/courses.js",
+    "importStyle": "{getCoursesError}",
+    "description": null,
+    "lineNumber": 67,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 93,
+    "kind": "file",
+    "name": "src/redux/modules/entities.js",
+    "content": "import { merge } from 'lodash/fp/object'\n\n// Actions\nimport { LOAD_COURSES_FULFILLED } from './courses'\n\n// Initial state\nconst initialState = {\n  courses: {},\n}\n\n// Reducer\nexport default function reducer(state = initialState, action) {\n  switch (action.type) {\n    case LOAD_COURSES_FULFILLED:\n      return merge(state, { courses: action.payload.entities.courses })\n    default:\n      return state\n  }\n}\n\n// Selectors\nexport function getEntities(state) {\n  return state.entities\n}\n",
+    "static": true,
+    "longname": "/Users/Nico/Documents/siding-mobile/src/redux/modules/entities.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 94,
+    "kind": "variable",
+    "name": "initialState",
+    "memberof": "src/redux/modules/entities.js",
+    "static": true,
+    "longname": "src/redux/modules/entities.js~initialState",
+    "access": "public",
+    "export": false,
+    "importPath": "siding/src/redux/modules/entities.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"courses\": *}"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 95,
+    "kind": "function",
+    "name": "reducer",
+    "memberof": "src/redux/modules/entities.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/redux/modules/entities.js~reducer",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/entities.js",
+    "importStyle": "reducer",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "params": [
+      {
+        "name": "state",
+        "optional": true,
+        "types": [
+          "*"
+        ],
+        "defaultRaw": "initialState",
+        "defaultValue": "initialState"
+      },
+      {
+        "name": "action",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 96,
+    "kind": "function",
+    "name": "getEntities",
+    "memberof": "src/redux/modules/entities.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/redux/modules/entities.js~getEntities",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/entities.js",
+    "importStyle": "{getEntities}",
+    "description": null,
+    "lineNumber": 22,
+    "undocument": true,
+    "params": [
+      {
+        "name": "state",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 97,
+    "kind": "file",
+    "name": "src/redux/modules/user.js",
+    "content": "import { merge } from 'lodash/fp/object'\nimport { REHYDRATE } from 'redux-persist'\nimport { createSelector } from 'reselect'\nimport { SIDING_AUTH_FAILED } from '../../utils/api'\n\n// Actions\nexport const LOGIN = 'siding/user/LOGIN'\nexport const LOGIN_PENDING = `${LOGIN}_PENDING`\nexport const LOGIN_FULFILLED = `${LOGIN}_FULFILLED`\nexport const LOGIN_REJECTED = `${LOGIN}_REJECTED`\n\n// Initial state\nconst initialState = {\n  username: '',\n  password: '',\n  authenticated: false,\n  loading: false,\n  error: undefined,\n}\n\n// Reducer\nexport default function reducer(state = initialState, action) {\n  if (action.error && action.payload === SIDING_AUTH_FAILED) {\n    return merge(state, {\n      authenticated: false,\n      loading: false,\n      error: action.payload,\n    })\n  }\n  switch (action.type) {\n    case REHYDRATE:\n      if (!action.payload) return initialState\n      return merge(initialState, {\n        ...action.payload.user,\n        authenticated: false,\n        loading: false,\n        error: undefined,\n      })\n    case LOGIN_PENDING:\n      return merge(state, {\n        authenticated: false,\n        loading: true,\n        error: undefined,\n      })\n    case LOGIN_FULFILLED:\n      return merge(state, {\n        ...action.payload,\n        authenticated: true,\n        loading: false,\n        error: undefined,\n      })\n    default:\n      return state\n  }\n}\n\n// Action creators\nexport function login(username, password) {\n  return (dispatch, getState, { api }) =>\n    dispatch({\n      type: LOGIN,\n      payload: api.logout().then(() => api.auth(username, password)),\n    })\n}\n\n// Selectors\nexport function getUser(state) {\n  return state.user\n}\n\nexport const getUserData = createSelector(getUser, user => ({\n  username: user.username,\n  password: user.password,\n}))\nexport const getUserAuth = createSelector(getUser, user => user.authenticated)\nexport const getUserLoading = createSelector(getUser, user => user.loading)\nexport const getUserError = createSelector(getUser, user => user.error)\nexport const getUsername = createSelector(getUser, user => user.username)\n",
+    "static": true,
+    "longname": "/Users/Nico/Documents/siding-mobile/src/redux/modules/user.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 98,
+    "kind": "variable",
+    "name": "LOGIN",
+    "memberof": "src/redux/modules/user.js",
+    "static": true,
+    "longname": "src/redux/modules/user.js~LOGIN",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/user.js",
+    "importStyle": "{LOGIN}",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 99,
+    "kind": "variable",
+    "name": "LOGIN_PENDING",
+    "memberof": "src/redux/modules/user.js",
+    "static": true,
+    "longname": "src/redux/modules/user.js~LOGIN_PENDING",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/user.js",
+    "importStyle": "{LOGIN_PENDING}",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 100,
+    "kind": "variable",
+    "name": "LOGIN_FULFILLED",
+    "memberof": "src/redux/modules/user.js",
+    "static": true,
+    "longname": "src/redux/modules/user.js~LOGIN_FULFILLED",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/user.js",
+    "importStyle": "{LOGIN_FULFILLED}",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 101,
+    "kind": "variable",
+    "name": "LOGIN_REJECTED",
+    "memberof": "src/redux/modules/user.js",
+    "static": true,
+    "longname": "src/redux/modules/user.js~LOGIN_REJECTED",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/user.js",
+    "importStyle": "{LOGIN_REJECTED}",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 102,
+    "kind": "variable",
+    "name": "initialState",
+    "memberof": "src/redux/modules/user.js",
+    "static": true,
+    "longname": "src/redux/modules/user.js~initialState",
+    "access": "public",
+    "export": false,
+    "importPath": "siding/src/redux/modules/user.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"username\": *, \"password\": *, \"authenticated\": *, \"loading\": *, \"error\": *}"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 103,
+    "kind": "function",
+    "name": "reducer",
+    "memberof": "src/redux/modules/user.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/redux/modules/user.js~reducer",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/user.js",
+    "importStyle": "reducer",
+    "description": null,
+    "lineNumber": 22,
+    "undocument": true,
+    "params": [
+      {
+        "name": "state",
+        "optional": true,
+        "types": [
+          "*"
+        ],
+        "defaultRaw": "initialState",
+        "defaultValue": "initialState"
+      },
+      {
+        "name": "action",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 104,
     "kind": "function",
     "name": "login",
     "memberof": "src/redux/modules/user.js",
@@ -1388,7 +1792,7 @@
     "importPath": "siding/src/redux/modules/user.js",
     "importStyle": "{login}",
     "description": null,
-    "lineNumber": 55,
+    "lineNumber": 58,
     "undocument": true,
     "params": [
       {
@@ -1411,7 +1815,7 @@
     }
   },
   {
-    "__docId__": 88,
+    "__docId__": 105,
     "kind": "function",
     "name": "getUser",
     "memberof": "src/redux/modules/user.js",
@@ -1424,7 +1828,7 @@
     "importPath": "siding/src/redux/modules/user.js",
     "importStyle": "{getUser}",
     "description": null,
-    "lineNumber": 64,
+    "lineNumber": 67,
     "undocument": true,
     "params": [
       {
@@ -1441,76 +1845,16 @@
     }
   },
   {
-    "__docId__": 89,
+    "__docId__": 106,
     "kind": "variable",
-    "name": "getUserAuth",
+    "name": "getUserData",
     "memberof": "src/redux/modules/user.js",
     "static": true,
-    "longname": "src/redux/modules/user.js~getUserAuth",
+    "longname": "src/redux/modules/user.js~getUserData",
     "access": "public",
     "export": true,
     "importPath": "siding/src/redux/modules/user.js",
-    "importStyle": "{getUserAuth}",
-    "description": null,
-    "lineNumber": 68,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 90,
-    "kind": "variable",
-    "name": "getUserLoading",
-    "memberof": "src/redux/modules/user.js",
-    "static": true,
-    "longname": "src/redux/modules/user.js~getUserLoading",
-    "access": "public",
-    "export": true,
-    "importPath": "siding/src/redux/modules/user.js",
-    "importStyle": "{getUserLoading}",
-    "description": null,
-    "lineNumber": 69,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 91,
-    "kind": "variable",
-    "name": "getUserError",
-    "memberof": "src/redux/modules/user.js",
-    "static": true,
-    "longname": "src/redux/modules/user.js~getUserError",
-    "access": "public",
-    "export": true,
-    "importPath": "siding/src/redux/modules/user.js",
-    "importStyle": "{getUserError}",
-    "description": null,
-    "lineNumber": 70,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 92,
-    "kind": "variable",
-    "name": "getUsername",
-    "memberof": "src/redux/modules/user.js",
-    "static": true,
-    "longname": "src/redux/modules/user.js~getUsername",
-    "access": "public",
-    "export": true,
-    "importPath": "siding/src/redux/modules/user.js",
-    "importStyle": "{getUsername}",
+    "importStyle": "{getUserData}",
     "description": null,
     "lineNumber": 71,
     "undocument": true,
@@ -1521,10 +1865,90 @@
     }
   },
   {
-    "__docId__": 93,
+    "__docId__": 107,
+    "kind": "variable",
+    "name": "getUserAuth",
+    "memberof": "src/redux/modules/user.js",
+    "static": true,
+    "longname": "src/redux/modules/user.js~getUserAuth",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/user.js",
+    "importStyle": "{getUserAuth}",
+    "description": null,
+    "lineNumber": 75,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 108,
+    "kind": "variable",
+    "name": "getUserLoading",
+    "memberof": "src/redux/modules/user.js",
+    "static": true,
+    "longname": "src/redux/modules/user.js~getUserLoading",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/user.js",
+    "importStyle": "{getUserLoading}",
+    "description": null,
+    "lineNumber": 76,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 109,
+    "kind": "variable",
+    "name": "getUserError",
+    "memberof": "src/redux/modules/user.js",
+    "static": true,
+    "longname": "src/redux/modules/user.js~getUserError",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/user.js",
+    "importStyle": "{getUserError}",
+    "description": null,
+    "lineNumber": 77,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 110,
+    "kind": "variable",
+    "name": "getUsername",
+    "memberof": "src/redux/modules/user.js",
+    "static": true,
+    "longname": "src/redux/modules/user.js~getUsername",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/modules/user.js",
+    "importStyle": "{getUsername}",
+    "description": null,
+    "lineNumber": 78,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 111,
     "kind": "file",
     "name": "src/redux/reducers.js",
-    "content": "import { combineReducers } from 'redux'\n\nimport user from './modules/user'\n\nconst reducers = combineReducers({\n  user,\n})\n\nexport default reducers\n",
+    "content": "import { combineReducers } from 'redux'\n\nimport courses from './modules/courses'\nimport entities from './modules/entities'\nimport user from './modules/user'\n\nconst reducers = combineReducers({\n  courses,\n  entities,\n  user,\n})\n\nexport default reducers\n",
     "static": true,
     "longname": "/Users/Nico/Documents/siding-mobile/src/redux/reducers.js",
     "access": "public",
@@ -1532,7 +1956,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 94,
+    "__docId__": 112,
     "kind": "variable",
     "name": "reducers",
     "memberof": "src/redux/reducers.js",
@@ -1543,7 +1967,7 @@
     "importPath": "siding/src/redux/reducers.js",
     "importStyle": "reducers",
     "description": null,
-    "lineNumber": 5,
+    "lineNumber": 7,
     "undocument": true,
     "type": {
       "types": [
@@ -1552,7 +1976,78 @@
     }
   },
   {
-    "__docId__": 95,
+    "__docId__": 113,
+    "kind": "file",
+    "name": "src/redux/schemas.js",
+    "content": "import { schema } from 'normalizr'\n\nexport const courseSchema = new schema.Entity('courses', {\n  folders: [folderSchema],\n})\n\nexport const folderSchema = new schema.Entity('folders', {\n  files: [fileSchema],\n})\n\nexport const fileSchema = new schema.Entity('files', {})\n",
+    "static": true,
+    "longname": "/Users/Nico/Documents/siding-mobile/src/redux/schemas.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 114,
+    "kind": "variable",
+    "name": "courseSchema",
+    "memberof": "src/redux/schemas.js",
+    "static": true,
+    "longname": "src/redux/schemas.js~courseSchema",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/schemas.js",
+    "importStyle": "{courseSchema}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 115,
+    "kind": "variable",
+    "name": "folderSchema",
+    "memberof": "src/redux/schemas.js",
+    "static": true,
+    "longname": "src/redux/schemas.js~folderSchema",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/schemas.js",
+    "importStyle": "{folderSchema}",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 116,
+    "kind": "variable",
+    "name": "fileSchema",
+    "memberof": "src/redux/schemas.js",
+    "static": true,
+    "longname": "src/redux/schemas.js~fileSchema",
+    "access": "public",
+    "export": true,
+    "importPath": "siding/src/redux/schemas.js",
+    "importStyle": "{fileSchema}",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 117,
     "kind": "file",
     "name": "src/redux/store.js",
     "content": "import { compose, createStore, applyMiddleware } from 'redux'\nimport thunk from 'redux-thunk'\nimport logger from 'redux-logger'\nimport promiseMiddleware from 'redux-promise-middleware'\nimport { persistStore, persistReducer } from 'redux-persist'\nimport storage from 'redux-persist/lib/storage'\nimport reducers from './reducers'\n\nconst persistConfig = {\n  key: 'root',\n  storage,\n}\n\nexport default function configureStore(initialState = {}, { api } = {}) {\n  const middleware = [thunk.withExtraArgument({ api }), promiseMiddleware()]\n\n  const shouldLog = process.env.NODE_ENV !== 'production'\n  if (shouldLog) middleware.push(logger)\n\n  const composeEnhancers =\n    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose\n  const enhancer = composeEnhancers(applyMiddleware(...middleware))\n  const persistedReducer = persistReducer(persistConfig, reducers)\n  const store = createStore(persistedReducer, initialState, enhancer)\n  const persistor = persistStore(store)\n\n  return { store, persistor }\n}\n",
@@ -1563,7 +2058,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 96,
+    "__docId__": 118,
     "kind": "variable",
     "name": "persistConfig",
     "memberof": "src/redux/store.js",
@@ -1584,7 +2079,7 @@
     "ignore": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 119,
     "kind": "function",
     "name": "configureStore",
     "memberof": "src/redux/store.js",
@@ -1626,10 +2121,10 @@
     }
   },
   {
-    "__docId__": 98,
+    "__docId__": 120,
     "kind": "file",
     "name": "src/utils/api.js",
-    "content": "import autobind from 'autobind-decorator'\nimport {\n  LOGIN_URL,\n  LOGOUT_URL,\n  CURRENT_COURSES_URL,\n  coursesUrl,\n  courseUrl,\n  folderUrl,\n} from './urls'\nimport { parseCourses, parseCourse, parseFolder } from './parser'\nimport wait from './wait'\n\n/**\n *  Strings that appear on a siding login failed page\n *  @type {Array<String>}\n */\nconst SIDING_ERROR_MESSAGES = ['passwd', 'Datos de ingreso incorrectos']\n\n/**\n *  Siding authentication failed error\n *  @type {Error}\n */\nexport const SIDING_AUTH_FAILED = new Error('Siding auth failed')\n\n/**\n *  Transforms a json into a FormData object\n *  @author @negebauer\n *  @param  {Object} json The json object to convert\n *  @return {FormData}    A FormData with the json data\n */\nexport function formData(json) {\n  const form = new FormData()\n  Object.keys(json).forEach(k => form.append(k, json[k]))\n  return form\n}\n\n/**\n *  A siding api client\n *  @type {Object}\n */\nexport default class Api {\n  constructor() {\n    this.username = ''\n    this.password = ''\n  }\n\n  /**\n   *  Executes a siding request\n   *  @author @negebauer\n   *  @param  {String} url          The url to perform the request to\n   *  @param  {Object} [options={]} Additional request options\n   *  @param  {Number} [repeat=1]   How many times the request has been tried\n   *  @return {Promise<Any>}        A promise that resolves with the response\n   */\n  @autobind\n  request(url, options = {}, repeat = 1) {\n    const req = new XMLHttpRequest()\n    req.open(options.method || 'GET', url)\n    req.withCredentials = true\n    const promise = new Promise(res => {\n      req.onload = () => {\n        if (req.status === 500 && repeat < 6) {\n          res(this.request(url, options, repeat + 1))\n        }\n        res(req.response)\n      }\n    })\n    req.send(options.body)\n    return wait(repeat).then(() => promise)\n  }\n\n  @autobind\n  get(url, options) {\n    return this.request(url, { ...options, method: 'GET' })\n  }\n\n  @autobind\n  post(url, options = {}) {\n    return this.request(url, { ...options, method: 'POST' })\n  }\n\n  @autobind\n  authorizedGet(url, options) {\n    return this.auth(this.username, this.password).then(r =>\n      this.get(url, options)\n    )\n  }\n\n  @autobind\n  authorizedPost(url, options = {}) {\n    return this.auth(this.username, this.password).then(r =>\n      this.post(url, options)\n    )\n  }\n\n  /**\n   *  Authenticates the user with siding\n   *  @author @negebauer\n   *  @param  {String} login            Users' siding username\n   *  @param  {String} passwd           Users' siding password\n   *  @return {Promise<boolean>}        A promise that resolves to true after auth is succesfull\n   */\n  @autobind\n  async auth(login, passwd) {\n    const body = formData({ login, passwd, sw: '', sh: '', cd: '' })\n    const html = await this.post(LOGIN_URL, { body })\n    if (SIDING_ERROR_MESSAGES.filter(e => html.indexOf(e) >= 0).length > 0)\n      throw SIDING_AUTH_FAILED\n    this.username = login\n    this.password = passwd\n    return Promise.resolve({\n      username: login,\n      password: passwd,\n    })\n  }\n\n  @autobind\n  logout() {\n    return this.get(LOGOUT_URL)\n  }\n\n  @autobind\n  async getCourses(semester, year) {\n    let url = CURRENT_COURSES_URL\n    if (semester && year) url = coursesUrl(semester, year)\n    const html = await this.authorizedGet(url)\n    return parseCourses(html)\n  }\n\n  @autobind\n  async getCourse(id) {\n    if (!id) throw new Error('Course id required for getCourse')\n    const html = await this.authorizedGet(courseUrl(id))\n    return parseCourse(html)\n  }\n\n  @autobind\n  async getFolder({ id, courseId }) {\n    if (!id || !courseId)\n      throw new Error('Folder and course id required for getFolder')\n    const html = await this.authorizedGet(folderUrl(id, courseId))\n    return parseFolder(html)\n  }\n}\n",
+    "content": "import autobind from 'autobind-decorator'\nimport {\n  LOGIN_URL,\n  LOGOUT_URL,\n  CURRENT_COURSES_URL,\n  coursesUrl,\n  courseUrl,\n  folderUrl,\n} from './urls'\nimport { parseCourses, parseCourse, parseFolder } from './parser'\nimport wait from './wait'\n\n/**\n *  Strings that appear on a siding login failed page\n *  @type {Array<String>}\n */\nconst SIDING_ERROR_MESSAGES = ['passwd', 'Datos de ingreso incorrectos']\n\n/**\n *  Siding authentication failed error\n *  @type {Error}\n */\nexport const SIDING_AUTH_FAILED = new Error('Siding auth failed')\n\n/**\n *  Transforms a json into a FormData object\n *  @author @negebauer\n *  @param  {Object} json The json object to convert\n *  @return {FormData}    A FormData with the json data\n */\nexport function formData(json) {\n  const form = new FormData()\n  Object.keys(json).forEach(k => form.append(k, json[k]))\n  return form\n}\n\n/**\n *  A siding api client\n *  @type {Object}\n */\nexport default class Api {\n  constructor() {\n    this.username = ''\n    this.password = ''\n  }\n\n  /**\n   *  Executes a siding request\n   *  @author @negebauer\n   *  @param  {String} url          The url to perform the request to\n   *  @param  {Object} [options={]} Additional request options\n   *  @param  {Number} [repeat=1]   How many times the request has been tried\n   *  @return {Promise<Any>}        A promise that resolves with the response\n   */\n  @autobind\n  request(url, options = {}, repeat = 1) {\n    const req = new XMLHttpRequest()\n    req.open(options.method || 'GET', url)\n    req.withCredentials = true\n    const promise = new Promise(res => {\n      req.onload = () => {\n        if (req.status === 500 && repeat < 6) {\n          res(this.request(url, options, repeat + 1))\n        }\n        res(req.response)\n      }\n    })\n    req.send(options.body)\n    return wait(repeat).then(() => promise)\n  }\n\n  @autobind\n  get(url, options) {\n    return this.request(url, { ...options, method: 'GET' })\n  }\n\n  @autobind\n  post(url, options = {}) {\n    return this.request(url, { ...options, method: 'POST' })\n  }\n\n  @autobind\n  authorizedGet(url, options) {\n    return this.auth(this.username, this.password).then(r =>\n      this.get(url, options)\n    )\n  }\n\n  @autobind\n  authorizedPost(url, options = {}) {\n    return this.auth(this.username, this.password).then(r =>\n      this.post(url, options)\n    )\n  }\n\n  /**\n   *  Authenticates the user with siding\n   *  @author @negebauer\n   *  @param  {String} login            Users' siding username\n   *  @param  {String} passwd           Users' siding password\n   *  @return {Promise<boolean>}        A promise that resolves to true after auth is succesfull\n   */\n  @autobind\n  async auth(login, passwd) {\n    const body = formData({ login, passwd, sw: '', sh: '', cd: '' })\n    const html = await this.post(LOGIN_URL, { body })\n    if (SIDING_ERROR_MESSAGES.filter(e => html.indexOf(e) >= 0).length > 0)\n      throw SIDING_AUTH_FAILED\n    this.username = login\n    this.password = passwd\n    return Promise.resolve({\n      username: login,\n      password: passwd,\n    })\n  }\n\n  @autobind\n  logout() {\n    return this.get(LOGOUT_URL)\n  }\n\n  @autobind\n  async loadCourses(semester, year) {\n    let url = CURRENT_COURSES_URL\n    if (semester && year) url = coursesUrl(semester, year)\n    const html = await this.authorizedGet(url)\n    return parseCourses(html)\n  }\n\n  @autobind\n  async loadCourse(id) {\n    if (!id) throw new Error('Course id required for getCourse')\n    const html = await this.authorizedGet(courseUrl(id))\n    return parseCourse(html)\n  }\n\n  @autobind\n  async loadFolder({ id, courseId }) {\n    if (!id || !courseId)\n      throw new Error('Folder and course id required for getFolder')\n    const html = await this.authorizedGet(folderUrl(id, courseId))\n    return parseFolder(html)\n  }\n}\n",
     "static": true,
     "longname": "/Users/Nico/Documents/siding-mobile/src/utils/api.js",
     "access": "public",
@@ -1637,7 +2132,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 99,
+    "__docId__": 121,
     "kind": "variable",
     "name": "SIDING_ERROR_MESSAGES",
     "memberof": "src/utils/api.js",
@@ -1660,7 +2155,7 @@
     "ignore": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 122,
     "kind": "variable",
     "name": "SIDING_AUTH_FAILED",
     "memberof": "src/utils/api.js",
@@ -1682,7 +2177,7 @@
     }
   },
   {
-    "__docId__": 101,
+    "__docId__": 123,
     "kind": "function",
     "name": "formData",
     "memberof": "src/utils/api.js",
@@ -1728,7 +2223,7 @@
     }
   },
   {
-    "__docId__": 102,
+    "__docId__": 124,
     "kind": "class",
     "name": "Api",
     "memberof": "src/utils/api.js",
@@ -1751,7 +2246,7 @@
     "interface": false
   },
   {
-    "__docId__": 103,
+    "__docId__": 125,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/utils/api.js~Api",
@@ -1765,7 +2260,7 @@
     "undocument": true
   },
   {
-    "__docId__": 104,
+    "__docId__": 126,
     "kind": "member",
     "name": "username",
     "memberof": "src/utils/api.js~Api",
@@ -1782,7 +2277,7 @@
     }
   },
   {
-    "__docId__": 105,
+    "__docId__": 127,
     "kind": "member",
     "name": "password",
     "memberof": "src/utils/api.js~Api",
@@ -1799,7 +2294,7 @@
     }
   },
   {
-    "__docId__": 106,
+    "__docId__": 128,
     "kind": "method",
     "name": "request",
     "memberof": "src/utils/api.js~Api",
@@ -1872,7 +2367,7 @@
     ]
   },
   {
-    "__docId__": 107,
+    "__docId__": 129,
     "kind": "method",
     "name": "get",
     "memberof": "src/utils/api.js~Api",
@@ -1911,7 +2406,7 @@
     }
   },
   {
-    "__docId__": 108,
+    "__docId__": 130,
     "kind": "method",
     "name": "post",
     "memberof": "src/utils/api.js~Api",
@@ -1953,7 +2448,7 @@
     }
   },
   {
-    "__docId__": 109,
+    "__docId__": 131,
     "kind": "method",
     "name": "authorizedGet",
     "memberof": "src/utils/api.js~Api",
@@ -1992,7 +2487,7 @@
     }
   },
   {
-    "__docId__": 110,
+    "__docId__": 132,
     "kind": "method",
     "name": "authorizedPost",
     "memberof": "src/utils/api.js~Api",
@@ -2034,7 +2529,7 @@
     }
   },
   {
-    "__docId__": 111,
+    "__docId__": 133,
     "kind": "method",
     "name": "auth",
     "memberof": "src/utils/api.js~Api",
@@ -2093,7 +2588,7 @@
     ]
   },
   {
-    "__docId__": 114,
+    "__docId__": 136,
     "kind": "method",
     "name": "logout",
     "memberof": "src/utils/api.js~Api",
@@ -2119,14 +2614,14 @@
     }
   },
   {
-    "__docId__": 115,
+    "__docId__": 137,
     "kind": "method",
-    "name": "getCourses",
+    "name": "loadCourses",
     "memberof": "src/utils/api.js~Api",
     "generator": false,
     "async": true,
     "static": false,
-    "longname": "src/utils/api.js~Api#getCourses",
+    "longname": "src/utils/api.js~Api#loadCourses",
     "access": "public",
     "description": null,
     "lineNumber": 123,
@@ -2158,14 +2653,14 @@
     }
   },
   {
-    "__docId__": 116,
+    "__docId__": 138,
     "kind": "method",
-    "name": "getCourse",
+    "name": "loadCourse",
     "memberof": "src/utils/api.js~Api",
     "generator": false,
     "async": true,
     "static": false,
-    "longname": "src/utils/api.js~Api#getCourse",
+    "longname": "src/utils/api.js~Api#loadCourse",
     "access": "public",
     "description": null,
     "lineNumber": 131,
@@ -2191,14 +2686,14 @@
     }
   },
   {
-    "__docId__": 117,
+    "__docId__": 139,
     "kind": "method",
-    "name": "getFolder",
+    "name": "loadFolder",
     "memberof": "src/utils/api.js~Api",
     "generator": false,
     "async": true,
     "static": false,
-    "longname": "src/utils/api.js~Api#getFolder",
+    "longname": "src/utils/api.js~Api#loadFolder",
     "access": "public",
     "description": null,
     "lineNumber": 138,
@@ -2229,7 +2724,7 @@
     }
   },
   {
-    "__docId__": 118,
+    "__docId__": 140,
     "kind": "file",
     "name": "src/utils/date.js",
     "content": "/**\n *  Transforms a month into a siding semester\n *  @author @negebauer\n *  @param  {Date} date The date to obtain the month from\n *  @return {String}   The siding semester (21, 22 or 23)\n */\nexport function sidingSemester(date) {\n  const month = date.getMonth() + 1\n  if (month === 1) return '23'\n  else if (month <= 7) return '21'\n  return '22'\n}\n\n/**\n *  The user's current date\n *  @type {Date}\n */\nexport const CURRENT_DATE = new Date()\n\n/**\n *  The current siding year\n *  @type {number}\n */\nexport const SIDING_YEAR = CURRENT_DATE.getFullYear()\n\n/**\n *  The current siding semester\n *  @type {String}\n */\nexport const SIDING_SEMESTER = sidingSemester(CURRENT_DATE)\n",
@@ -2240,7 +2735,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 119,
+    "__docId__": 141,
     "kind": "function",
     "name": "sidingSemester",
     "memberof": "src/utils/date.js",
@@ -2286,7 +2781,7 @@
     }
   },
   {
-    "__docId__": 120,
+    "__docId__": 142,
     "kind": "variable",
     "name": "CURRENT_DATE",
     "memberof": "src/utils/date.js",
@@ -2308,7 +2803,7 @@
     }
   },
   {
-    "__docId__": 121,
+    "__docId__": 143,
     "kind": "variable",
     "name": "SIDING_YEAR",
     "memberof": "src/utils/date.js",
@@ -2330,7 +2825,7 @@
     }
   },
   {
-    "__docId__": 122,
+    "__docId__": 144,
     "kind": "variable",
     "name": "SIDING_SEMESTER",
     "memberof": "src/utils/date.js",
@@ -2352,7 +2847,7 @@
     }
   },
   {
-    "__docId__": 123,
+    "__docId__": 145,
     "kind": "file",
     "name": "src/utils/parser.js",
     "content": "import { DOMParser } from 'react-native-html-parser'\n\n/**\n *  The DOMParser for parsing siding responses\n *  @type {DOMParser}\n */\nconst parser = new DOMParser({\n  errorHandler: {\n    warning: () => {},\n  },\n})\n\n/**\n *  Parse a courses' list page to read its courses\n *  @author @negebauer\n *  @param  {String} html     The full html of the main courses page\n *  @return {Array<Object>}   An array with course objects { id, acronym, name, section, folder: {} }\n */\nexport function parseCourses(html) {\n  return parser\n    .parseFromString(html)\n    .querySelect('a')\n    .filter(anchor => anchor.getAttribute('href').indexOf('id_curso_ic') >= 0)\n    .map(anchor => {\n      const id = anchor.getAttribute('href').split('id_curso_ic=')[1]\n      const text = anchor.textContent\n      const split = text.split(/ s\\.[0-9] /)\n      const acronym = split[0]\n      const name = split[1]\n      const section = text.split(' ')[1].match(/\\d+/)[0]\n      return { id, acronym, name, section, folders: {} }\n    })\n}\n\n/**\n *  Parses a siding course's page to read it's folders\n *  @author @negebauer\n *  @param  {String} html        The siding course's page\n *  @return {Array<Object>}      An array of siding courses { id, name }\n */\nexport function parseCourse(html) {\n  return parser\n    .parseFromString(html)\n    .querySelect('a')\n    .filter(anchor => anchor.getAttribute('href').indexOf('acc_carp') >= 0)\n    .map(anchor => {\n      const id = anchor\n        .getAttribute('href')\n        .match(/id_carpeta=\\d+/g)[0]\n        .split('=')[1]\n      const name = anchor.textContent\n      return { id, name }\n    })\n}\n\nexport function parseFolder(html) {\n  const doc = parser.parseFromString(html)\n  const links = doc\n    .querySelect('a')\n    .filter(anchor => anchor.getAttribute('href').indexOf('id_archivo') >= 0)\n    .map(anchor => ({\n      href: anchor.getAttribute('href'),\n      text: anchor.textContent,\n    }))\n  return links\n}\n",
@@ -2363,7 +2858,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 124,
+    "__docId__": 146,
     "kind": "variable",
     "name": "parser",
     "memberof": "src/utils/parser.js",
@@ -2386,7 +2881,7 @@
     "ignore": true
   },
   {
-    "__docId__": 125,
+    "__docId__": 147,
     "kind": "function",
     "name": "parseCourses",
     "memberof": "src/utils/parser.js",
@@ -2432,7 +2927,7 @@
     }
   },
   {
-    "__docId__": 126,
+    "__docId__": 148,
     "kind": "function",
     "name": "parseCourse",
     "memberof": "src/utils/parser.js",
@@ -2478,7 +2973,7 @@
     }
   },
   {
-    "__docId__": 127,
+    "__docId__": 149,
     "kind": "function",
     "name": "parseFolder",
     "memberof": "src/utils/parser.js",
@@ -2508,7 +3003,7 @@
     }
   },
   {
-    "__docId__": 128,
+    "__docId__": 150,
     "kind": "file",
     "name": "src/utils/urls.js",
     "content": "import { SIDING_YEAR, SIDING_SEMESTER } from './date'\n\n/**\n *  The siding base url\n *  @type {String}\n */\nexport const BASE_URL = 'https://intrawww.ing.puc.cl/siding'\n\n/**\n *  The siding courses' base url\n *  @type {[type]}\n */\nexport const COURSES_URL = `${BASE_URL}/dirdes/ingcursos/cursos`\n\n/**\n *  The siding login url\n *  @type {[type]}\n */\nexport const LOGIN_URL = `${BASE_URL}/index.phtml`\n\n/**\n *  The siding logout url\n *  @type {[type]}\n */\nexport const LOGOUT_URL = `${BASE_URL}/logout.phtml`\n\n/**\n *  Returns the url with the courses list of the user for a period\n *  @author @negebauer\n *  @param  {String} semester The semester: first 21, second 22 or tav 23\n *  @param  {number} year     The year (ej 2018)\n *  @return {String}          The courses url\n */\nexport function coursesUrl(semester, year) {\n  return `${COURSES_URL}/index.phtml?per_lista_cursos=${semester}_${year}&acc_inicio=mis_cursos`\n}\n\n/**\n *  Returns the url for a specific course\n *  @author @negebauer\n *  @param  {String} id The course id\n *  @return {String}    The course url\n */\nexport function courseUrl(id) {\n  return `${COURSES_URL}/vista.phtml?accion_curso=avisos&acc_aviso=mostrar&id_curso_ic=${id}`\n}\n\n/**\n *  Returns the url for the courses' catalog for a period\n *  @author @negebauer\n *  @param  {String} semester The semester: first 21, second 22 or tav 23\n *  @param  {number} year     The year (ej 2018)\n *  @return {String}          The catalog url\n */\nexport function coursesCatalogUrl(semester, year) {\n  return `${COURSES_URL}/index.phtml?acc_inicio=catalogo&per_lista_cursos=2${semester}_${year}`\n}\n\n/**\n *  Returns the url for a course folders\n *  @author @negebauer\n *  @param  {String} id       The folder id\n *  @param  {String} courseId The course id\n *  @return {String}          The course folder url\n */\nexport function folderUrl(id, courseId) {\n  return `${COURSES_URL}/vista.phtml?accion_curso=carpetas&acc_carp=abrir_carpeta&id_curso_ic=${courseId}&id_carpeta=${id}`\n}\n\n/**\n *  The courses list url of the user for the current period\n *  @type {String}\n */\nexport const CURRENT_COURSES_URL = coursesUrl(SIDING_SEMESTER, SIDING_YEAR)\n\n// courseFolderURL: link => `${baseURL}${courseURL}/${link}`,\n// courseFileURL: link => `https://intrawww.ing.puc.cl${link}`,\n// catalogFromURL: (year, term) =>\n//   `${baseURL}${courseURL}/index.phtml?acc_inicio=catalogo&per_lista_cursos=2${term}_${year}`,\n",
@@ -2519,7 +3014,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 129,
+    "__docId__": 151,
     "kind": "variable",
     "name": "BASE_URL",
     "memberof": "src/utils/urls.js",
@@ -2541,7 +3036,7 @@
     }
   },
   {
-    "__docId__": 130,
+    "__docId__": 152,
     "kind": "variable",
     "name": "COURSES_URL",
     "memberof": "src/utils/urls.js",
@@ -2563,7 +3058,7 @@
     }
   },
   {
-    "__docId__": 131,
+    "__docId__": 153,
     "kind": "variable",
     "name": "LOGIN_URL",
     "memberof": "src/utils/urls.js",
@@ -2585,7 +3080,7 @@
     }
   },
   {
-    "__docId__": 132,
+    "__docId__": 154,
     "kind": "variable",
     "name": "LOGOUT_URL",
     "memberof": "src/utils/urls.js",
@@ -2607,7 +3102,7 @@
     }
   },
   {
-    "__docId__": 133,
+    "__docId__": 155,
     "kind": "function",
     "name": "coursesUrl",
     "memberof": "src/utils/urls.js",
@@ -2663,7 +3158,7 @@
     }
   },
   {
-    "__docId__": 134,
+    "__docId__": 156,
     "kind": "function",
     "name": "courseUrl",
     "memberof": "src/utils/urls.js",
@@ -2709,7 +3204,7 @@
     }
   },
   {
-    "__docId__": 135,
+    "__docId__": 157,
     "kind": "function",
     "name": "coursesCatalogUrl",
     "memberof": "src/utils/urls.js",
@@ -2765,7 +3260,7 @@
     }
   },
   {
-    "__docId__": 136,
+    "__docId__": 158,
     "kind": "function",
     "name": "folderUrl",
     "memberof": "src/utils/urls.js",
@@ -2821,7 +3316,7 @@
     }
   },
   {
-    "__docId__": 137,
+    "__docId__": 159,
     "kind": "variable",
     "name": "CURRENT_COURSES_URL",
     "memberof": "src/utils/urls.js",
@@ -2843,7 +3338,7 @@
     }
   },
   {
-    "__docId__": 138,
+    "__docId__": 160,
     "kind": "file",
     "name": "src/utils/wait.js",
     "content": "/**\n *  The time, in seconds, to wait before retrying a siding request\n *  @type {number}\n */\nexport const WAIT_SECONDS = 0.5\n\n/**\n *  Waits the WAIT_SECONDS times the amount of repeats\n *  @author @negebauer\n *  @param  {Number} [repeat=1] Times to repeat WAIT_SECONDS\n *  @return {Promise}           A promise that resolves when the time is passed\n */\nexport default function wait(repeat = 1) {\n  console.log('wait')\n  const waitTime = repeat * WAIT_SECONDS * 1000\n  return new Promise(res => setTimeout(() => res(), waitTime))\n}\n",
@@ -2854,7 +3349,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 139,
+    "__docId__": 161,
     "kind": "variable",
     "name": "WAIT_SECONDS",
     "memberof": "src/utils/wait.js",
@@ -2876,7 +3371,7 @@
     }
   },
   {
-    "__docId__": 140,
+    "__docId__": 162,
     "kind": "function",
     "name": "wait",
     "memberof": "src/utils/wait.js",
@@ -2933,7 +3428,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"siding\",\n  \"version\": \"0.1.2\",\n  \"private\": true,\n  \"scripts\": {\n    \"start\": \"node node_modules/react-native/local-cli/cli.js start\",\n    \"ios\": \"react-native run-ios\",\n    \"android\": \"react-native run-android\",\n    \"test\": \"jest\",\n    \"lint\": \"eslint index.js src/\",\n    \"release\": \"standard-version -a -m \\\"chore(release): %s\\n\\n[skip ci]\\\"\",\n    \"build:increment\": \"react-native-version -b\",\n    \"postrelease\": \"git push --follow-tags\",\n    \"icon\": \"app-icon generate --icon assets/icon.png\",\n    \"docs\": \"esdoc && git add docs && git commit -m \\\"chore(docs): update\\n\\n[skip ci]\\\"\"\n  },\n  \"dependencies\": {\n    \"autobind-decorator\": \"^2.1.0\",\n    \"prop-types\": \"^15.6.1\",\n    \"react\": \"16.3.1\",\n    \"react-native\": \"0.55.2\",\n    \"react-native-html-parser\": \"^0.0.5\",\n    \"react-redux\": \"^5.0.7\",\n    \"redux\": \"^4.0.0\",\n    \"redux-logger\": \"^3.0.6\",\n    \"redux-persist\": \"^5.9.1\",\n    \"redux-promise-middleware\": \"^5.1.1\",\n    \"redux-thunk\": \"^2.2.0\",\n    \"reselect\": \"^3.0.1\"\n  },\n  \"devDependencies\": {\n    \"app-icon\": \"^0.6.3\",\n    \"babel-eslint\": \"^8.2.2\",\n    \"babel-jest\": \"22.4.3\",\n    \"babel-preset-react-native\": \"4.0.0\",\n    \"babel-preset-react-native-stage-0\": \"^1.0.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-jsx-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.19.1\",\n    \"eslint-config-airbnb\": \"^16.1.0\",\n    \"eslint-config-prettier\": \"^2.9.0\",\n    \"eslint-plugin-babel\": \"^5.0.0\",\n    \"eslint-plugin-import\": \"^2.11.0\",\n    \"eslint-plugin-jsx-a11y\": \"^6.0.3\",\n    \"eslint-plugin-prettier\": \"^2.6.0\",\n    \"eslint-plugin-react\": \"^7.7.0\",\n    \"jest\": \"22.4.3\",\n    \"prettier\": \"^1.11.1\",\n    \"react-native-version\": \"^2.5.0\",\n    \"react-test-renderer\": \"16.3.1\",\n    \"standard-version\": \"^4.3.0\"\n  },\n  \"jest\": {\n    \"preset\": \"react-native\"\n  },\n  \"standard-version\": {\n    \"scripts\": {\n      \"postbump\": \"react-native-version -s $(($(git rev-list --count master) + 88)) && git add android ios\"\n    }\n  }\n}\n",
+    "content": "{\n  \"name\": \"siding\",\n  \"version\": \"0.1.2\",\n  \"private\": true,\n  \"scripts\": {\n    \"start\": \"node node_modules/react-native/local-cli/cli.js start\",\n    \"ios\": \"react-native run-ios\",\n    \"android\": \"react-native run-android\",\n    \"test\": \"jest\",\n    \"lint\": \"eslint index.js src/\",\n    \"release\": \"standard-version -a -m \\\"chore(release): %s\\n\\n[skip ci]\\\"\",\n    \"build:increment\": \"react-native-version -b\",\n    \"postrelease\": \"git push --follow-tags\",\n    \"icon\": \"app-icon generate --icon assets/icon.png\",\n    \"docs\": \"esdoc && git add docs && git commit -m \\\"chore(docs): update\\n\\n[skip ci]\\\"\"\n  },\n  \"dependencies\": {\n    \"autobind-decorator\": \"^2.1.0\",\n    \"lodash\": \"^4.17.10\",\n    \"normalizr\": \"^3.2.4\",\n    \"prop-types\": \"^15.6.1\",\n    \"react\": \"16.3.1\",\n    \"react-native\": \"0.55.2\",\n    \"react-native-html-parser\": \"^0.0.5\",\n    \"react-redux\": \"^5.0.7\",\n    \"redux\": \"^4.0.0\",\n    \"redux-logger\": \"^3.0.6\",\n    \"redux-persist\": \"^5.9.1\",\n    \"redux-promise-middleware\": \"^5.1.1\",\n    \"redux-thunk\": \"^2.2.0\",\n    \"reselect\": \"^3.0.1\"\n  },\n  \"devDependencies\": {\n    \"app-icon\": \"^0.6.3\",\n    \"babel-eslint\": \"^8.2.2\",\n    \"babel-jest\": \"22.4.3\",\n    \"babel-preset-react-native\": \"4.0.0\",\n    \"babel-preset-react-native-stage-0\": \"^1.0.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-jsx-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.19.1\",\n    \"eslint-config-airbnb\": \"^16.1.0\",\n    \"eslint-config-prettier\": \"^2.9.0\",\n    \"eslint-plugin-babel\": \"^5.0.0\",\n    \"eslint-plugin-import\": \"^2.11.0\",\n    \"eslint-plugin-jsx-a11y\": \"^6.0.3\",\n    \"eslint-plugin-prettier\": \"^2.6.0\",\n    \"eslint-plugin-react\": \"^7.7.0\",\n    \"jest\": \"22.4.3\",\n    \"prettier\": \"^1.11.1\",\n    \"react-native-version\": \"^2.5.0\",\n    \"react-test-renderer\": \"16.3.1\",\n    \"standard-version\": \"^4.3.0\"\n  },\n  \"jest\": {\n    \"preset\": \"react-native\"\n  },\n  \"standard-version\": {\n    \"scripts\": {\n      \"postbump\": \"react-native-version -s $(($(git rev-list --count master) + 88)) && git add android ios\"\n    }\n  }\n}\n",
     "longname": "/Users/Nico/Documents/siding-mobile/package.json",
     "name": "package.json",
     "static": true,

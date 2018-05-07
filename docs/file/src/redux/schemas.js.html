@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/Siding.js | siding</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/redux/schemas.js | siding</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -90,52 +90,18 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/Siding.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;
-import { AsyncStorage } from &apos;react-native&apos;
-import { Provider, connect } from &apos;react-redux&apos;
-import { PersistGate } from &apos;redux-persist/integration/react&apos;
+<div class="content" data-ice="content"><h1 data-ice="title">src/redux/schemas.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { schema } from &apos;normalizr&apos;
 
-import App from &apos;./App&apos;
-import Session from &apos;./containers/Session&apos;
-import LoadingView from &apos;./components/LoadingView&apos;
-import Api from &apos;./utils/api&apos;
-import configureStore from &apos;./redux/store&apos;
+export const courseSchema = new schema.Entity(&apos;courses&apos;, {
+  folders: [folderSchema],
+})
 
-/**
- *  An instance of the siding api client
- *  @type {Api}
- */
-const api = new Api()
+export const folderSchema = new schema.Entity(&apos;folders&apos;, {
+  files: [fileSchema],
+})
 
-/**
- *  Default initial state
- *  @type {Object}
- */
-const initialState = {}
-
-/**
- *  The redux store with its persistor
- *  @type {Object}
- */
-const { store, persistor } = configureStore(initialState, { api })
-
-/**
- *  Main react native app component
- *  @author @negebauer
- *  @constructor
- */
-export default function Siding() {
-  return (
-    &lt;Provider store={store}&gt;
-      &lt;PersistGate loading={&lt;LoadingView /&gt;} persistor={persistor}&gt;
-        &lt;Session&gt;
-          &lt;App /&gt;
-        &lt;/Session&gt;
-      &lt;/PersistGate&gt;
-    &lt;/Provider&gt;
-  )
-}
+export const fileSchema = new schema.Entity(&apos;files&apos;, {})
 </code></pre>
 
 </div>
