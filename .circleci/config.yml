@@ -39,7 +39,7 @@ jobs:
       - run: mv docs ..
       - run: cp README.md ../docs
       - run: git checkout gh-pages
-      - run: rm -rf ./* .babelrc .buckconfig .esdoc.js .eslintrc.js .flowconfig .gitattributes .gitignore .watchmanconfig
+      - run: rm -rf ./*
       - run: mv ../docs/* ./
       - run: git config user.email "negebauerm@gmail.com"
       - run: git config user.name "negebauer"
