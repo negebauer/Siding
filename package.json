@@ -11,8 +11,7 @@
     "release": "standard-version -a -m \"chore(release): %s\n\n[skip ci]\"",
     "build:increment": "react-native-version -b",
     "postrelease": "git push --follow-tags",
-    "icon": "app-icon generate --icon assets/icon.png",
-    "docs": "esdoc && git add docs && git commit -m \"chore(docs): update\n\n[skip ci]\""
+    "icon": "app-icon generate --icon assets/icon.png"
   },
   "dependencies": {
     "autobind-decorator": "^2.1.0",
