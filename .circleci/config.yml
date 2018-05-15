@@ -39,7 +39,7 @@ jobs:
       - run: mv docs ..
       - run: cp README.md ../docs
       - run: git checkout gh-pages
-      - run: rm -rf ./*
+      - run: rm -rf ./* .babelrc .buckconfig .circleci .esdoc.js .eslintrc.js .flowconfig .gitattributes .gitignore .watchmanconfig
       - run: mv ../docs/* ./
       - run: git status
 
