@@ -35,11 +35,11 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/siding
-      - ./node_modules/.bin/esdoc
-      - mv docs ../docs
-      - git checkout gh-pages
-      - mv ../docs/* ./
-      - git status
+      - run: ./node_modules/.bin/esdoc
+      - run: mv docs ../docs
+      - run: git checkout gh-pages
+      - run: mv ../docs/* ./
+      - run: git status
 
   android:
     working_directory: ~/siding/android
@@ -210,11 +210,11 @@ workflows:
     jobs:
       - node:
           filters:
-            tags:
-              only: /.*/
             branches:
               ignore:
                 - gh-pages
+            tags:
+              only: /.*/
       - docs:
           requires:
             - node
