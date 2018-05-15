@@ -39,9 +39,12 @@ jobs:
       - run: mv docs ..
       - run: cp README.md ../docs
       - run: git checkout gh-pages
-      - run: rm -rf ./* .babelrc .buckconfig .circleci .esdoc.js .eslintrc.js .flowconfig .gitattributes .gitignore .watchmanconfig
+      - run: rm -rf ./* .babelrc .buckconfig .esdoc.js .eslintrc.js .flowconfig .gitattributes .gitignore .watchmanconfig
       - run: mv ../docs/* ./
-      - run: git status
+      - run: git config user.email "negebauerm@gmail.com"
+      - run: git config user.name "negebauer"
+      - run: git commit -am "docs"
+      - run: git push
 
   android:
     working_directory: ~/siding/android
