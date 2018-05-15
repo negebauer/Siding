@@ -1,0 +1,171 @@
+{
+  "coverage": "31.25%",
+  "expectCount": 96,
+  "actualCount": 30,
+  "files": {
+    "src/App.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        15
+      ]
+    },
+    "src/Siding.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/components/LoadingView.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        29
+      ]
+    },
+    "src/config/colors.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2
+      ]
+    },
+    "src/containers/Courses.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        21,
+        27,
+        32,
+        33,
+        35,
+        52,
+        82
+      ]
+    },
+    "src/containers/Session.js": {
+      "expectCount": 10,
+      "actualCount": 1,
+      "undocumentLines": [
+        23,
+        30,
+        36,
+        37,
+        39,
+        45,
+        50,
+        66,
+        101
+      ]
+    },
+    "src/redux/modules/courses.js": {
+      "expectCount": 11,
+      "actualCount": 0,
+      "undocumentLines": [
+        8,
+        9,
+        10,
+        11,
+        14,
+        21,
+        45,
+        54,
+        58,
+        63,
+        67
+      ]
+    },
+    "src/redux/modules/entities.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        12,
+        22
+      ]
+    },
+    "src/redux/modules/user.js": {
+      "expectCount": 13,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        8,
+        9,
+        10,
+        13,
+        22,
+        58,
+        67,
+        71,
+        75,
+        76,
+        77,
+        78
+      ]
+    },
+    "src/redux/reducers.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        7
+      ]
+    },
+    "src/redux/schemas.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        7,
+        11
+      ]
+    },
+    "src/redux/store.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        9,
+        14
+      ]
+    },
+    "src/utils/api.js": {
+      "expectCount": 17,
+      "actualCount": 6,
+      "undocumentLines": [
+        42,
+        43,
+        44,
+        73,
+        78,
+        83,
+        90,
+        118,
+        123,
+        131,
+        138
+      ]
+    },
+    "src/utils/date.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/utils/parser.js": {
+      "expectCount": 4,
+      "actualCount": 3,
+      "undocumentLines": [
+        56
+      ]
+    },
+    "src/utils/urls.js": {
+      "expectCount": 9,
+      "actualCount": 9,
+      "undocumentLines": []
+    },
+    "src/utils/wait.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    }
+  }
+}
