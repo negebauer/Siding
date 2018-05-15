@@ -36,8 +36,10 @@ jobs:
       - attach_workspace:
           at: ~/siding
       - run: ./node_modules/.bin/esdoc
-      - run: mv docs ../docs
+      - run: mv docs ..
+      - run: cp README.md ../docs
       - run: git checkout gh-pages
+      - run: rm -rf ./*
       - run: mv ../docs/* ./
       - run: git status
 
