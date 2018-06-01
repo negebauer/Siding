@@ -226,8 +226,8 @@ workflows:
           filters:
             tags:
               only: /.*/
-            # branches:
-              # only: master
+            branches:
+              only: master
       - android:
           requires:
             - node
