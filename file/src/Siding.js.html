@@ -111,16 +111,15 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/Siding.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;
-import { AsyncStorage, StatusBar, LayoutAnimation } from &apos;react-native&apos;
+import { AsyncStorage, StatusBar } from &apos;react-native&apos;
 import { Provider, connect } from &apos;react-redux&apos;
 import { ConnectedRouter } from &apos;react-router-redux&apos;
 import { PersistGate } from &apos;redux-persist/integration/react&apos;
 
-import Router from &apos;./Router&apos;
+import store, { persistor } from &apos;./redux/store&apos;
 import SessionGate from &apos;./containers/SessionGate&apos;
 import LoadingView from &apos;./components/LoadingView&apos;
-import Api from &apos;./utils/api&apos;
-import store, { persistor } from &apos;./redux/store&apos;
+import Router from &apos;./Router&apos;
 
 /**
  *  Main react native app component

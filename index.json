@@ -622,7 +622,7 @@
     "__docId__": 51,
     "kind": "file",
     "name": "src/Siding.js",
-    "content": "import React from 'react'\nimport { AsyncStorage, StatusBar, LayoutAnimation } from 'react-native'\nimport { Provider, connect } from 'react-redux'\nimport { ConnectedRouter } from 'react-router-redux'\nimport { PersistGate } from 'redux-persist/integration/react'\n\nimport Router from './Router'\nimport SessionGate from './containers/SessionGate'\nimport LoadingView from './components/LoadingView'\nimport Api from './utils/api'\nimport store, { persistor } from './redux/store'\n\n/**\n *  Main react native app component\n *  @author @negebauer\n *  @constructor\n */\nexport default function Siding() {\n  return (\n    <Provider store={store}>\n      <PersistGate loading={<LoadingView />} persistor={persistor}>\n        <StatusBar barStyle=\"default\" />\n        <SessionGate>\n          <Router />\n        </SessionGate>\n      </PersistGate>\n    </Provider>\n  )\n}\n",
+    "content": "import React from 'react'\nimport { AsyncStorage, StatusBar } from 'react-native'\nimport { Provider, connect } from 'react-redux'\nimport { ConnectedRouter } from 'react-router-redux'\nimport { PersistGate } from 'redux-persist/integration/react'\n\nimport store, { persistor } from './redux/store'\nimport SessionGate from './containers/SessionGate'\nimport LoadingView from './components/LoadingView'\nimport Router from './Router'\n\n/**\n *  Main react native app component\n *  @author @negebauer\n *  @constructor\n */\nexport default function Siding() {\n  return (\n    <Provider store={store}>\n      <PersistGate loading={<LoadingView />} persistor={persistor}>\n        <StatusBar barStyle=\"default\" />\n        <SessionGate>\n          <Router />\n        </SessionGate>\n      </PersistGate>\n    </Provider>\n  )\n}\n",
     "static": true,
     "longname": "/home/circleci/siding/src/Siding.js",
     "access": "public",
@@ -643,7 +643,7 @@
     "importPath": "siding/src/Siding.js",
     "importStyle": "Siding",
     "description": " Main react native app component",
-    "lineNumber": 18,
+    "lineNumber": 17,
     "unknown": [
       {
         "tagName": "@author",
