@@ -1,17 +1,5 @@
 window.esdocSearchIndex = [
   [
-    "siding/src/utils/api.js~api",
-    "class/src/utils/api.js~Api.html",
-    "<span>Api</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
-    "class"
-  ],
-  [
-    "siding/src/app.js~app",
-    "function/index.html#static-function-App",
-    "<span>App</span> <span class=\"search-result-import-path\">siding/src/App.js</span>",
-    "function"
-  ],
-  [
     "siding/src/utils/urls.js~base_url",
     "variable/index.html#static-variable-BASE_URL",
     "<span>BASE_URL</span> <span class=\"search-result-import-path\">siding/src/utils/urls.js</span>",
@@ -36,9 +24,15 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "siding/src/containers/courses.js~courses",
-    "class/src/containers/Courses.js~Courses.html",
-    "<span>Courses</span> <span class=\"search-result-import-path\">siding/src/containers/Courses.js</span>",
+    "siding/src/components/course.js~course",
+    "function/index.html#static-function-Course",
+    "<span>Course</span> <span class=\"search-result-import-path\">siding/src/components/Course.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/components/courseslist.js~courseslist",
+    "class/src/components/CoursesList.js~CoursesList.html",
+    "<span>CoursesList</span> <span class=\"search-result-import-path\">siding/src/components/CoursesList.js</span>",
     "class"
   ],
   [
@@ -108,6 +102,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "siding/src/router.js~router",
+    "function/index.html#static-function-Router",
+    "<span>Router</span> <span class=\"search-result-import-path\">siding/src/Router.js</span>",
+    "function"
+  ],
+  [
     "siding/src/utils/api.js~siding_auth_failed",
     "variable/index.html#static-variable-SIDING_AUTH_FAILED",
     "<span>SIDING_AUTH_FAILED</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
@@ -126,9 +126,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "siding/src/containers/session.js~session",
-    "class/src/containers/Session.js~Session.html",
-    "<span>Session</span> <span class=\"search-result-import-path\">siding/src/containers/Session.js</span>",
+    "siding/src/containers/sessiongate.js~sessiongate",
+    "class/src/containers/SessionGate.js~SessionGate.html",
+    "<span>SessionGate</span> <span class=\"search-result-import-path\">siding/src/containers/SessionGate.js</span>",
     "class"
   ],
   [
@@ -144,9 +144,27 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "siding/src/redux/store.js~configurestore",
-    "function/index.html#static-function-configureStore",
-    "<span>configureStore</span> <span class=\"search-result-import-path\">siding/src/redux/store.js</span>",
+    "siding/src/utils/api.js~auth",
+    "function/index.html#static-function-auth",
+    "<span>auth</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/utils/api.js~authorizedget",
+    "function/index.html#static-function-authorizedGet",
+    "<span>authorizedGet</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/utils/api.js~authorizedpost",
+    "function/index.html#static-function-authorizedPost",
+    "<span>authorizedPost</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/routes.js~buildurl",
+    "function/index.html#static-function-buildUrl",
+    "<span>buildUrl</span> <span class=\"search-result-import-path\">siding/src/routes.js</span>",
     "function"
   ],
   [
@@ -198,28 +216,28 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "siding/src/redux/modules/courses.js~getcourses",
-    "function/index.html#static-function-getCourses",
-    "<span>getCourses</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "siding/src/utils/api.js~get",
+    "function/index.html#static-function-get",
+    "<span>get</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
     "function"
   ],
   [
-    "siding/src/redux/modules/courses.js~getcourseserror",
-    "variable/index.html#static-variable-getCoursesError",
-    "<span>getCoursesError</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "siding/src/redux/modules/courses.js~getcoursesdate",
+    "function/index.html#static-function-getCoursesDate",
+    "<span>getCoursesDate</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/redux/modules/courses.js~getcoursesdatelist",
+    "variable/index.html#static-variable-getCoursesDateList",
+    "<span>getCoursesDateList</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
     "variable"
   ],
   [
-    "siding/src/redux/modules/courses.js~getcourseslist",
-    "variable/index.html#static-variable-getCoursesList",
-    "<span>getCoursesList</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
-    "variable"
-  ],
-  [
-    "siding/src/redux/modules/courses.js~getcoursesloading",
-    "variable/index.html#static-variable-getCoursesLoading",
-    "<span>getCoursesLoading</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
-    "variable"
+    "siding/src/redux/modules/courses.js~getcoursesstate",
+    "function/index.html#static-function-getCoursesState",
+    "<span>getCoursesState</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
+    "function"
   ],
   [
     "siding/src/redux/modules/entities.js~getentities",
@@ -264,15 +282,57 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "siding/src/redux/modules/routes.js~goto",
+    "function/index.html#static-function-goTo",
+    "<span>goTo</span> <span class=\"search-result-import-path\">siding/src/redux/modules/routes.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/redux/modules/routes.js~gotocourse",
+    "function/index.html#static-function-goToCourse",
+    "<span>goToCourse</span> <span class=\"search-result-import-path\">siding/src/redux/modules/routes.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/redux/store.js~history",
+    "variable/index.html#static-variable-history",
+    "<span>history</span> <span class=\"search-result-import-path\">siding/src/redux/store.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/utils/api.js~loadcourse",
+    "function/index.html#static-function-loadCourse",
+    "<span>loadCourse</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
+    "function"
+  ],
+  [
     "siding/src/redux/modules/courses.js~loadcourses",
     "function/index.html#static-function-loadCourses",
     "<span>loadCourses</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
     "function"
   ],
   [
+    "siding/src/utils/api.js~loadcourses",
+    "function/index.html#static-function-loadCourses",
+    "<span>loadCourses</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/utils/api.js~loadfolder",
+    "function/index.html#static-function-loadFolder",
+    "<span>loadFolder</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
+    "function"
+  ],
+  [
     "siding/src/redux/modules/user.js~login",
     "function/index.html#static-function-login",
     "<span>login</span> <span class=\"search-result-import-path\">siding/src/redux/modules/user.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/utils/api.js~logout",
+    "function/index.html#static-function-logout",
+    "<span>logout</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
     "function"
   ],
   [
@@ -306,6 +366,18 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "siding/src/redux/store.js~persistor",
+    "variable/index.html#static-variable-persistor",
+    "<span>persistor</span> <span class=\"search-result-import-path\">siding/src/redux/store.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/utils/api.js~post",
+    "function/index.html#static-function-post",
+    "<span>post</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
+    "function"
+  ],
+  [
     "siding/src/redux/modules/courses.js~reducer",
     "function/index.html#static-function-reducer",
     "<span>reducer</span> <span class=\"search-result-import-path\">siding/src/redux/modules/courses.js</span>",
@@ -330,10 +402,52 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "siding/src/utils/api.js~request",
+    "function/index.html#static-function-request",
+    "<span>request</span> <span class=\"search-result-import-path\">siding/src/utils/api.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/routes.js~routenametolocation",
+    "function/index.html#static-function-routeNameToLocation",
+    "<span>routeNameToLocation</span> <span class=\"search-result-import-path\">siding/src/routes.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/routes.js~routenametopath",
+    "function/index.html#static-function-routeNameToPath",
+    "<span>routeNameToPath</span> <span class=\"search-result-import-path\">siding/src/routes.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/routes.js~routenames",
+    "variable/index.html#static-variable-routeNames",
+    "<span>routeNames</span> <span class=\"search-result-import-path\">siding/src/routes.js</span>",
+    "variable"
+  ],
+  [
+    "siding/src/utils/date.js~sidingdateid",
+    "function/index.html#static-function-sidingDateId",
+    "<span>sidingDateId</span> <span class=\"search-result-import-path\">siding/src/utils/date.js</span>",
+    "function"
+  ],
+  [
+    "siding/src/utils/date.js~sidingdateidhuman",
+    "function/index.html#static-function-sidingDateIdHuman",
+    "<span>sidingDateIdHuman</span> <span class=\"search-result-import-path\">siding/src/utils/date.js</span>",
+    "function"
+  ],
+  [
     "siding/src/utils/date.js~sidingsemester",
     "function/index.html#static-function-sidingSemester",
     "<span>sidingSemester</span> <span class=\"search-result-import-path\">siding/src/utils/date.js</span>",
     "function"
+  ],
+  [
+    "siding/src/redux/store.js~store",
+    "variable/index.html#static-variable-store",
+    "<span>store</span> <span class=\"search-result-import-path\">siding/src/redux/store.js</span>",
+    "variable"
   ],
   [
     "siding/src/utils/wait.js~wait",
@@ -624,9 +738,9 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "src/app.js",
-    "file/src/App.js.html",
-    "src/App.js",
+    "src/router.js",
+    "file/src/Router.js.html",
+    "src/Router.js",
     "file"
   ],
   [
@@ -634,6 +748,36 @@ window.esdocSearchIndex = [
     "file/src/Siding.js.html",
     "src/Siding.js",
     "file"
+  ],
+  [
+    "src/components/course.js",
+    "file/src/components/Course.js.html",
+    "src/components/Course.js",
+    "file"
+  ],
+  [
+    "src/components/courseslist.js",
+    "file/src/components/CoursesList.js.html",
+    "src/components/CoursesList.js",
+    "file"
+  ],
+  [
+    "src/components/courseslist.js~courseslist#componentdidupdate",
+    "class/src/components/CoursesList.js~CoursesList.html#instance-method-componentDidUpdate",
+    "src/components/CoursesList.js~CoursesList#componentDidUpdate",
+    "method"
+  ],
+  [
+    "src/components/courseslist.js~courseslist#render",
+    "class/src/components/CoursesList.js~CoursesList.html#instance-method-render",
+    "src/components/CoursesList.js~CoursesList#render",
+    "method"
+  ],
+  [
+    "src/components/courseslist.js~courseslist#rendercourse",
+    "class/src/components/CoursesList.js~CoursesList.html#instance-member-renderCourse",
+    "src/components/CoursesList.js~CoursesList#renderCourse",
+    "member"
   ],
   [
     "src/components/loadingview.js",
@@ -648,69 +792,51 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/containers/courses.js",
-    "file/src/containers/Courses.js.html",
-    "src/containers/Courses.js",
+    "src/containers/currentcourses.js",
+    "file/src/containers/CurrentCourses.js.html",
+    "src/containers/CurrentCourses.js",
     "file"
   ],
   [
-    "src/containers/courses.js~courses#componentdidmount",
-    "class/src/containers/Courses.js~Courses.html#instance-method-componentDidMount",
-    "src/containers/Courses.js~Courses#componentDidMount",
+    "src/containers/sessiongate.js",
+    "file/src/containers/SessionGate.js.html",
+    "src/containers/SessionGate.js",
+    "file"
+  ],
+  [
+    "src/containers/sessiongate.js~sessiongate#componentdidmount",
+    "class/src/containers/SessionGate.js~SessionGate.html#instance-method-componentDidMount",
+    "src/containers/SessionGate.js~SessionGate#componentDidMount",
     "method"
   ],
   [
-    "src/containers/courses.js~courses#go",
-    "class/src/containers/Courses.js~Courses.html#instance-member-go",
-    "src/containers/Courses.js~Courses#go",
+    "src/containers/sessiongate.js~sessiongate#componentdidupdate",
+    "class/src/containers/SessionGate.js~SessionGate.html#instance-method-componentDidUpdate",
+    "src/containers/SessionGate.js~SessionGate#componentDidUpdate",
+    "method"
+  ],
+  [
+    "src/containers/sessiongate.js~sessiongate#constructor",
+    "class/src/containers/SessionGate.js~SessionGate.html#instance-constructor-constructor",
+    "src/containers/SessionGate.js~SessionGate#constructor",
+    "method"
+  ],
+  [
+    "src/containers/sessiongate.js~sessiongate#login",
+    "class/src/containers/SessionGate.js~SessionGate.html#instance-member-login",
+    "src/containers/SessionGate.js~SessionGate#login",
     "member"
   ],
   [
-    "src/containers/courses.js~courses#render",
-    "class/src/containers/Courses.js~Courses.html#instance-method-render",
-    "src/containers/Courses.js~Courses#render",
+    "src/containers/sessiongate.js~sessiongate#render",
+    "class/src/containers/SessionGate.js~SessionGate.html#instance-method-render",
+    "src/containers/SessionGate.js~SessionGate#render",
     "method"
   ],
   [
-    "src/containers/session.js",
-    "file/src/containers/Session.js.html",
-    "src/containers/Session.js",
-    "file"
-  ],
-  [
-    "src/containers/session.js~session#componentdidmount",
-    "class/src/containers/Session.js~Session.html#instance-method-componentDidMount",
-    "src/containers/Session.js~Session#componentDidMount",
-    "method"
-  ],
-  [
-    "src/containers/session.js~session#componentdidupdate",
-    "class/src/containers/Session.js~Session.html#instance-method-componentDidUpdate",
-    "src/containers/Session.js~Session#componentDidUpdate",
-    "method"
-  ],
-  [
-    "src/containers/session.js~session#constructor",
-    "class/src/containers/Session.js~Session.html#instance-constructor-constructor",
-    "src/containers/Session.js~Session#constructor",
-    "method"
-  ],
-  [
-    "src/containers/session.js~session#login",
-    "class/src/containers/Session.js~Session.html#instance-method-login",
-    "src/containers/Session.js~Session#login",
-    "method"
-  ],
-  [
-    "src/containers/session.js~session#render",
-    "class/src/containers/Session.js~Session.html#instance-method-render",
-    "src/containers/Session.js~Session#render",
-    "method"
-  ],
-  [
-    "src/containers/session.js~session#state",
-    "class/src/containers/Session.js~Session.html#instance-member-state",
-    "src/containers/Session.js~Session#state",
+    "src/containers/sessiongate.js~sessiongate#state",
+    "class/src/containers/SessionGate.js~SessionGate.html#instance-member-state",
+    "src/containers/SessionGate.js~SessionGate#state",
     "member"
   ],
   [
@@ -723,6 +849,12 @@ window.esdocSearchIndex = [
     "src/redux/modules/entities.js",
     "file/src/redux/modules/entities.js.html",
     "src/redux/modules/entities.js",
+    "file"
+  ],
+  [
+    "src/redux/modules/routes.js",
+    "file/src/redux/modules/routes.js.html",
+    "src/redux/modules/routes.js",
     "file"
   ],
   [
@@ -750,88 +882,16 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/routes.js",
+    "file/src/routes.js.html",
+    "src/routes.js",
+    "file"
+  ],
+  [
     "src/utils/api.js",
     "file/src/utils/api.js.html",
     "src/utils/api.js",
     "file"
-  ],
-  [
-    "src/utils/api.js~api#auth",
-    "class/src/utils/api.js~Api.html#instance-method-auth",
-    "src/utils/api.js~Api#auth",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#authorizedget",
-    "class/src/utils/api.js~Api.html#instance-method-authorizedGet",
-    "src/utils/api.js~Api#authorizedGet",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#authorizedpost",
-    "class/src/utils/api.js~Api.html#instance-method-authorizedPost",
-    "src/utils/api.js~Api#authorizedPost",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#constructor",
-    "class/src/utils/api.js~Api.html#instance-constructor-constructor",
-    "src/utils/api.js~Api#constructor",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#get",
-    "class/src/utils/api.js~Api.html#instance-method-get",
-    "src/utils/api.js~Api#get",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#loadcourse",
-    "class/src/utils/api.js~Api.html#instance-method-loadCourse",
-    "src/utils/api.js~Api#loadCourse",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#loadcourses",
-    "class/src/utils/api.js~Api.html#instance-method-loadCourses",
-    "src/utils/api.js~Api#loadCourses",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#loadfolder",
-    "class/src/utils/api.js~Api.html#instance-method-loadFolder",
-    "src/utils/api.js~Api#loadFolder",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#logout",
-    "class/src/utils/api.js~Api.html#instance-method-logout",
-    "src/utils/api.js~Api#logout",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#password",
-    "class/src/utils/api.js~Api.html#instance-member-password",
-    "src/utils/api.js~Api#password",
-    "member"
-  ],
-  [
-    "src/utils/api.js~api#post",
-    "class/src/utils/api.js~Api.html#instance-method-post",
-    "src/utils/api.js~Api#post",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#request",
-    "class/src/utils/api.js~Api.html#instance-method-request",
-    "src/utils/api.js~Api#request",
-    "method"
-  ],
-  [
-    "src/utils/api.js~api#username",
-    "class/src/utils/api.js~Api.html#instance-member-username",
-    "src/utils/api.js~Api#username",
-    "member"
   ],
   [
     "src/utils/date.js",

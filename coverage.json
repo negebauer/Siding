@@ -1,20 +1,39 @@
 {
-  "coverage": "31.25%",
-  "expectCount": 96,
-  "actualCount": 30,
+  "coverage": "24.07%",
+  "expectCount": 108,
+  "actualCount": 26,
   "files": {
-    "src/App.js": {
+    "src/Router.js": {
       "expectCount": 2,
       "actualCount": 0,
       "undocumentLines": [
-        7,
-        15
+        12,
+        21
       ]
     },
     "src/Siding.js": {
-      "expectCount": 4,
-      "actualCount": 4,
+      "expectCount": 1,
+      "actualCount": 1,
       "undocumentLines": []
+    },
+    "src/components/Course.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/components/CoursesList.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        14,
+        23,
+        27,
+        28,
+        32,
+        43
+      ]
     },
     "src/components/LoadingView.js": {
       "expectCount": 2,
@@ -31,49 +50,43 @@
         2
       ]
     },
-    "src/containers/Courses.js": {
-      "expectCount": 7,
+    "src/containers/CurrentCourses.js": {
+      "expectCount": 2,
       "actualCount": 0,
       "undocumentLines": [
-        21,
-        27,
-        32,
-        33,
-        35,
-        52,
-        82
+        12,
+        18
       ]
     },
-    "src/containers/Session.js": {
+    "src/containers/SessionGate.js": {
       "expectCount": 10,
       "actualCount": 1,
       "undocumentLines": [
-        23,
-        30,
+        22,
+        29,
+        35,
         36,
-        37,
-        39,
-        45,
-        50,
-        66,
-        101
+        38,
+        44,
+        49,
+        62,
+        97
       ]
     },
     "src/redux/modules/courses.js": {
-      "expectCount": 11,
+      "expectCount": 10,
       "actualCount": 0,
       "undocumentLines": [
-        8,
-        9,
         10,
         11,
-        14,
-        21,
-        45,
-        54,
-        58,
-        63,
-        67
+        12,
+        13,
+        16,
+        24,
+        49,
+        64,
+        68,
+        75
       ]
     },
     "src/redux/modules/entities.js": {
@@ -85,30 +98,38 @@
         22
       ]
     },
+    "src/redux/modules/routes.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
+        10
+      ]
+    },
     "src/redux/modules/user.js": {
       "expectCount": 13,
       "actualCount": 0,
       "undocumentLines": [
-        7,
         8,
         9,
         10,
-        13,
-        22,
-        58,
-        67,
-        71,
-        75,
+        11,
+        14,
+        23,
+        59,
+        68,
+        72,
         76,
         77,
-        78
+        78,
+        79
       ]
     },
     "src/redux/reducers.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        7
+        8
       ]
     },
     "src/redux/schemas.js": {
@@ -121,34 +142,54 @@
       ]
     },
     "src/redux/store.js": {
-      "expectCount": 2,
+      "expectCount": 8,
       "actualCount": 0,
       "undocumentLines": [
-        9,
-        14
+        11,
+        17,
+        19,
+        21,
+        23,
+        26,
+        34,
+        28
+      ]
+    },
+    "src/routes.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        5,
+        11,
+        13,
+        15,
+        22,
+        26
       ]
     },
     "src/utils/api.js": {
-      "expectCount": 17,
-      "actualCount": 6,
+      "expectCount": 15,
+      "actualCount": 5,
       "undocumentLines": [
-        42,
-        43,
-        44,
-        73,
-        78,
-        83,
-        90,
-        118,
-        123,
-        131,
-        138
+        25,
+        26,
+        64,
+        68,
+        72,
+        76,
+        100,
+        104,
+        114,
+        120
       ]
     },
     "src/utils/date.js": {
-      "expectCount": 4,
+      "expectCount": 6,
       "actualCount": 4,
-      "undocumentLines": []
+      "undocumentLines": [
+        32,
+        36
+      ]
     },
     "src/utils/parser.js": {
       "expectCount": 4,

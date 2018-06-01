@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "name": "parseCourses",
+    "filePath": "src/utils/parser.js",
+    "lines": [
+      {
+        "lineNumber": 12,
+        "line": "/**"
+      },
+      {
+        "lineNumber": 13,
+        "line": " *  Parse a courses' list page to read its courses"
+      },
+      {
+        "lineNumber": 14,
+        "line": " *  @author @negebauer"
+      },
+      {
+        "lineNumber": 15,
+        "line": " *  @param  {String} html     The full html of the main courses page"
+      },
+      {
+        "lineNumber": 16,
+        "line": " *  @return {Array<Object>}   An array with course objects { id, acronym, name, section, folder: {} }"
+      },
+      {
+        "lineNumber": 17,
+        "line": " */"
+      },
+      {
+        "lineNumber": 18,
+        "line": "export function parseCourses(html, semester, year) {"
+      }
+    ],
+    "codeParams": [
+      "html",
+      "semester",
+      "year"
+    ],
+    "docParams": [
+      "html"
+    ]
+  }
+]
