@@ -1,6 +1,7 @@
 import { merge } from 'lodash/fp/object'
 import { REHYDRATE } from 'redux-persist'
 import { createSelector } from 'reselect'
+import { logout, auth } from '../../utils/api'
 import { SIDING_AUTH_FAILED } from '../../utils/api'
 
 // Actions
@@ -56,10 +57,10 @@ export default function reducer(state = initialState, action) {
 
 // Action creators
 export function login(username, password) {
-  return (dispatch, getState, { api }) =>
+  return dispatch =>
     dispatch({
       type: LOGIN,
-      payload: api.logout().then(() => api.auth(username, password)),
+      payload: logout().then(() => auth(username, password)),
     })
 }
 

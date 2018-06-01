@@ -1,31 +1,13 @@
 import React from 'react'
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, StatusBar } from 'react-native'
 import { Provider, connect } from 'react-redux'
+import { ConnectedRouter } from 'react-router-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import App from './App'
-import Session from './containers/Session'
+import store, { persistor } from './redux/store'
+import SessionGate from './containers/SessionGate'
 import LoadingView from './components/LoadingView'
-import Api from './utils/api'
-import configureStore from './redux/store'
-
-/**
- *  An instance of the siding api client
- *  @type {Api}
- */
-const api = new Api()
-
-/**
- *  Default initial state
- *  @type {Object}
- */
-const initialState = {}
-
-/**
- *  The redux store with its persistor
- *  @type {Object}
- */
-const { store, persistor } = configureStore(initialState, { api })
+import Router from './Router'
 
 /**
  *  Main react native app component
@@ -36,9 +18,10 @@ export default function Siding() {
   return (
     <Provider store={store}>
       <PersistGate loading={<LoadingView />} persistor={persistor}>
-        <Session>
-          <App />
-        </Session>
+        <StatusBar barStyle="default" />
+        <SessionGate>
+          <Router />
+        </SessionGate>
       </PersistGate>
     </Provider>
   )

@@ -1,6 +1,8 @@
 import { merge } from 'lodash/fp/object'
 import { normalize, denormalize } from 'normalizr'
 import { createSelector } from 'reselect'
+import { loadCourses as apiLoadCourses } from '../../utils/api'
+import { SIDING_SEMESTER, SIDING_YEAR, sidingDateId } from '../../utils/date'
 import { courseSchema } from '../schemas'
 import { getEntities } from './entities'
 
@@ -12,7 +14,8 @@ export const LOAD_COURSES_REJECTED = `${LOAD_COURSES}_REJECTED`
 
 // Initial state
 const initialState = {
-  courses: [],
+  allCourses: [],
+  coursesDate: {},
   loading: false,
   error: undefined,
 }
@@ -27,7 +30,8 @@ export default function reducer(state = initialState, action) {
       })
     case LOAD_COURSES_FULFILLED:
       return merge(state, {
-        courses: action.payload.result,
+        allCourses: action.payload.result,
+        coursesDate: merge(state.coursesDate, action.payload.coursesDate),
         loading: false,
         error: undefined,
       })
@@ -42,29 +46,34 @@ export default function reducer(state = initialState, action) {
 }
 
 // Action creators
-export function loadCourses() {
-  return (dispatch, getState, { api }) =>
+export function loadCourses(semester, year) {
+  return dispatch =>
     dispatch({
       type: LOAD_COURSES,
-      payload: api.loadCourses().then(r => normalize(r, [courseSchema])),
+      payload: apiLoadCourses(semester, year).then(r => {
+        const payload = normalize(r, [courseSchema])
+        return {
+          ...payload,
+          coursesDate: { [sidingDateId(semester, year)]: payload.result },
+        }
+      }),
     })
 }
 
 // Selectors
-export function getCourses(state) {
+export function getCoursesState(state) {
   return state.courses
 }
 
-export const getCoursesList = createSelector(
-  getCourses,
+export function getCoursesDate(
+  state,
+  props = { semester: SIDING_SEMESTER, year: SIDING_YEAR }
+) {
+  return state.courses.coursesDate[sidingDateId(props.semester, props.year)]
+}
+
+export const getCoursesDateList = createSelector(
+  getCoursesDate,
   getEntities,
-  (courses, entities) => denormalize(courses.courses, [courseSchema], entities)
-)
-export const getCoursesLoading = createSelector(
-  getCourses,
-  courses => courses.loading
-)
-export const getCoursesError = createSelector(
-  getCourses,
-  courses => courses.error
+  (courses, entities) => denormalize(courses, [courseSchema], entities)
 )

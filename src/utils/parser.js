@@ -16,7 +16,7 @@ const parser = new DOMParser({
  *  @param  {String} html     The full html of the main courses page
  *  @return {Array<Object>}   An array with course objects { id, acronym, name, section, folder: {} }
  */
-export function parseCourses(html) {
+export function parseCourses(html, semester, year) {
   return parser
     .parseFromString(html)
     .querySelect('a')
@@ -28,7 +28,7 @@ export function parseCourses(html) {
       const acronym = split[0]
       const name = split[1]
       const section = text.split(' ')[1].match(/\d+/)[0]
-      return { id, acronym, name, section, folders: {} }
+      return { id, acronym, name, section, semester, year, folders: {} }
     })
 }
 

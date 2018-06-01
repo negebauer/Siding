@@ -9,7 +9,6 @@ import {
   Button,
   LayoutAnimation,
 } from 'react-native'
-import autobind from 'autobind-decorator'
 import LoadingView from '../components/LoadingView'
 import {
   login,
@@ -33,7 +32,7 @@ const mapDispatchToProps = {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class Session extends Component {
+export default class SessionGate extends Component {
   constructor() {
     super()
     this.state = {
@@ -58,10 +57,7 @@ export default class Session extends Component {
    *  @author @negebauer
    *  @return {Promise}
    */
-  @autobind
-  login() {
-    return this.props.login(this.state.username, this.state.password)
-  }
+  login = () => this.props.login(this.state.username, this.state.password)
 
   render() {
     const { authenticated, loading, error } = this.props
@@ -91,7 +87,7 @@ export default class Session extends Component {
   }
 }
 
-Session.propTypes = {
+SessionGate.propTypes = {
   authenticated: PropTypes.bool,
   loading: PropTypes.bool,
   login: PropTypes.func,

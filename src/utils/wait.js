@@ -11,7 +11,6 @@ export const WAIT_SECONDS = 0.5
  *  @return {Promise}           A promise that resolves when the time is passed
  */
 export default function wait(repeat = 1) {
-  console.log('wait')
   const waitTime = repeat * WAIT_SECONDS * 1000
   return new Promise(res => setTimeout(() => res(), waitTime))
 }
