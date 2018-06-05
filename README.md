@@ -1,5 +1,7 @@
 # Siding mobile client
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/negebauer/Siding.svg)](https://greenkeeper.io/)
+
 [![circleciB]][circleciL]
 [![docsB]][docsL]
 [![commitsB]][commitsL]
